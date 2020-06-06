@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component("input")
-public class Input {
+public class InputModel {
 
 
     String name = "巴普洛夫的狗的输入系统";
@@ -35,7 +35,7 @@ public class Input {
 
 
 
-    public Input() {
+    public InputModel() {
 
     }
 
