@@ -32,9 +32,6 @@ public class DocumentServiceImpl implements DocumentService {
 
     }
 
-    public void obtainData(HttpServletRequest req) {
-
-    }
 
     @Override
     public void normalizeData() {

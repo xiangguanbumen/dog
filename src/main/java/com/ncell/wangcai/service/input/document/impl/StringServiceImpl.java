@@ -1,6 +1,12 @@
 package com.ncell.wangcai.service.input.document.impl;
 
+import com.ncell.wangcai.pojo.input.document.DocumentWarehouseModel;
+import com.ncell.wangcai.pojo.input.document.NormalizedDocumentModel;
+import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouseModel;
 import com.ncell.wangcai.service.input.document.StringService;
+import com.ncell.wangcai.utils.ApplicationContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,32 +18,49 @@ import javax.servlet.http.HttpServletRequest;
 @Service("StringServiceImpl")
 public class StringServiceImpl implements StringService {
 
-    String userInput;
+    String beforeNormalize;
+    String afterNormalize;
+
+    @Autowired
+    DocumentWarehouseModel documentWarehouseModel;
+    @Autowired
+    NormalizedDocumentModel normalizedDocumentModel;
+    @Autowired
+    NormalizedDocumentWarehouseModel normalizedDocumentWarehouseModel;
+
 
     @Override
     public void obtainData() {
 
     }
 
-    public void obtainData(HttpServletRequest req) {
-        userInput=req.getParameter("inputtext");
-
-    }
-
     @Override
+    /**
+     * 标准化输入的文字。
+     * 因为string字符串已经被过滤器标准化了，这里不需要做任何动作.
+     * 只需要把流程走一遍即可
+     */
     public void normalizeData() {
 
-        userInput=userInput.concat(",正在解析中");
-
+        beforeNormalize = documentWarehouseModel.getDocumentModelLinkedBlockingQueue().peek().getStringDocument();
+        afterNormalize = beforeNormalize;
+        normalizedDocumentModel.setNormalizedDocument(afterNormalize);
     }
 
     @Override
-    public void sendData() {
-        System.out.println(userInput);
+    /**
+     * 将处理好的字符串封装到NormalizedDocumentWarehouseModel
+     */
+    public void sendData() throws InterruptedException {
+        normalizedDocumentWarehouseModel.getNormalizedDocumentModeLinkedBlockingQueue().put(normalizedDocumentModel);
     }
 
     @Override
-    public void doService() {
-
+    public void doService() throws InterruptedException {
+        this.obtainData();
+        this.normalizeData();
+        this.sendData();
     }
+
+
 }

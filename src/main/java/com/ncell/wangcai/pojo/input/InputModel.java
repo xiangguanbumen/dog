@@ -23,6 +23,7 @@ public class InputModel {
     String name = "巴普洛夫的狗的输入系统";
 
 
+    @Autowired
     DocumentModel documentModel;
     DocumentWarehouseModel documentWarehouseModel;
     NormalizedDocumentModel normalizedDocumentModel;

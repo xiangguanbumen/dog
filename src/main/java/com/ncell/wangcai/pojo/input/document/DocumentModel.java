@@ -1,13 +1,21 @@
 package com.ncell.wangcai.pojo.input.document;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  * @author anliwei
  * @create 2020/6/4 9:06
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Component("documentModel")
+@Scope("prototype")
 public class DocumentModel {
 
     //需要引入poi相关资料，进行Word，Excel等格式的解析,
@@ -40,58 +48,4 @@ public class DocumentModel {
 
 
 
-    public String getDocNanme() {
-        return docNanme;
-    }
-
-    public void setDocNanme(String docNanme) {
-        this.docNanme = docNanme;
-    }
-
-    public DocumentModel() {
-
-    }
-    public DocumentModel(String docNanme) {
-        this.docNanme = docNanme;
-    }
-
-    public Object getWord() {
-        return word;
-    }
-
-    public void setWord(Object word) {
-        this.word = word;
-    }
-
-    public Object getExcel() {
-        return excel;
-    }
-
-    public void setExcel(Object excel) {
-        this.excel = excel;
-    }
-
-    public Object getPpt() {
-        return ppt;
-    }
-
-    public void setPpt(Object ppt) {
-        this.ppt = ppt;
-    }
-
-    public Object getTxt() {
-        return txt;
-    }
-
-    public void setTxt(Object txt) {
-        this.txt = txt;
-    }
-
-    public String getStringDocument() {
-        return stringDocument;
-    }
-
-    public void setStringDocument(String stringDocument) {
-        this.stringDocument = stringDocument;
-    }
-}
+   }

@@ -7,5 +7,5 @@ import com.ncell.wangcai.service.input.InputService;
  * @Data 2020/6/6 13:00
  */
 public interface DocumentService extends InputService {
-    void doService();
+    void doService() throws InterruptedException;
 }
