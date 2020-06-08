@@ -30,7 +30,7 @@ public class CellWarehouse {
      */
     ConcurrentHashMap<String,Cell> excitedCell = new ConcurrentHashMap(1024000);
     /**
-     * 部分兴奋细胞
+     * 接收到信息的细胞，兴奋与否需要等待控制器调用细胞compare方法决定
      */
     ConcurrentHashMap<String,Cell> partExcitedCell = new ConcurrentHashMap(1024000);
     /**

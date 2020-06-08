@@ -1,4 +1,4 @@
-package com.ncell.wangcai.service.cns.converter;
+package com.ncell.wangcai.service.cns.inputConverter;
 
 /**
  * @author anliwei

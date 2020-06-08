@@ -1,15 +1,12 @@
-package com.ncell.wangcai.service.cns.converter.impl;
+package com.ncell.wangcai.service.cns.inputConverter.impl;
 
 
 import com.ncell.wangcai.pojo.cns.common.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouseModel;
-import com.ncell.wangcai.service.cns.converter.DocCellConvertService;
+import com.ncell.wangcai.service.cns.inputConverter.DocCellConvertService;
 import com.ncell.wangcai.utils.cell.TextCellUtil;
 import com.ncell.wangcai.utils.doc.StringUtil;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -34,7 +31,10 @@ public class DocCellConvertServiceImpl implements DocCellConvertService {
 
     CellWarehouse cellWarehouse;
 
-    public DocCellConvertServiceImpl(TextCellUtil textCellUtil, StringUtil stringUtil, NormalizedDocumentWarehouseModel normalizedDocumentWarehouseModel, CellWarehouse cellWarehouse) {
+    public DocCellConvertServiceImpl(TextCellUtil textCellUtil,
+                                     StringUtil stringUtil,
+                                     NormalizedDocumentWarehouseModel normalizedDocumentWarehouseModel,
+                                     CellWarehouse cellWarehouse) {
         this.textCellUtil = textCellUtil;
         this.stringUtil = stringUtil;
         this.normalizedDocumentWarehouseModel = normalizedDocumentWarehouseModel;
@@ -53,22 +53,23 @@ public class DocCellConvertServiceImpl implements DocCellConvertService {
     @Override
     public void convertDocToCell() throws InterruptedException {
 
-        userinput = normalizedDocumentWarehouseModel.getNormalizedDocumentModeLinkedBlockingQueue().take().getNormalizedDocument();
+        userinput = normalizedDocumentWarehouseModel
+                .getNormalizedDocumentModeLinkedBlockingQueue()
+                .take().getNormalizedDocument();
 
         //依次读取用户输入的每一个字符
-        while(!userinput.isEmpty()){
+        while (!userinput.isEmpty()) {
             Character firstCharacter = stringUtil.obtainFirstCharacter(userinput);
-            String cellName = "textCell"+firstCharacter;
-            if(textCellUtil.textCellExist(cellName,cellWarehouse)){
+            String cellName = "textCell" + firstCharacter;
+            if (textCellUtil.textCellExist(cellName, cellWarehouse)) {
                 //如果存在激活，并注册到相应集合中
-                textCellUtil.exciteAndRegisterTextCell(cellName,cellWarehouse);
-            }
-            else{
+                textCellUtil.exciteAndRegisterTextCell(cellName, cellWarehouse);
+            } else {
                 //如果不存在，创造新的textcell并注册到allcell，
-                textCellUtil.registerTextCell(textCellUtil.creatTextCell(firstCharacter),cellWarehouse);
+                textCellUtil.registerTextCell(textCellUtil.creatTextCell(firstCharacter), cellWarehouse);
             }
             //去掉第一个字符继续遍历
-            userinput=userinput.substring(1);
+            userinput = userinput.substring(1);
 
         }
 
@@ -91,7 +92,6 @@ public class DocCellConvertServiceImpl implements DocCellConvertService {
         this.sendCell();
 
     }
-
 
 
 }
