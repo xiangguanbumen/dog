@@ -18,21 +18,28 @@ import org.springframework.stereotype.Service;
  * @Data 2020/6/7 16:59
  */
 @Service("docCellConvertServiceImpl")
-@AllArgsConstructor
-@NoArgsConstructor
+
+
 @Data
 public class DocCellConvertServiceImpl implements DocCellConvertService {
 
     String userinput;
-    @Autowired
+
     TextCellUtil textCellUtil;
-    @Autowired
+
     StringUtil stringUtil;
 
-    @Autowired
+
     NormalizedDocumentWarehouseModel normalizedDocumentWarehouseModel;
-    @Autowired
+
     CellWarehouse cellWarehouse;
+
+    public DocCellConvertServiceImpl(TextCellUtil textCellUtil, StringUtil stringUtil, NormalizedDocumentWarehouseModel normalizedDocumentWarehouseModel, CellWarehouse cellWarehouse) {
+        this.textCellUtil = textCellUtil;
+        this.stringUtil = stringUtil;
+        this.normalizedDocumentWarehouseModel = normalizedDocumentWarehouseModel;
+        this.cellWarehouse = cellWarehouse;
+    }
 
     @Override
     /**
@@ -74,6 +81,7 @@ public class DocCellConvertServiceImpl implements DocCellConvertService {
     public void sendCell() {
 
 
+        System.out.println("it works");
     }
 
     @Override
