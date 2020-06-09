@@ -21,11 +21,19 @@ import java.util.Date;
 @Scope("prototype")
 public class Message {
 
-    String messageName;
+    /**
+     * message+数字序号
+     */
+    String name;
+    /**
+     * message的使用者，等同于messageTo，
+     * connection是拥有者,等同于connectionFrom
+     */
+    String user;
     String messageFrom;
     String messageTo;
     int messageType;
-    long messageEffectDuration;
+    int messageEffectDuration;
     long messageCreatTime;
 
 }

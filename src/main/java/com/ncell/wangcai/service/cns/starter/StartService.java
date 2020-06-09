@@ -30,6 +30,7 @@ public interface StartService {
      */
     void loadStory();
 
+
     /**
      * 从数据库加载Connection到各个已经加载的实例
      */
@@ -41,7 +42,7 @@ public interface StartService {
     void loadMessage();
 
     /**
-     * 从数据库加载ElementJs到各个已经加载的实例
+     * 从数据库加载Element到各个已经加载的实例
      */
     void loadElement();
 

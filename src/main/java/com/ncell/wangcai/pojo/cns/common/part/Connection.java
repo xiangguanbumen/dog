@@ -20,7 +20,15 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class Connection {
 
-    String connectionName;
+    /**
+     * connectionName connection+数字序号
+     */
+    String name;
+    /**
+     * 标记connection的拥有者，告诉系统加载时把这个connection放到哪里去。
+     */
+    String owner;
+
     String connectionFrom;
     String connectionTo;
     int connectionType;

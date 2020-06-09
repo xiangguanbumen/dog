@@ -1,9 +1,7 @@
 package com.ncell.wangcai.pojo.cns.common.stem;
 
-import com.ncell.wangcai.pojo.cns.common.part.ConnectionsInModel;
 import com.ncell.wangcai.pojo.cns.common.part.ElementCss;
 import com.ncell.wangcai.pojo.cns.common.part.ElementJs;
-import com.ncell.wangcai.pojo.cns.common.part.MessageInModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * @author anliwei
@@ -49,19 +48,32 @@ public class Stem {
     long refractoryPeriod;
 
     /**
-     * 连接
+     * 输入连接
      */
-    ConnectionsInModel connectionsInModel;
+    HashSet<String> connectionsInput;
 
     /**
-     * 消息
+     * 输出连接
      */
-    MessageInModel messageInModel;
+
+    HashSet<String> connectionsOutput;
+
+
+    /**
+     * 输出消息
+     */
+
+    LinkedList<String> messagesOutput ;
+
+    /**
+     * 输入消息
+     */
+    LinkedList<String> messagesInput ;
 
     /**
      * 组成元素,使用元素的名称，需要的时候根据元素名称到仓库去取
      */
-    HashSet<String> elementsInModel;
+    HashSet<String> elements;
 
     /**
      * 元素静态组合

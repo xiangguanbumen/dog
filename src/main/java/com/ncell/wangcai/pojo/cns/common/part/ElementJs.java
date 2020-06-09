@@ -26,4 +26,5 @@ import org.springframework.stereotype.Component;
 public class ElementJs {
 
     String name;
+    String owner;
 }

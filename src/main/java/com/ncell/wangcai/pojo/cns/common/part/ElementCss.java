@@ -28,5 +28,6 @@ import org.springframework.stereotype.Component;
 public class ElementCss {
 
     String name;
+    String owner;
 
 }
