@@ -19,27 +19,58 @@ public class StartServiceImpl implements StartService {
 
 
     @Override
+    public void doStartService() {
+        this.loadCell();
+        this.loadAgent();
+        this.loadTissue();
+        this.loadScene();
+        this.loadStory();
+
+    }
+
+    @Override
+    public void loadStem() {
+        //加载自身变量
+
+
+
+        //加载组成类变量
+        this.loadMessage();
+        this.loadConnection();
+        this.loadElement();
+        this.loadElementCss();
+        this.loadElementJs();
+
+
+    }
+
+    @Override
     public void loadCell() {
+        this.loadStem();
 
     }
 
     @Override
     public void loadTissue() {
+        this.loadStem();
 
     }
 
     @Override
     public void loadAgent() {
+        this.loadStem();
 
     }
 
     @Override
     public void loadScene() {
+        this.loadStem();
 
     }
 
     @Override
     public void loadStory() {
+        this.loadStem();
 
     }
 

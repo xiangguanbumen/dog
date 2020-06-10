@@ -5,6 +5,16 @@ package com.ncell.wangcai.service.cns.starter;
  * @create 2020/6/8 18:04
  */
 public interface StartService {
+
+    /**
+     * startservice主方法，调用其他pojo加载方法
+     */
+    void doStartService();
+
+    /**
+     * 各种pojo的根加载方法
+     */
+    void loadStem();
     /**
      * 从数据库加载cell实例
      */

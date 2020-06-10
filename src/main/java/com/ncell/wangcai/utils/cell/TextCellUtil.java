@@ -46,7 +46,7 @@ public class TextCellUtil {
      * 暂时不使用数字编号命名，其他没有实际编码的细胞再使用数字命名
      */
 
-    public int TextCellCount(ConcurrentHashMap<String, Cell> textCell){
+    public int textCellCount(ConcurrentHashMap<String, Cell> textCell){
         return textCell.size();
     }
 

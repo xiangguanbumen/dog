@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 import java.lang.ref.SoftReference;
 
 /**
+ * element表示的是不同pojo实体类的关系。
+ * 一个element元素可以隶属于多个不同的pojo。
+ *
+ * element与connection不同在于一个是表示的物理实体之间的联系，
+ * 一个是表示的抽象概念之间的关系。
+ *
  * element就是各个pojo实体类，
  * 但是一个实体类可能属于多个更高的实体类。
  * 所以需要单独重新标记。
