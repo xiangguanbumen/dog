@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -20,7 +21,10 @@ import java.util.LinkedList;
 @NoArgsConstructor
 @Component()
 @Scope("prototype")
-public class Stem {
+public class Stem implements Serializable {
+
+    int id=1;
+
     String name = "";
     /**
      * 类型，0表示实体，1表示关系

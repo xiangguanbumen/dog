@@ -1,7 +1,10 @@
 package com.ncell.wangcai.service.cns.starter.Impl;
 
 import com.ncell.wangcai.service.cns.starter.StartService;
+import com.ncell.wangcai.service.mapperService.impl.CellServiceImpl;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,9 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("startServiceImpl")
 @Data
-
+@AllArgsConstructor
 public class StartServiceImpl implements StartService {
 
+
+    CellServiceImpl cellService;
 
     @Override
     public void doStartService() {
@@ -34,6 +39,7 @@ public class StartServiceImpl implements StartService {
 
 
 
+
         //加载组成类变量
         this.loadMessage();
         this.loadConnection();
@@ -46,7 +52,9 @@ public class StartServiceImpl implements StartService {
 
     @Override
     public void loadCell() {
-        this.loadStem();
+
+        System.out.println(cellService.findStem("text01").getName());
+
 
     }
 

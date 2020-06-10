@@ -9,8 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 /**
  * @author anliwei
  */
-
-//@MapperScan("com.ncell.wangcai.dao")
+@MapperScan("com.ncell.wangcai.mapper")
 @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class, SecurityAutoConfiguration.class})
 public class WangcaiApplication {
 

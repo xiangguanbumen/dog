@@ -31,6 +31,7 @@ public class DocCellConvertServiceImpl implements DocCellConvertService {
 
     CellWarehouse cellWarehouse;
 
+    //我什么要单独编写一个构造函数，是因为，多了一个userinput
     public DocCellConvertServiceImpl(TextCellUtil textCellUtil,
                                      StringUtil stringUtil,
                                      NormalizedDocumentWarehouseModel normalizedDocumentWarehouseModel,
