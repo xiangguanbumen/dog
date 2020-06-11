@@ -54,7 +54,7 @@ public class StartServiceImpl implements StartService {
     @Override
     public void loadCell() {
 
-        for (Stem stem : cellMapperService.findAllStem()) {
+        for (Stem stem : cellMapperService.findAllCell()) {
 
             System.out.println(stem.getName());
         }

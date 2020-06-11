@@ -55,7 +55,7 @@ public class StopServiceImpl implements StopService {
     public void saveCell() {
 
         for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
-            cellService.addStem(entry.getValue());
+            cellService.addCell(entry.getValue());
             }
     }
 

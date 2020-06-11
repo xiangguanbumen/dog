@@ -1,5 +1,6 @@
 package com.ncell.wangcai.service.mapperService;
 
+import com.ncell.wangcai.pojo.cns.main.Cell;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 
 import java.util.List;
@@ -10,14 +11,33 @@ import java.util.List;
  */
 
 public interface CellMapperService {
+    /**
+     * 删除
+     * @param cellName
+     * @return
+     */
+    int deleteCell(String cellName);
 
-    int deleteStem(String stemName);
+    /**
+     * 更新
+     * @param cellName
+     * @param cell
+     * @return
+     */
+    int updateCell(String cellName, Cell cell);
 
-    int updateStem(String stemName, Stem stem);
+    /**
+     * 根据名称查找
+     * @param cellName
+     * @return
+     */
+    Stem findCell(String cellName);
 
-    Stem findStem(String stemName);
+    /**
+     * 查找所有细胞
+     * @return
+     */
+    List<Cell> findAllCell();
 
-    List<Stem> findAllStem();
-
-    int addStem(Stem stem);
+    int addCell(Cell cell);
 }

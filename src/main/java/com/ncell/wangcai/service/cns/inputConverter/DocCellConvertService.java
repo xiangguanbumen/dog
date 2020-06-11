@@ -9,8 +9,10 @@ public interface DocCellConvertService {
      * 获取数据
      */
     void obtainData();
+
     /**
-     * 转换数据为细胞
+     * 将用户输入的文字转换成细胞
+     * @throws InterruptedException
      */
     void convertDocToCell() throws InterruptedException;
     /**

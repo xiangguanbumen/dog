@@ -37,24 +37,24 @@ public interface CellMapper {
      * @return
      */
     @Select("select * from cell_table where name = #{cellName}")
-    Stem findCell(String cellName);
+    Cell findCell(String cellName);
 
     /**
      * 查找所有cell实体类
      * @return
      */
     @Select("select * from cell_table ")
-    List<Stem> findAllCell();
+    List<Cell> findAllCell();
 
 
     //todo 暂时使用固定id。
 
     /**
      * 保存到数据库
-     * @param stem
+     * @param cell
      * @return
      */
     @Insert("insert into cell_table (id,name,type,currentState,currentStateStartTime,excitedStateDuration,refractoryPeriod) " +
             "values (#{id},#{name},#{type},#{currentState},#{currentStateStartTime},#{excitedStateDuration},#{refractoryPeriod})")
-    int addCell(Stem stem);
+    int addCell(Cell cell);
 }

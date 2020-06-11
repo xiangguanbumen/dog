@@ -1,6 +1,7 @@
 package com.ncell.wangcai.service.mapperService.impl;
 
 import com.ncell.wangcai.mapper.CellMapper;
+import com.ncell.wangcai.pojo.cns.main.Cell;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.service.mapperService.CellMapperService;
 import lombok.AllArgsConstructor;
@@ -21,27 +22,27 @@ public class CellMapperServiceImpl implements CellMapperService {
     private CellMapper cellMapper;
 
     @Override
-    public int deleteStem(String stemName) {
+    public int deleteCell(String stemName) {
         return cellMapper.deleteCell(stemName);
     }
 
     @Override
-    public int updateStem(String stemName, Stem stem) {
-        return cellMapper.updateStem(stemName,stem);
+    public int updateCell(String cellName, Cell cell) {
+        return cellMapper.updateStem(cellName,cell);
     }
 
     @Override
-    public Stem findStem(String stemName) {
+    public Stem findCell(String stemName) {
         return cellMapper.findCell(stemName);
     }
 
     @Override
-    public List<Stem> findAllStem() {
+    public List<Cell> findAllCell() {
         return cellMapper.findAllCell();
     }
 
     @Override
-    public int addStem(Stem stem) {
-        return cellMapper.addCell(stem);
+    public int addCell(Cell cell) {
+        return cellMapper.addCell(cell);
     }
 }

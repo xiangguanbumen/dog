@@ -34,7 +34,7 @@ public interface ConnectionMapper {
      * @param connection
      * @return
      */
-    @Insert("insert into connection_table (id,name,owner,from,to,type,count,createTime,lastExcitedTime) values (#{id},#{name},#{owner},#{connectionFrom},#{connectionTo},#{connectionType},#{excitedCount},#{creatTime},#{lastExcitedTim})")
+    @Insert("insert into connection_table (id,name,owner,from,to,type,count,createTime,lastExcitedTime) values (#{id},#{name},#{owner},#{connectionFrom},#{connectionTo},#{connectionType},#{excitedCount},#{creatTime},#{lastExcitedTime})")
     int addConnection(Connection connection);
 
 }

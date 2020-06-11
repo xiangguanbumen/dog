@@ -1,20 +1,10 @@
-package com.ncell.wangcai.service.cns.main;
+package com.ncell.wangcai.service.cns.main.physiology;
 
 /**
  * @author anliwei
- * @create 2020/6/8 19:26
+ * @Data 2020/6/11 20:24
  */
-public interface StemService {
-    /**
-     * 对接收到的消息和自身的element
-     * @return
-     */
-     Boolean compare();
-
-    /**
-     * 发送消息到自身的连接结构
-     */
-    void fire();
+public interface PojoUpDateService {
 
     /**
      * 更新自身连接

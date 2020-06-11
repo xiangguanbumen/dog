@@ -1,6 +1,9 @@
 package com.ncell.wangcai.mapper;
 
 import com.ncell.wangcai.pojo.cns.main.part.ElementCss;
+import org.apache.ibatis.annotations.Insert;
+
+import java.util.List;
 
 /**
  * @author anliwei
@@ -12,6 +15,7 @@ public interface ElementCssMapper {
      * @param elementCss
      * @return
      */
+    @Insert("insert into elementCss_table (id,name,type) values (#{id},#{name},#{type})")
     int addElementCss(ElementCss elementCss);
 
     /**
@@ -27,7 +31,14 @@ public interface ElementCssMapper {
      * @param elementCssName
      * @return
      */
-    ElementCss findElementCss(String elementCssName);
+    ElementCss findElementCssByName(String elementCssName);
+
+    /**
+     *
+     * 查找所有ElementCss
+     * @return
+     */
+    List<ElementCss> findAllElementCss();
 
     /**
      * 删除elementCss
