@@ -1,10 +1,10 @@
 package com.ncell.wangcai.service.cns.starter.Impl;
 
+import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.service.cns.starter.StartService;
-import com.ncell.wangcai.service.mapperService.impl.CellServiceImpl;
+import com.ncell.wangcai.service.mapperService.impl.CellMapperServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class StartServiceImpl implements StartService {
 
 
-    CellServiceImpl cellService;
+    CellMapperServiceImpl cellMapperService;
 
     @Override
     public void doStartService() {
@@ -31,79 +31,117 @@ public class StartServiceImpl implements StartService {
         this.loadScene();
         this.loadStory();
 
+
     }
 
+    /**
+     * 加载pojo实体类的各种组成部分，如connection。message。element等
+     */
     @Override
-    public void loadStem() {
-        //加载自身变量
+    public void loadPart(String name) {
 
-
-
-
-        //加载组成类变量
-        this.loadMessage();
-        this.loadConnection();
-        this.loadElement();
-        this.loadElementCss();
-        this.loadElementJs();
-
+        this.loadMessage(name);
+        this.loadConnection(name);
+        this.loadElement(name);
+        this.loadElementCss(name);
+        this.loadElementJs(name);
 
     }
 
+    /**
+     * 从数据库加载cell实例
+     */
     @Override
     public void loadCell() {
 
-        System.out.println(cellService.findStem("text01").getName());
+        for (Stem stem : cellMapperService.findAllStem()) {
 
+            System.out.println(stem.getName());
+        }
 
     }
 
+    /**
+     * 从数据库加载Tissue实例
+     */
     @Override
     public void loadTissue() {
-        this.loadStem();
 
     }
 
+    /**
+     * 从数据库加载Agent实例
+     */
     @Override
     public void loadAgent() {
-        this.loadStem();
 
     }
 
+    /**
+     * 从数据库加载Scene实例
+     */
     @Override
     public void loadScene() {
-        this.loadStem();
 
     }
 
+    /**
+     * 从数据库加载Story实例
+     */
     @Override
     public void loadStory() {
-        this.loadStem();
 
     }
 
+    /**
+     * 从数据库加载Connection到各个已经加载的实例
+     *
+     * @param name
+     */
     @Override
-    public void loadConnection() {
+    public void loadConnection(String name) {
 
     }
 
+    /**
+     * 从数据库加载Message到各个已经加载的实例
+     *
+     * @param name
+     */
     @Override
-    public void loadMessage() {
+    public void loadMessage(String name) {
 
     }
 
+    /**
+     * 从数据库加载Element到各个已经加载的实例
+     *
+     * @param name
+     */
     @Override
-    public void loadElement() {
+    public void loadElement(String name) {
 
     }
 
+    /**
+     * 从数据库加载ElementCss到各个已经加载的实例
+     *
+     * @param name
+     */
     @Override
-    public void loadElementCss() {
+    public void loadElementCss(String name) {
 
     }
 
+    /**
+     * 从数据库加载ElementJs到各个已经加载的实例
+     *
+     * @param name
+     */
     @Override
-    public void loadElementJs() {
+    public void loadElementJs(String name) {
 
     }
+
+
 }

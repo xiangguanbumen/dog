@@ -1,11 +1,11 @@
 package com.ncell.wangcai.service.cns.inputConverter.impl;
 
 
-import com.ncell.wangcai.pojo.cns.common.warehouse.CellWarehouse;
+import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouseModel;
 import com.ncell.wangcai.service.cns.inputConverter.DocCellConvertService;
-import com.ncell.wangcai.utils.cell.TextCellUtil;
-import com.ncell.wangcai.utils.doc.StringUtil;
+import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;
+import com.ncell.wangcai.utils.input.doc.StringUtil;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 

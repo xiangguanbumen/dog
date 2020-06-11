@@ -32,6 +32,11 @@ public class DogController {
 
     }
 
+    @GetMapping(value = {"/admin"})
+    public String admin(){
+
+        return "admin";
+    }
 
     @GetMapping(value = {"/start"})
     public String start(){
@@ -46,5 +51,8 @@ public class DogController {
         stopService.saveCell();
         return "index";
     }
+
+
+
 
 }

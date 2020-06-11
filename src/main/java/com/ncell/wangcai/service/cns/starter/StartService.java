@@ -12,9 +12,10 @@ public interface StartService {
     void doStartService();
 
     /**
-     * 各种pojo的根加载方法
+     * 加载pojo实体类的各种组成部分，如connection。message。element等
+     * @param name
      */
-    void loadStem();
+    void loadPart(String name);
     /**
      * 从数据库加载cell实例
      */
@@ -41,29 +42,36 @@ public interface StartService {
     void loadStory();
 
 
+
     /**
      * 从数据库加载Connection到各个已经加载的实例
+     *
+     * @param name
      */
-    void loadConnection();
+    void loadConnection(String name);
 
     /**
      * 从数据库加载Message到各个已经加载的实例
+     * @param name
      */
-    void loadMessage();
+    void loadMessage(String name);
 
     /**
      * 从数据库加载Element到各个已经加载的实例
+     * @param name
      */
-    void loadElement();
+    void loadElement(String name);
 
     /**
      * 从数据库加载ElementCss到各个已经加载的实例
+     * @param name
      */
-    void loadElementCss();
+    void loadElementCss(String name);
 
     /**
      * 从数据库加载ElementJs到各个已经加载的实例
+     * @param name
      */
-    void loadElementJs();
+    void loadElementJs(String name);
 
 }

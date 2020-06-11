@@ -1,13 +1,11 @@
 package com.ncell.wangcai.service.cns.stopper.impl;
 
-import com.ncell.wangcai.pojo.cns.common.Cell;
-import com.ncell.wangcai.pojo.cns.common.stem.Stem;
-import com.ncell.wangcai.pojo.cns.common.warehouse.CellWarehouse;
+import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.service.cns.stopper.StopService;
-import com.ncell.wangcai.service.mapperService.impl.CellServiceImpl;
+import com.ncell.wangcai.service.mapperService.impl.CellMapperServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -22,13 +20,15 @@ import java.util.Map;
 public class StopServiceImpl implements StopService {
 
 
-    CellServiceImpl cellService;
+    CellMapperServiceImpl cellService;
 
     CellWarehouse cellWarehouse;
 
     @Override
     public void doStopService() {
 
+
+        //todo 增加判断数据库表格是否为空的语句
         this.saveAgent();
         this.saveCell();
         this.saveTissue();
