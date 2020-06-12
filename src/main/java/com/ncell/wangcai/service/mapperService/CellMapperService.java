@@ -40,4 +40,9 @@ public interface CellMapperService {
     List<Cell> findAllCell();
 
     int addCell(Cell cell);
+
+    /**
+     * 清空数据库cell_table
+     */
+    void truncateTable();
 }

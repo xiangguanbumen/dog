@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author anliwei
  * @create 2020/6/3 14:22
  */
-@Controller("inputSystemController")
+@Controller("inputController")
 @RequestMapping("/input")
 @NoArgsConstructor
 @AllArgsConstructor

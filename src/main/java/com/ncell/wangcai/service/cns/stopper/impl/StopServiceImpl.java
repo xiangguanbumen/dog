@@ -39,9 +39,7 @@ public class StopServiceImpl implements StopService {
     }
 
     @Override
-    public void saveStem() {
-        //todo 存储pojo的自有变量实现
-
+    public void savePart() {
 
         //存储pojo的组成元素
         this.saveElement();
@@ -54,32 +52,42 @@ public class StopServiceImpl implements StopService {
     @Override
     public void saveCell() {
 
+        //如果数据库cell_table中有数据，清空cell_table
+        if(!cellService.findAllCell().isEmpty()){
+            cellService.truncateTable();
+            for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
+                cellService.addCell(entry.getValue());
+            }
+            this.savePart();
+        }else{
         for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
             cellService.addCell(entry.getValue());
             }
+        this.savePart();
+        }
     }
 
     @Override
     public void saveTissue() {
-        this.saveStem();
+        this.savePart();
 
     }
 
     @Override
     public void saveAgent() {
-        this.saveStem();
+        this.savePart();
 
     }
 
     @Override
     public void saveScene() {
-        this.saveStem();
+        this.savePart();
 
     }
 
     @Override
     public void saveStory() {
-        this.saveStem();
+        this.savePart();
 
     }
 

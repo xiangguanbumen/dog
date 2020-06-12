@@ -45,4 +45,12 @@ public class CellMapperServiceImpl implements CellMapperService {
     public int addCell(Cell cell) {
         return cellMapper.addCell(cell);
     }
+
+    /**
+     * 清空数据库cell_table
+     */
+    @Override
+    public void truncateTable() {
+        cellMapper.truncateTable();
+    }
 }

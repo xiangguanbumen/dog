@@ -57,4 +57,11 @@ public interface CellMapper {
     @Insert("insert into cell_table (id,name,type,currentState,currentStateStartTime,excitedStateDuration,refractoryPeriod) " +
             "values (#{id},#{name},#{type},#{currentState},#{currentStateStartTime},#{excitedStateDuration},#{refractoryPeriod})")
     int addCell(Cell cell);
+
+
+    /**
+     * 清空数据库cell_table
+     */
+    @Update("truncate table cell_table")
+    void truncateTable();
 }

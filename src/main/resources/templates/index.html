@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>你好人类</title>
 </head>
 <body>
 我是巴普洛夫的狗，小名叫旺财。
-<form action="/input/doc/string" method="get">
+<form action="/input/doc/string" method="post">
 <div class="col-lg-6">
     <div class="input-group">
         <input type="text" name="inputtext" class="form-control" placeholder="Search for...">
@@ -16,6 +16,7 @@
     </div><!-- /input-group -->
 </div><!-- /.col-lg-6 -->
 </form>
-<a href="/admin">跳转到控制页面</a>
+
+<div th:include="foot :: foot"></div>
 </body>
 </html>

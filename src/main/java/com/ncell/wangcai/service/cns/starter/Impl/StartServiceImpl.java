@@ -1,6 +1,8 @@
 package com.ncell.wangcai.service.cns.starter.Impl;
 
+import com.ncell.wangcai.pojo.cns.main.Cell;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
+import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.service.cns.starter.StartService;
 import com.ncell.wangcai.service.mapperService.impl.CellMapperServiceImpl;
 import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ public class StartServiceImpl implements StartService {
 
 
     CellMapperServiceImpl cellMapperService;
+    CellWarehouse cellWarehouse;
 
     @Override
     public void doStartService() {
@@ -56,7 +59,13 @@ public class StartServiceImpl implements StartService {
 
         for (Stem stem : cellMapperService.findAllCell()) {
 
-            System.out.println(stem.getName());
+            cellWarehouse.getAllCell().put(stem.getName(),(Cell) stem);
+            //如果细胞名称包含text，另外再存到textCell仓库中
+            if(stem.getName().contains("text")){
+                cellWarehouse.getTextCell().put(stem.getName(),(Cell) stem);
+            }
+
+
         }
 
     }

@@ -11,9 +11,9 @@ public interface StopService {
     void doStopService();
 
     /**
-     * 存储实体的根方法
+     * 存储实体的组成部分
      */
-    void saveStem();
+    void savePart();
     /**
      * 存储细胞实体
      */
