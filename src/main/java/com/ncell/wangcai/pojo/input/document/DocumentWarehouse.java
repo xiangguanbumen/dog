@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -15,13 +14,13 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component("documentWarehouseModel")
-public class DocumentWarehouseModel {
+@Component("documentWarehouse")
+public class DocumentWarehouse {
 
     String name="documentWarehouseModel";
     /**
      * 使用阻塞链表，控制接收的文件数量，文档文件问题不大，但是视频图象文档要注意控制缓存大小
      */
-    LinkedBlockingQueue<DocumentModel> documentModelLinkedBlockingQueue = new LinkedBlockingQueue(16);
+    LinkedBlockingQueue<Document> documentLinkedBlockingQueue = new LinkedBlockingQueue(16);
 
 }

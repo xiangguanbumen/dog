@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @create 2020/6/4 9:12
  */
 @Component("soundModel")
-public class SoundModel {
+public class Sound {
     String soundName="sound文件名称";
 
     public String getSoundName() {
@@ -18,11 +18,11 @@ public class SoundModel {
         this.soundName = soundName;
     }
 
-    public SoundModel(String soundName) {
+    public Sound(String soundName) {
         this.soundName = soundName;
     }
 
-    public SoundModel() {
+    public Sound() {
 
     }
 }

@@ -1,6 +1,6 @@
 package com.ncell.wangcai.service.input.document;
 
-import com.ncell.wangcai.service.input.InputService;
+import com.ncell.wangcai.service.input.stem.InputService;
 
 /**
  * @author anliwei

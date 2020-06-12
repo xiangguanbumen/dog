@@ -16,7 +16,7 @@ import java.awt.*;
 @NoArgsConstructor
 @Data
 @Component("normalizedImageMoel")
-public class NormalizedImageMoel {
+public class NormalizedImage {
     /**
      * 使用位图（点阵图）来保存标准化后的图形
      * 每一帧原始图形，根据rgb分成三个图层，即每一帧原始图形，分解成三张图形

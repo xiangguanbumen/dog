@@ -1,4 +1,4 @@
-package com.ncell.wangcai.service.input;
+package com.ncell.wangcai.service.input.stem;
 
 /**
  * @author anliwei

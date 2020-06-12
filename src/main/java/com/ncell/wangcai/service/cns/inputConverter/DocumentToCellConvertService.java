@@ -4,7 +4,7 @@ package com.ncell.wangcai.service.cns.inputConverter;
  * @author anliwei
  * @Data 2020/6/7 16:53
  */
-public interface DocCellConvertService {
+public interface DocumentToCellConvertService {
     /**
      * 获取数据
      */

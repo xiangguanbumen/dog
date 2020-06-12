@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component("imageModel")
-public class ImageModel {
+public class Image {
   String imageName = "图片模型名称";
     /**
      * 存储各种类型图片

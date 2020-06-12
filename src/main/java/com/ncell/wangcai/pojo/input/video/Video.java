@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
  * @create 2020/6/4 9:18
  */
 @Component
-public class VideoModel {
+public class Video {
     String videoName="video文档名称";
 
-    public VideoModel() {
+    public Video() {
 
     }
 }

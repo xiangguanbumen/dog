@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -15,8 +14,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component("normalizedDocumentWarehouseModel")
-public class NormalizedDocumentWarehouseModel {
+@Component("normalizedDocumentWarehouse")
+public class NormalizedDocumentWarehouse {
 
     String name="normalizedDocumentWarehouseModel";
 
@@ -26,7 +25,7 @@ public class NormalizedDocumentWarehouseModel {
      * 此处使用16，没有任何依据，以后根据实际需要修改
      *
      */
-    LinkedBlockingQueue<NormalizedDocumentModel> normalizedDocumentModeLinkedBlockingQueue = new LinkedBlockingQueue(16);
+    LinkedBlockingQueue<NormalizedDocument> normalizedDocumentLinkedBlockingQueue = new LinkedBlockingQueue(16);
 
 
 

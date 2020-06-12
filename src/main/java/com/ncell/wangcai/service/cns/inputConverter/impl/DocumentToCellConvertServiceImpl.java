@@ -2,8 +2,8 @@ package com.ncell.wangcai.service.cns.inputConverter.impl;
 
 
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouseModel;
-import com.ncell.wangcai.service.cns.inputConverter.DocCellConvertService;
+import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
+import com.ncell.wangcai.service.cns.inputConverter.DocumentToCellConvertService;
 import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;
 import com.ncell.wangcai.utils.input.doc.StringUtil;
 import lombok.AllArgsConstructor;
@@ -15,16 +15,14 @@ import org.springframework.stereotype.Service;
  * @author anliwei
  * @Data 2020/6/7 16:59
  */
-@Service("docCellConvertServiceImpl")
+@Service("documentToCellConvertServiceImpl")
 @AllArgsConstructor
 @Data
-public class DocCellConvertServiceImpl implements DocCellConvertService {
-
-
+public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertService {
 
     TextCellUtil textCellUtil;
     StringUtil stringUtil;
-    NormalizedDocumentWarehouseModel normalizedDocumentWarehouseModel;
+    NormalizedDocumentWarehouse normalizedDocumentWarehouse;
     CellWarehouse cellWarehouse;
 
 
@@ -38,8 +36,8 @@ public class DocCellConvertServiceImpl implements DocCellConvertService {
     @Override
     public void convertDocToCell() throws InterruptedException {
 
-        String  userInput = normalizedDocumentWarehouseModel
-                .getNormalizedDocumentModeLinkedBlockingQueue()
+        String  userInput = normalizedDocumentWarehouse
+                .getNormalizedDocumentLinkedBlockingQueue()
                 .take().getNormalizedDocument();
 
         //依次读取用户输入的每一个字符

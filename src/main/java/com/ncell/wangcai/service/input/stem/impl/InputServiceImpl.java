@@ -1,19 +1,19 @@
-package com.ncell.wangcai.service.input.impl;
+package com.ncell.wangcai.service.input.stem.impl;
 
-import com.ncell.wangcai.pojo.input.InputModel;
-import com.ncell.wangcai.service.input.InputService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ncell.wangcai.service.input.stem.InputService;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
  * @author anliwei
  * @Data 2020/6/6 12:29
  */
+@NoArgsConstructor
+@Data
 @Service("inputServiceImpl")
 public class InputServiceImpl implements InputService {
 
-    @Autowired
-    InputModel inputModel;
 
     @Override
     public void obtainData() {
@@ -30,6 +30,4 @@ public class InputServiceImpl implements InputService {
 
     }
 
-    public InputServiceImpl() {
-    }
 }

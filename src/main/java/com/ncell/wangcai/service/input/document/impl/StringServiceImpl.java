@@ -1,15 +1,11 @@
 package com.ncell.wangcai.service.input.document.impl;
 
-import com.ncell.wangcai.pojo.input.document.DocumentWarehouseModel;
-import com.ncell.wangcai.pojo.input.document.NormalizedDocumentModel;
-import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouseModel;
+import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
+import com.ncell.wangcai.pojo.input.document.NormalizedDocument;
+import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.service.input.document.StringService;
-import com.ncell.wangcai.utils.ApplicationContextProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author anliwei
@@ -22,11 +18,11 @@ public class StringServiceImpl implements StringService {
     String afterNormalize;
 
     @Autowired
-    DocumentWarehouseModel documentWarehouseModel;
+    DocumentWarehouse documentWarehouse;
     @Autowired
-    NormalizedDocumentModel normalizedDocumentModel;
+    NormalizedDocument normalizedDocument;
     @Autowired
-    NormalizedDocumentWarehouseModel normalizedDocumentWarehouseModel;
+    NormalizedDocumentWarehouse normalizedDocumentWarehouse;
 
 
     @Override
@@ -42,9 +38,9 @@ public class StringServiceImpl implements StringService {
      */
     public void normalizeData() {
 
-        beforeNormalize = documentWarehouseModel.getDocumentModelLinkedBlockingQueue().peek().getStringDocument();
+        beforeNormalize = documentWarehouse.getDocumentLinkedBlockingQueue().peek().getStringDocument();
         afterNormalize = beforeNormalize;
-        normalizedDocumentModel.setNormalizedDocument(afterNormalize);
+        normalizedDocument.setNormalizedDocument(afterNormalize);
     }
 
     @Override
@@ -52,7 +48,7 @@ public class StringServiceImpl implements StringService {
      * 将处理好的字符串封装到NormalizedDocumentWarehouseModel
      */
     public void sendData() throws InterruptedException {
-        normalizedDocumentWarehouseModel.getNormalizedDocumentModeLinkedBlockingQueue().put(normalizedDocumentModel);
+        normalizedDocumentWarehouse.getNormalizedDocumentLinkedBlockingQueue().put(normalizedDocument);
     }
 
     @Override

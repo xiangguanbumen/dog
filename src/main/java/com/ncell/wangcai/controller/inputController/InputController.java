@@ -1,7 +1,7 @@
 package com.ncell.wangcai.controller.inputController;
 
-import com.ncell.wangcai.pojo.input.document.DocumentModel;
-import com.ncell.wangcai.pojo.input.document.DocumentWarehouseModel;
+import com.ncell.wangcai.pojo.input.document.Document;
+import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.service.input.document.impl.DocumentServiceImpl;
 import com.ncell.wangcai.service.input.document.impl.StringServiceImpl;
 import lombok.AllArgsConstructor;
@@ -29,9 +29,9 @@ public class InputController {
     @Autowired
     StringServiceImpl stringService;
     @Autowired
-    DocumentModel documentModel;
+    Document document;
     @Autowired
-    DocumentWarehouseModel documentWarehouseModel;
+    DocumentWarehouse documentWarehouse;
 
 
     @RequestMapping(value = {""})
@@ -47,8 +47,8 @@ public class InputController {
     @RequestMapping(value = {"/doc/string"})
     public String inputDocString(HttpServletRequest req, HttpServletResponse resp) throws InterruptedException {
         String userInput=req.getParameter("inputtext");
-        documentModel.setStringDocument(userInput);
-        documentWarehouseModel.getDocumentModelLinkedBlockingQueue().put(documentModel);
+        document.setStringDocument(userInput);
+        documentWarehouse.getDocumentLinkedBlockingQueue().put(document);
         stringService.doService();
         return "redirect:/convert/doc";
 

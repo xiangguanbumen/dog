@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component("documentModel")
 @Scope("prototype")
-public class DocumentModel {
+public class Document {
 
     //需要引入poi相关资料，进行Word，Excel等格式的解析,
     /**

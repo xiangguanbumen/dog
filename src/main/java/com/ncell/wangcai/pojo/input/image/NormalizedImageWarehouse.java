@@ -1,6 +1,5 @@
 package com.ncell.wangcai.pojo.input.image;
 
-import com.ncell.wangcai.pojo.input.document.NormalizedDocumentModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,9 +15,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 @NoArgsConstructor
 @Data
 @Component("normalizedImageWarehouseModel")
-public class NormalizedImageWarehouseModel {
+public class NormalizedImageWarehouse {
     /**
      * 容量的由来，人类的视觉系统可以处理的极限是每秒24帧，这里存储48帧是人体极限的两倍，也就是说设置的是2秒以上的视觉暂留
      */
-    LinkedBlockingQueue<NormalizedImageMoel> normalizedImageMoelLinkedBlockingQueue = new LinkedBlockingQueue(48);
+    LinkedBlockingQueue<NormalizedImage> normalizedImageLinkedBlockingQueue = new LinkedBlockingQueue(48);
 }

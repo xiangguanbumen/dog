@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component("normalizedDocumentModel")
 @Scope("prototype")
-public class NormalizedDocumentModel {
+public class NormalizedDocument {
 
     String normalizedDocument;
 
