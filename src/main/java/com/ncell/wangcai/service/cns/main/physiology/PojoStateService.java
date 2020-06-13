@@ -6,7 +6,7 @@ import com.ncell.wangcai.pojo.cns.main.stem.Stem;
  * @author anliwei
  * @create 2020/6/8 19:26
  */
-public interface PojoRunService {
+public interface PojoStateService {
     /**
      * 较接收到的消息和自身的element
      * @param stem
@@ -14,11 +14,12 @@ public interface PojoRunService {
      */
      Boolean compare(Stem stem);
 
+
     /**
-     * 发送消息到自身的连接结构
-     * @param stem
+     * 发送到runningPojoCenter
      */
-    void fire(Stem stem);
+    void sendPojoOut();
+
     
 
 
