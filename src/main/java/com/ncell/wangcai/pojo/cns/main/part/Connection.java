@@ -8,7 +8,11 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * 具体的连接实体类，可以连接细胞与细胞，也可以连接细胞与tissue，也可以连接tissue与agent，一切的实体类都可以连接
+ * 具体的连接实体类，可以连接细胞与细胞，也可以连接细胞与tissue，也可以连接tissue与agent，一切的实体类都可以连接。
+ *
+ * connection需要css和js结构吗？
+ * 暂时不要了，等下一代升级的时候在添加。
+ *
  *
  * @author anliwei
  * @Data 2020/6/7 10:39

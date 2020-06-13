@@ -11,14 +11,21 @@ import org.springframework.stereotype.Service;
 public class PojoRunServiceImpl implements PojoRunService {
 
 
+    /**
+     * 比较接收到的消息和自身的element
+     *
+     * @return
+     */
     @Override
     public Boolean compare() {
         return null;
     }
 
+    /**
+     * 发送消息到自身的连接结构
+     */
     @Override
     public void fire() {
 
     }
-
 }
