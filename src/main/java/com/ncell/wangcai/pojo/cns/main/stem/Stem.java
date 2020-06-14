@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
+ * 所有pojo实体类的父类
+ *
  * @author anliwei
  * @create 2020/6/8 14:28
  */

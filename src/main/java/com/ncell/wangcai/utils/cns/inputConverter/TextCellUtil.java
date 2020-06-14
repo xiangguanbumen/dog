@@ -33,12 +33,7 @@ public class TextCellUtil {
 
     public Boolean textCellExist(String cellName , CellWarehouse cellWarehouse){
 
-        if(cellWarehouse.getAllCell().containsKey(cellName)){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return cellWarehouse.getAllCell().containsKey(cellName);
     }
 
     /**

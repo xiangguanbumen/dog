@@ -2,7 +2,7 @@ package com.ncell.wangcai.service.input.stem;
 
 /**
  * @author anliwei
- * @Data 2020/6/6 12:20
+ * @Date 2020/6/6 12:20
  */
 public interface InputService {
     /**
