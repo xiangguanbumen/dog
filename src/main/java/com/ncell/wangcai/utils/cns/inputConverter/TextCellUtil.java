@@ -2,6 +2,7 @@ package com.ncell.wangcai.utils.cns.inputConverter;
 
 import com.ncell.wangcai.pojo.cns.main.Cell;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,48 +14,53 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author anliwei
  * @Data 2020/6/7 19:09
  */
-@NoArgsConstructor
+
+@AllArgsConstructor
 @Component("textCellUtil")
 public class TextCellUtil {
+    CellWarehouse cellWarehouse;
+
+    /**
+     * textcellUtil主方法，将其他服务整合起来，统一接口对外提供服务
+     * @param cellName
+     */
+    public void doService(String cellName){
+        if(this.textCellExist(cellName)){
+            this.exciteAndRegisterTextCell(cellName);
+        }else{
+            this.registerTextCell(this.creatTextCell(cellName));
+        }
+    }
 
     /**
      * 通过细胞名称查询细胞
      */
-    public Cell findCellByName(String cellName,CellWarehouse cellWarehouse){
+    public Cell findCellByName(String cellName){
 
         Cell textCell = cellWarehouse.getTextCell().get(cellName);
         return textCell;
     }
     /**
      * 查询根据这个字符命名的细胞是否存在
-     * @param cellWarehouse
      * @return
      */
 
-    public Boolean textCellExist(String cellName , CellWarehouse cellWarehouse){
+    public Boolean textCellExist(String cellName ){
 
         return cellWarehouse.getAllCell().containsKey(cellName);
     }
 
-    /**
-     * 获取textcell的数量
-     * 暂时不使用数字编号命名，其他没有实际编码的细胞再使用数字命名
-     */
 
-    public int textCellCount(ConcurrentHashMap<String, Cell> textCell){
-        return textCell.size();
-    }
-
-    public Cell creatTextCell(Character character){
+    public Cell creatTextCell(String cellName){
 
         Cell newCell = new Cell();
         newCell.setCurrentState(1);
         newCell.setCurrentStateStartTime(System.currentTimeMillis());
-        newCell.setName("textCell"+character);
+        newCell.setName(cellName);
         return newCell;
     }
 
-    public void registerTextCell(Cell cell,CellWarehouse cellWarehouse){
+    public void registerTextCell(Cell cell){
 
         //注册到allCell中
         cellWarehouse.getAllCell().put(cell.getName(),cell);
@@ -64,9 +70,9 @@ public class TextCellUtil {
         cellWarehouse.getExcitedCell().put(cell.getName(),cell);
     }
 
-    public void exciteAndRegisterTextCell(String cellName,CellWarehouse cellWarehouse){
+    public void exciteAndRegisterTextCell(String cellName){
         //如果存在激活细胞,找到它
-        Cell textCell = this.findCellByName(cellName,cellWarehouse);
+        Cell textCell = this.findCellByName(cellName);
         //修改细胞参数
         textCell.setCurrentState(1);
         textCell.setCurrentStateStartTime(System.currentTimeMillis());

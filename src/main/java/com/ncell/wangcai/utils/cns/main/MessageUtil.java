@@ -2,6 +2,7 @@ package com.ncell.wangcai.utils.cns.main;
 
 import com.ncell.wangcai.pojo.cns.main.part.ElementJs;
 import com.ncell.wangcai.pojo.cns.main.part.Message;
+import com.ncell.wangcai.pojo.cns.main.runtime.RunningMessageCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.LinkedList;
 public class MessageUtil {
 
     MessageWarehouse messageWarehouse;
+    RunningMessageCenter runningMessageCenter;
 
     /**
      * 对message总的判断
@@ -133,6 +135,26 @@ public class MessageUtil {
 
     void putIntoMessageWarehouse(Message message){
         messageWarehouse.getAllMessage().put(message.getName(),message);
+    }
+
+    //针对刚产生的还没有连接的pojo产生信息发送到运行时消息中心和消息仓库
+    public void createMessageAndPutIntoRunningMessageCenterAndMessageWarehouse(String messageFrom){
+
+        putIntoRunningMessageCenterAndMessageWarehouse(CreatMessageWithoutMessageTo(messageFrom));
+    }
+    Message CreatMessageWithoutMessageTo(String messageFrom){
+        Message message=new Message();
+        message.setName("message@"+Long.toString(System.currentTimeMillis()));
+        message.setMessageFrom(messageFrom);
+        message.setMessageCreatTime(System.currentTimeMillis());
+        return message;
+
+    }
+
+    void putIntoRunningMessageCenterAndMessageWarehouse(Message message){
+        messageWarehouse.getAllMessage().put(message.getName(),message);
+        runningMessageCenter.getMessageInRunningMessageCenter().put(message.getName(),"消息队列填充字符串");
+
     }
 
 }

@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
  * @Date 2020/6/13 22:30
  */
 @Component("pojoImpulseServiceImpl")
-@NoArgsConstructor
 @AllArgsConstructor
 public class  PojoImpulseServiceImpl implements PojoImpulseService {
 
@@ -44,6 +43,8 @@ public class  PojoImpulseServiceImpl implements PojoImpulseService {
 
         Connection connection;
         Message message;
+
+        if(stem.getConnectionsOutput()!=null){
         //遍历连接索引
         for (String connectionName : stem.getConnectionsOutput()) {
             //根据索引查找 connection实例
@@ -58,6 +59,11 @@ public class  PojoImpulseServiceImpl implements PojoImpulseService {
                 stemUtil.findStemByName(connection.getConnectionTo()).getMessagesInput().add(message.getName());
             }
 
+        }
+    }
+        //如果自身连接为空，创建一个message并将message发送到runningMessageCenter
+        else {
+            messageUtil.createMessageAndPutIntoRunningMessageCenterAndMessageWarehouse(stem.getName());
         }
     }
 }

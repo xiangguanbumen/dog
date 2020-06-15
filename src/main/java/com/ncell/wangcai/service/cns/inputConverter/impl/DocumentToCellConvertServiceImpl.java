@@ -44,14 +44,7 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
         while (!userInput.isEmpty()) {
             Character firstCharacter = stringUtil.obtainFirstCharacter(userInput);
             String cellName = "textCell" + firstCharacter;
-            if (textCellUtil.textCellExist(cellName, cellWarehouse)) {
-                //如果存在激活，并注册到相应集合中
-                textCellUtil.exciteAndRegisterTextCell(cellName, cellWarehouse);
-            } else {
-                //如果不存在，创造新的textcell并注册到allcell，
-                textCellUtil.registerTextCell(textCellUtil.creatTextCell(firstCharacter), cellWarehouse);
-            }
-            //去掉第一个字符继续遍历
+            textCellUtil.doService(cellName);
             userInput = userInput.substring(1);
 
         }

@@ -47,12 +47,16 @@ public class StringServiceImpl implements StringService {
     /**
      * 将处理好的字符串封装到NormalizedDocumentWarehouseModel
      */
-    public void sendData() throws InterruptedException {
-        normalizedDocumentWarehouse.getNormalizedDocumentLinkedBlockingQueue().put(normalizedDocument);
+    public void sendData()  {
+        try {
+            normalizedDocumentWarehouse.getNormalizedDocumentLinkedBlockingQueue().put(normalizedDocument);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void doService() throws InterruptedException {
+    public void doService()  {
         this.obtainData();
         this.normalizeData();
         this.sendData();
