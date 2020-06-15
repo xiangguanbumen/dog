@@ -1,7 +1,19 @@
 package com.ncell.wangcai.service.cns.main.physiology.impl;
 
+import com.ncell.wangcai.pojo.cns.main.part.Connection;
+import com.ncell.wangcai.pojo.cns.main.part.Message;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
+import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
+import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
+import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
 import com.ncell.wangcai.service.cns.main.physiology.PojoImpulseService;
+import com.ncell.wangcai.utils.cns.main.ConnectionUtil;
+import com.ncell.wangcai.utils.cns.main.MessageUtil;
+import com.ncell.wangcai.utils.cns.main.StemUtil;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 
 /**
  *
@@ -11,7 +23,17 @@ import com.ncell.wangcai.service.cns.main.physiology.PojoImpulseService;
  * @author anliwei
  * @Date 2020/6/13 22:30
  */
-public class PojoImpulseServiceImpl implements PojoImpulseService {
+@Component("pojoImpulseServiceImpl")
+@NoArgsConstructor
+@AllArgsConstructor
+public class  PojoImpulseServiceImpl implements PojoImpulseService {
+
+    Warehouse warehouse;
+    ConnectionWarehouse connectionWarehouse;
+    MessageWarehouse messageWarehouse;
+    StemUtil stemUtil;
+    MessageUtil messageUtil;
+    ConnectionUtil connectionUtil;
     /**
      * 发送消息到自身的连接结构
      *
@@ -20,5 +42,22 @@ public class PojoImpulseServiceImpl implements PojoImpulseService {
     @Override
     public void fire(Stem stem) {
 
+        Connection connection;
+        Message message;
+        //遍历连接索引
+        for (String connectionName : stem.getConnectionsOutput()) {
+            //根据索引查找 connection实例
+            connection = connectionWarehouse.getAllConnection().get(connectionName);
+
+            if(connection!=null){
+                //更新connection
+                connectionUtil.connectionUpdateAfterUsed(connection);
+                //生成message并注册到仓库
+                message = messageUtil.creatMessageAndPutIntoMessageWarehouse(connection.getConnectionFrom(),connection.getConnectionTo());
+                //根据连接查找，连接到的实体类并将message名称字符串添加到messagesInput
+                stemUtil.findStemByName(connection.getConnectionTo()).getMessagesInput().add(message.getName());
+            }
+
+        }
     }
 }

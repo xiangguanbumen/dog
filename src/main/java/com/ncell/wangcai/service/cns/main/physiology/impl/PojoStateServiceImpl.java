@@ -3,7 +3,7 @@ package com.ncell.wangcai.service.cns.main.physiology.impl;
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.service.cns.main.physiology.PojoStateService;
-import com.ncell.wangcai.utils.cns.main.StemUtil;
+import com.ncell.wangcai.utils.cns.main.MessageUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class PojoStateServiceImpl implements PojoStateService {
 
     RunningPojoCenter runningPojoCenter;
-    StemUtil stemUtil;
+    MessageUtil messageUtil;
 
 
     /**
@@ -29,6 +29,7 @@ public class PojoStateServiceImpl implements PojoStateService {
      */
     @Override
     public void doPojoStateService(Stem stem) {
+        //如果pojo可以兴奋或已经兴奋，就发送到运行时
         if (this.compare(stem)) {
             this.sendPojoOut(stem);
         } else {
@@ -49,8 +50,8 @@ public class PojoStateServiceImpl implements PojoStateService {
         if (stem.getCurrentState() != 0) {
             return true;
         } else {
-            //调用工具类判断数量，序列，位置是否一致
-            return stemUtil.messageJudge(stem);
+            //调用工具类判断消息是否有效，再判断数量，序列，位置是否一致，是否可以激活pojo
+            return messageUtil.messageJudge(stem);
         }
 
     }

@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class Message {
 
     /**
-     * message+数字序号
+     * message+@+到达那里+系统当前时间
      */
     String name;
     /**
@@ -30,8 +30,16 @@ public class Message {
     String user;
     String messageFrom;
     String messageTo;
+    /**
+     * 消息类型，默认普通消息，int值设为1
+     */
     int messageType;
-    int messageEffectDuration;
+    /**
+     * 消息的有效期
+     *  默认设置5000毫秒（没有依据自己估计得）
+     */
+
+    int messageEffectDuration=5000;
     long messageCreatTime;
 
 }
