@@ -1,7 +1,11 @@
 package com.ncell.wangcai.service.cns.main.physiology.impl;
 
+import com.ncell.wangcai.pojo.cns.main.runtime.RunningMessageCenter;
+import com.ncell.wangcai.pojo.cns.main.runtime.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
 import com.ncell.wangcai.service.cns.main.physiology.PojoCreatService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,10 +18,13 @@ import org.springframework.stereotype.Service;
  * @update 2020-6-15 20:36:29
  */
 @Service("pojoCreatServiceImpl")
+@Data
+@AllArgsConstructor
 public class PojoCreatServiceImpl implements PojoCreatService {
 
     Warehouse warehouse;
-
+    RunningMessageCenter runningMessageCenter;
+    RunningPojoCenter runningPojoCenter;
 
 
 
