@@ -28,13 +28,29 @@ public class PojoCreatServiceImpl implements PojoCreatService {
 
 
 
-
-
     /**
-     * 不需要返回值，直接将生成的pojo放到对应的仓库中
+     * 总的方法
      */
     @Override
-    public void creat() {
+    public void doCreat() {
+
+    }
+
+    /**
+     * 通过消息生产pojo
+     * 将生成的pojo放到对应的仓库中
+     */
+    @Override
+    public void creatPojoByMessage() {
+
+    }
+
+    /**
+     * 通过已经兴奋的pojo生产pojo
+     * 将生成的pojo放到对应的仓库中
+     */
+    @Override
+    public void creatPojoByPojo() {
 
     }
 }
