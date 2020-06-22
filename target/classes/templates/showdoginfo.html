@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>显示dog系统信息</title>
+</head>
+<body>
+<h4>细胞状态：</h4>
+<ul>
+    <li > allCell：<span th:text="${allCellCount}">-1</span></li>
+    <li>excitedCell：</li>
+    <li>partExcitedCell：</li>
+</ul>
+<div th:include="foot :: foot"></div>
+</body>
+</html>
