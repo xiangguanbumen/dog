@@ -1,4 +1,4 @@
-package com.ncell.wangcai.service.cns.main.physiology;
+package com.ncell.wangcai.service.cns.main.physiology.pojo;
 
 /**
  * 1、通过分析runningMessageCenter的message来建立新的pojo

@@ -1,5 +1,6 @@
 package com.ncell.wangcai.pojo.cns.main.warehouse;
 
+import com.ncell.wangcai.pojo.cns.main.Cell;
 import com.ncell.wangcai.pojo.cns.main.Tissue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,20 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TissueWarehouse {
 
     /**
-     * 所有细胞
+     * 所有tissue
      */
     ConcurrentHashMap<String, Tissue> allTissue = new ConcurrentHashMap(1024000);
+
+    /**
+     * 兴奋tissue
+     */
+
+    ConcurrentHashMap<String, Tissue> excitedTissue = new ConcurrentHashMap(1024000);
+
+    /**
+     * 部分兴奋tissue
+     */
+
+    ConcurrentHashMap<String, Tissue> partExcitedTissue = new ConcurrentHashMap(1024000);
+
 }

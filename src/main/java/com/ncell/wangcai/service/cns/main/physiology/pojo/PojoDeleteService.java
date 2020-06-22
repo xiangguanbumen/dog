@@ -1,4 +1,4 @@
-package com.ncell.wangcai.service.cns.main.physiology;
+package com.ncell.wangcai.service.cns.main.physiology.pojo;
 
 /**
  * 当细胞或结构没有输入或输出连接，没有隶属关系时删除

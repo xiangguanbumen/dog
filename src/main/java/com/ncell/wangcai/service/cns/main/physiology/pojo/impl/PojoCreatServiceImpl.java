@@ -1,9 +1,9 @@
-package com.ncell.wangcai.service.cns.main.physiology.impl;
+package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningMessageCenter;
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
-import com.ncell.wangcai.service.cns.main.physiology.PojoCreatService;
+import com.ncell.wangcai.service.cns.main.physiology.pojo.PojoCreatService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 不是所有的兴奋细胞都有
+ * 不是所有的兴奋细胞都有，只保存要生成新的连接的细胞
  * @author anliwei
  * @Date 2020/6/11 20:56
  */

@@ -1,4 +1,4 @@
-package com.ncell.wangcai.service.cns.main.physiology;
+package com.ncell.wangcai.service.cns.main.physiology.pojo;
 
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 

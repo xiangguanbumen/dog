@@ -1,8 +1,8 @@
-package com.ncell.wangcai.service.cns.main.physiology.impl;
+package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
-import com.ncell.wangcai.service.cns.main.physiology.PojoStateService;
+import com.ncell.wangcai.service.cns.main.physiology.pojo.PojoStateService;
 import com.ncell.wangcai.utils.cns.main.MessageUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.ncell.wangcai.service.cns.main.physiology;
+package com.ncell.wangcai.service.cns.main.physiology.pojo;
 
 /**
  * @author anliwei
