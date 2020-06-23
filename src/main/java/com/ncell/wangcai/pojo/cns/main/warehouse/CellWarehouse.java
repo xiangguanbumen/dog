@@ -25,9 +25,19 @@ public class CellWarehouse {
      */
     ConcurrentHashMap<String,Cell> allCell = new ConcurrentHashMap(1024000);
     /**
-     * 正在兴奋的细胞
+     * 正在兴奋的细胞,多个服务程序需要使用正在兴奋细胞序列
+     * 要有多个副本
      */
     ConcurrentHashMap<String,Cell> excitedCell = new ConcurrentHashMap(1024000);
+    /**
+     * 为生成消息服务
+     */
+    ConcurrentHashMap<String,Cell> excitedCellForMessage = new ConcurrentHashMap(1024000);
+    /**
+     * 分割点，为生成pojo服务
+     */
+    ConcurrentHashMap<String,Cell> excitedCellForTurningPoint = new ConcurrentHashMap(1024000);
+
     /**
      * 接收到信息的细胞，兴奋与否需要等待控制器调用细胞compare方法决定
      */
