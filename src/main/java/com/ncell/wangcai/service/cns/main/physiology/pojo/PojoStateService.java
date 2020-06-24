@@ -24,7 +24,7 @@ public interface PojoStateService {
 
     /**
      * 发送到runningPojoCenter
-     * @param stem
+     * @return
      */
     void sendPojoOut(Stem stem);
 

@@ -19,6 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component("tissueWarehouse")
 public class TissueWarehouse {
 
+    String name = "tissueWarehouse";
+
     /**
      * 所有tissue
      */

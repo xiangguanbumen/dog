@@ -1,9 +1,12 @@
 package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
+import com.ncell.wangcai.pojo.cns.main.*;
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
+import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.PojoStateService;
 import com.ncell.wangcai.utils.cns.main.MessageUtil;
+import com.ncell.wangcai.utils.cns.main.StemUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -20,9 +23,10 @@ import org.springframework.stereotype.Service;
 @Data
 public class PojoStateServiceImpl implements PojoStateService {
 
+    Warehouse warehouse;
     RunningPojoCenter runningPojoCenter;
     MessageUtil messageUtil;
-
+    StemUtil stemUtil;
 
     /**
      * 供外界调用的整体服务
@@ -58,10 +62,34 @@ public class PojoStateServiceImpl implements PojoStateService {
 
     /**
      * 将兴奋pojo发送到runningPojoCenter
+     *  ConcurrentHashMap<String,Cell>调用put方法
+     * 返回值：
+     * （1）如果是新的记录，那么会向map中添加该键值对，并返回null。
+     * （2）如果已经存在，那么不会覆盖已有的值，直接返回已经存在的值。
+     * @return
      */
     @Override
     public void sendPojoOut(Stem stem) {
-        runningPojoCenter.getPojoInRunningPojoCenter().put(stem.getName(), "just_key_no_value");
+        String str1 = "cell";
+        String str2 = "tissue";
+        String str3 = "agent";
+        String str4 = "scene";
+        String str5 = "story";
+
+        String stemName= stem.getName();
+
+        if (stemName.contains(str1)) {
+            warehouse.getCellWarehouse().getExcitedCell().put(stemName,(Cell)stem);
+        } else if (stemName.contains(str2)) {
+             warehouse.getTissueWarehouse().getAllTissue().put(stemName,(Tissue)stem);
+        } else if (stemName.contains(str3)) {
+            warehouse.getAgentWarehouse().getAllAgent().put(stemName,(Agent) stem);
+        } else if (stemName.contains(str4)) {
+             warehouse.getSceneWarehouse().getAllScene().put(stemName,(Scene) stem);
+        } else if (stemName.contains(str5)) {
+             warehouse.getStoryWarehouse().getAllStory().put(stemName,(Story) stem);
+        }
+
 
     }
 

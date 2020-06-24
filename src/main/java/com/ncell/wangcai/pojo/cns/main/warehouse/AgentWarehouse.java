@@ -17,5 +17,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AgentWarehouse {
+    String name = "agentWarehouse";
     ConcurrentHashMap<String, Agent> allAgent =new ConcurrentHashMap<String, Agent>(10240000);
 }

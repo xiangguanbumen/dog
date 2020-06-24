@@ -20,6 +20,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @AllArgsConstructor
 @Component("cellWarehouse")
 public class CellWarehouse {
+
+    String name = "cellWarehouse";
     /**
      * 所有细胞
      */
@@ -34,7 +36,7 @@ public class CellWarehouse {
      */
     ConcurrentHashMap<String,Cell> excitedCellForMessage = new ConcurrentHashMap(1024000);
     /**
-     * 分割点，为生成pojo服务
+     * 为生成拐点服务
      */
     ConcurrentHashMap<String,Cell> excitedCellForTurningPoint = new ConcurrentHashMap(1024000);
 

@@ -19,6 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StoryWarehouse {
+    String name = "storyWarehouse";
     ConcurrentHashMap<String, Story> allStory = new ConcurrentHashMap<String, Story>(1024000);
 
 }
