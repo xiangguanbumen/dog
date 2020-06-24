@@ -1,9 +1,8 @@
-package com.ncell.wangcai.pojo.cns.inputConverter.sound;
+package com.ncell.wangcai.pojo.cns.outoutConverter.sound;
 
 import com.ncell.wangcai.pojo.cns.main.Cell;
 
 /**
- * 相当于人类大脑的语言中枢的听觉语言中枢
  * @author anliwei
  * @create 2020/6/8 18:27
  */
