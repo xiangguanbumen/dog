@@ -3,6 +3,7 @@ package com.ncell.wangcai.utils.cns.inputConverter;
 import com.ncell.wangcai.pojo.cns.main.Cell;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author anliwei
  * @Data 2020/6/7 19:09
  */
-
+@Data
 @AllArgsConstructor
 @Component("textCellUtil")
 public class TextCellUtil {
@@ -79,6 +80,7 @@ public class TextCellUtil {
 
         //注册到excitedhashmap中
         cellWarehouse.getExcitedCell().put(textCell.getName(),textCell);
+
 
     }
 

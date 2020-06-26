@@ -26,4 +26,8 @@ public class CellUtil {
     void groupBySecondDerivative(){
 
     }
+
+    void cellRegister(){
+
+    }
 }

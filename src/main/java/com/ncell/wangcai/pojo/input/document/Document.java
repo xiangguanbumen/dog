@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component("documentModel")
+@Component("document")
 @Scope("prototype")
 public class Document {
 

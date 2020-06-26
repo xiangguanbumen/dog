@@ -20,19 +20,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller("inputController")
 @RequestMapping("/input")
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 public class InputController {
 
-    @Autowired
     DocumentServiceImpl documentService;
-    @Autowired
     StringServiceImpl stringService;
-    @Autowired
     Document document;
-    @Autowired
     DocumentWarehouse documentWarehouse;
 
+    //todo 有参构造可以使用，如果加上无参的话，类内部参数无法自动注入。需要深入理解spring原理
 
     @RequestMapping(value = {""})
     public String input(){
