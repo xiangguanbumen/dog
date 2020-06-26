@@ -14,6 +14,10 @@ import java.util.LinkedList;
 
 /**
  * 所有pojo实体类的父类
+ * @update
+ * 2020年6月26日10:54:55
+ * 考虑编程的复杂性，以及时间精力，本着先运行再完善的原则，
+ * 将高于cell的pojo结构不再使用，通过cell中的变量type来实现pojo分类
  *
  * @author anliwei
  * @create 2020/6/8 14:28
@@ -30,6 +34,13 @@ public class Stem implements Serializable {
     String name = "";
     /**
      * 类型，0表示实体，1表示关系
+     * 建立一个常量池，
+     * 感知cell就是从各种根式转换成细胞格式的转换器，
+     * cell
+     * tissue
+     * agent
+     * scene
+     * story
      */
     int type = 0;
 

@@ -3,6 +3,7 @@ package com.ncell.wangcai.service.cns.main.physiology.message;
 /**
  *
  * 从消息仓库中所有的消息中挑选可以发放到目标实体的消息，转存到running消息仓库
+ *
  * @author anliwei
  * @Date 2020/6/20 18:02
  */

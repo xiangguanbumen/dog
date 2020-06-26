@@ -12,8 +12,25 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 /**
- * 作用就是，找到兴奋pojo将它，发送到runningPojoCenter
+ * 1、细胞状态的改变服务，
+ * 有四种可能
+ * 静息状态到兴奋状态，
+ * 兴奋状态到静息状态。
+ * 静息状态维持，
+ * 兴奋状态维持。
+ * 2、细胞状态的注册服务
+ * 注册进仓库中的兴奋结构，
+ * 注册出仓库中的兴奋结构。
+ *
+ *
+ *
  * 所有的发生改变的pojo都有机会得的stateservice，这个服务是普世性的。
+ *
+ * @update
+ * 2020年6月26日16:20:32
+ * 增加对已经兴奋细胞的状态服务
+ * 需要增加时间判断因素，如果超过了固定阈值（细胞自身的属性中有，每个细胞的属性是不一样的），没有接收到新的消息，将状态设置为静息
+ *
  *
  * @author anliwei
  * @date 2020/6/8 19:49
@@ -33,9 +50,9 @@ public class PojoStateServiceImpl implements PojoStateService {
      */
     @Override
     public void doPojoStateService(Stem stem) {
-        //如果pojo可以兴奋或已经兴奋，就发送到运行时
+        //如果pojo可以兴奋或已经兴奋，就注册的细胞仓库中的兴奋细胞存储结构中（包括队列，map等）
         if (this.compare(stem)) {
-            this.sendPojoOut(stem);
+            this.registerPojo(stem);
         } else {
 
             //do nothing
@@ -44,6 +61,8 @@ public class PojoStateServiceImpl implements PojoStateService {
 
     /**
      * 较接收到的消息和自身的element对比
+     *
+
      *
      * @param stem
      * @return
@@ -69,7 +88,7 @@ public class PojoStateServiceImpl implements PojoStateService {
      * @return
      */
     @Override
-    public void sendPojoOut(Stem stem) {
+    public void registerPojo(Stem stem) {
         String str1 = "cell";
         String str2 = "tissue";
         String str3 = "agent";
@@ -80,6 +99,7 @@ public class PojoStateServiceImpl implements PojoStateService {
 
         if (stemName.contains(str1)) {
             warehouse.getCellWarehouse().getExcitedCell().put(stemName,(Cell)stem);
+
         } else if (stemName.contains(str2)) {
              warehouse.getTissueWarehouse().getAllTissue().put(stemName,(Tissue)stem);
         } else if (stemName.contains(str3)) {

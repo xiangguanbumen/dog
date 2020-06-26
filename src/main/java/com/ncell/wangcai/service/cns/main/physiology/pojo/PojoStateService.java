@@ -23,10 +23,11 @@ public interface PojoStateService {
 
 
     /**
-     * 发送到runningPojoCenter
+     * 注册到细胞仓库
+     * @param stem
      * @return
      */
-    void sendPojoOut(Stem stem);
+    void registerPojo(Stem stem);
 
     
 
