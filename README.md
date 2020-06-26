@@ -1,6 +1,8 @@
 # 旺财
-##你看那个人好像一条狗。
-                         大话西游-紫霞仙子
+
+## 你看那个人好像一条狗。 
+                      大话西游-紫霞仙子
+                        
 
 #### 介绍
 
@@ -40,7 +42,7 @@
 
 2020年6月26日11:20:11
 com.ncell.wangcai.service.cns.main.physiology.pojo
-中的pojo仅仅指的是从stem中继承的实体类，不包括message，connection，warehouse等机构
+中的pojo仅仅指的是从stem中继承的实体类，不包括message，connection，warehouse等结构
 
 #### todo
 0交互界面设计  
