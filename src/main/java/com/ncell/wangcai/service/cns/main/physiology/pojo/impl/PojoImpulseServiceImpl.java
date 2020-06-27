@@ -4,6 +4,7 @@ import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.part.Message;
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningMessageCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
+import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
@@ -12,6 +13,7 @@ import com.ncell.wangcai.utils.cns.main.ConnectionUtil;
 import com.ncell.wangcai.utils.cns.main.MessageUtil;
 import com.ncell.wangcai.utils.cns.main.StemUtil;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -30,17 +32,36 @@ import org.springframework.stereotype.Component;
  * @Date 2020/6/13 22:30
  */
 @Component("pojoImpulseServiceImpl")
-@NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class PojoImpulseServiceImpl implements PojoImpulseService {
 
     Warehouse warehouse;
+    CellWarehouse cellWarehouse;
     ConnectionWarehouse connectionWarehouse;
     MessageWarehouse messageWarehouse;
     StemUtil stemUtil;
     MessageUtil messageUtil;
     ConnectionUtil connectionUtil;
     RunningMessageCenter runningMessageCenter;
+
+
+
+    public void doPojoImpulseService() {
+
+        /**
+         * 遍历兴奋细胞队列
+         */
+        while((cellWarehouse.getExcitedCellQueue().size()>0)){
+            String name=cellWarehouse.getExcitedCellQueue().poll();
+            if(name!=null){
+                fire(cellWarehouse.getAllCell().get(name));
+            }
+
+        }
+
+        //todo 时间无关兴奋pojo包内兴奋实体消息发放
+    }
 
     /**
      * 发送消息到自身的连接结构

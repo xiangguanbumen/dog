@@ -8,11 +8,20 @@ import com.ncell.wangcai.pojo.cns.main.stem.Stem;
  */
 public interface PojoStateService {
 
+
+    /**
+     * pojo状态改变服务的主方法
+     */
+    void doPojoStateService();
+
     /**
      * 供外界调用的整体服务
      *  @param stem
      */
-    void doPojoStateService(Stem stem);
+    void PojoStateChange(Stem stem);
+
+
+
 
     /**
      * 较接收到的消息和自身的element

@@ -16,6 +16,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  *  第二部分 excitedCell，兴奋细胞集合，为了快速查找
  *  第三部分，excitedCellQueue和excitedCellPackageQueue分别存储时间相关和时间不太相关的兴奋细胞
  *
+ *  2020年6月27日15:24:19
+ *  以上各部分还可以根据动静分为
+ *  动态仓库，也就是运行的时候随时变换的仓库 workWarehouse
+ *  静态仓库，主要是内存存储，类似于数据库。baseWarehouse
+ *
  * //细胞仓库,为了减少主ConcurrentHashMap的查询修改压力，不同类型的细胞，建立各自的ConcurrentHashMap。
  * //先查询或修改各个类型细胞的ConcurrentHashMap，然后同步到主ConcurrentHashMap，及其他功能运行的ConcurrentHashMap
  *
@@ -53,7 +58,7 @@ public class CellWarehouse {
      * 2020年6月26日16:12:28
      * 不分组存放的兴奋细胞
      */
-    ConcurrentLinkedQueue<String>  excitedCellQueue = new ConcurrentLinkedQueue();
+    ConcurrentLinkedQueue<String>  excitedCellQueue = new ConcurrentLinkedQueue<String>();
     /**
      * 2020年6月26日13:02:31
      * 仿照IP传输协议中使用包传输的方法，将输入侧信号打包处理。
@@ -84,8 +89,11 @@ public class CellWarehouse {
 
     /**
      * 接收到信息的细胞，兴奋与否需要等待控制器调用细胞compare方法决定
+     *
      */
-    ConcurrentHashMap<String,Cell> partExcitedCell = new ConcurrentHashMap(1024000);
+    ConcurrentLinkedQueue<String> partExcitedCell = new ConcurrentLinkedQueue<String>();
+            //ConcurrentHashMap<String,Cell> partExcitedCell = new ConcurrentHashMap(1024000);
+
     /**
      * 刚刚兴奋完，不应期细胞
      * @update

@@ -32,7 +32,7 @@ public class PojoCreatServiceImpl implements PojoCreatService {
      * 总的方法
      */
     @Override
-    public void doCreat() {
+    public void doCreatService() {
 
     }
 

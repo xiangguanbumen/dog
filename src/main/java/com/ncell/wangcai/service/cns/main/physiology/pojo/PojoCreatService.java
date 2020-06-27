@@ -13,7 +13,7 @@ public interface PojoCreatService {
     /**
      * 总的方法
      */
-    void doCreat();
+    void doCreatService();
 
     /**
      * 通过消息生产pojo

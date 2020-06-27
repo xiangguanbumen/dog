@@ -3,6 +3,7 @@ package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 import com.ncell.wangcai.pojo.cns.main.*;
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
+import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.PojoStateService;
 import com.ncell.wangcai.utils.cns.main.MessageUtil;
@@ -45,17 +46,41 @@ public class PojoStateServiceImpl implements PojoStateService {
 
 
     Warehouse warehouse;
+    CellWarehouse cellWarehouse;
     RunningPojoCenter runningPojoCenter;
     MessageUtil messageUtil;
     StemUtil stemUtil;
     PojoRegisterServiceImpl pojoRegisterService;
 
     /**
+     * pojo状态改变服务的主方法
      * 供外界调用的整体服务
      */
     @Override
-    public void doPojoStateService(Stem stem) {
-        //todo 增加packagePojoStates服务用来处理像图片之类的一组pojo 的状态，  处理的结果放进，cellWarehouse中的ConcurrentLinkedQueue<ConcurrentLinkedQueue>  excitedCellPackageQueue
+    public void doPojoStateService() {
+
+        /**
+         * 先遍历部分兴奋细胞
+         */
+        while(!cellWarehouse.getPartExcitedCell().isEmpty()){
+            String name=cellWarehouse.getPartExcitedCell().poll();
+            if(name!=null){
+                PojoStateChange(cellWarehouse.getAllCell().get(name));
+            }
+
+        }
+       //todo 遍历allcell
+        //todo 遍历兴奋细胞，看看有些是否需要改变为静息状态
+    }
+
+    //todo 增加packagePojoStates服务用来处理像图片之类的一组pojo 的状态，
+    // 处理的结果放进，cellWarehouse中的ConcurrentLinkedQueue<ConcurrentLinkedQueue>  excitedCellPackageQueue
+
+    /**
+     * 处理单个实例的状态
+     */
+    @Override
+    public void PojoStateChange(Stem stem) {
 
         //如果pojo已经兴奋，调用注册服务
         if(stem.getCurrentState()==1){

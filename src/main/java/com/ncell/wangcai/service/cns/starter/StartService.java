@@ -2,76 +2,27 @@ package com.ncell.wangcai.service.cns.starter;
 
 /**
  * @author anliwei
- * @create 2020/6/8 18:04
+ * @Date 2020/6/27 16:44
  */
 public interface StartService {
+    /**
+     * 从数据库加载
+     */
+    void loadPojo();
 
     /**
-     * startservice主方法，调用其他pojo加载方法
+     * 生成新的pojo，根据兴奋细胞组合
      */
-    void doStartService();
+    void createPojo();
 
     /**
-     * 加载pojo实体类的各种组成部分，如connection。message。element等
-     * @param name
+     * 发送神经冲动，产生消息（但是只是发送到消息仓库）
      */
-    void loadPart(String name);
-    /**
-     * 从数据库加载cell实例
-     */
-    void loadCell();
+    void releaseImpulse();
 
     /**
-     * 从数据库加载Tissue实例
+     * 根据收到的消息决定细胞的状态
      */
-    void loadTissue();
-
-    /**
-     * 从数据库加载Agent实例
-     */
-    void loadAgent();
-
-    /**
-     * 从数据库加载Scene实例
-     */
-    void loadScene();
-
-    /**
-     * 从数据库加载Story实例
-     */
-    void loadStory();
-
-
-
-    /**
-     * 从数据库加载Connection到各个已经加载的实例
-     *
-     * @param name
-     */
-    void loadConnection(String name);
-
-    /**
-     * 从数据库加载Message到各个已经加载的实例
-     * @param name
-     */
-    void loadMessage(String name);
-
-    /**
-     * 从数据库加载Element到各个已经加载的实例
-     * @param name
-     */
-    void loadElement(String name);
-
-    /**
-     * 从数据库加载ElementCss到各个已经加载的实例
-     * @param name
-     */
-    void loadElementCss(String name);
-
-    /**
-     * 从数据库加载ElementJs到各个已经加载的实例
-     * @param name
-     */
-    void loadElementJs(String name);
+    void changeState();
 
 }

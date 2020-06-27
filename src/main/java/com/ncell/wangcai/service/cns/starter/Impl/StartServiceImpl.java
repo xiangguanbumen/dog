@@ -1,156 +1,148 @@
 package com.ncell.wangcai.service.cns.starter.Impl;
 
-import com.ncell.wangcai.pojo.cns.main.Cell;
-import com.ncell.wangcai.pojo.cns.main.stem.Stem;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoCreatServiceImpl;
+import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoImpulseServiceImpl;
+import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoStateServiceImpl;
 import com.ncell.wangcai.service.cns.starter.StartService;
-import com.ncell.wangcai.service.mapperService.impl.CellMapperServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.*;
+
+import static java.lang.Thread.sleep;
+
 /**
- * 系统start时，需要先加载各个实体类，然后再启动各种服务。
- * 需要注意的是，加载实体类是分步骤进行的， 第一步加载的是类的主体，第二步加载的是类的组成元素。
- * 因为组成元素不能单独存在，所有必须等待实体类主体加载完成才能进行。
- *
  * @author anliwei
- * @create 2020/6/8 18:05
+ * @Date 2020/6/27 16:44
  */
-@Service("startServiceImpl")
-@Data
 @AllArgsConstructor
+@Data
+@Service("startServiceImpl")
 public class StartServiceImpl implements StartService {
 
-
-    CellMapperServiceImpl cellMapperService;
-    CellWarehouse cellWarehouse;
-
-    @Override
-    public void doStartService() {
-        this.loadCell();
-        this.loadAgent();
-        this.loadTissue();
-        this.loadScene();
-        this.loadStory();
-
-
-    }
+    LoadServiceImpl loadService;
+    PojoCreatServiceImpl pojoCreatService;
+    PojoImpulseServiceImpl pojoImpulseService;
+    PojoStateServiceImpl pojoStateService;
 
     /**
-     * 加载pojo实体类的各种组成部分，如connection。message。element等
+     * 使用并发启动各种服务，
+     * 注意，load服务是单独启动的
      */
-    @Override
-    public void loadPart(String name) {
+    public void doStartService(){
 
-        this.loadMessage(name);
-        this.loadConnection(name);
-        this.loadElement(name);
-        this.loadElementCss(name);
-        this.loadElementJs(name);
+        //加载pojo单独进行
+        this.loadPojo();
 
-    }
+        //创建线程池
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+                .setNameFormat("demo-pool-%d").build();
 
-    /**
-     * 从数据库加载cell实例
-     */
-    @Override
-    public void loadCell() {
+        //Common Thread Pool
+        ExecutorService pool = new ThreadPoolExecutor(5, 200,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
-        for (Stem stem : cellMapperService.findAllCell()) {
+       // pool.execute(()-> System.out.println(Thread.currentThread().getName()));
 
-            cellWarehouse.getAllCell().put(stem.getName(),(Cell) stem);
-            //如果细胞名称包含text，另外再存到textCell仓库中
-            if(stem.getName().contains("text")){
-                cellWarehouse.getTextCell().put(stem.getName(),(Cell) stem);
+        CountDownLatch latch = new CountDownLatch(3);
+
+        pool.execute(new Runnable() {
+            @Override
+            public void run() {
+                //1.创建新的pojo服务
+                createPojo();
+                latch.countDown();
             }
+        });
+        pool.execute(new Runnable() {
+            @Override
+            public void run() {
+                //2.发送信息
+                releaseImpulse();
+                latch.countDown();
+            }
+        });
+        pool.execute(new Runnable() {
+            @Override
+            public void run() {
+                //3.改变状态
+                changeState();
+                latch.countDown();
+            }
+        });
+        //todo 并发处理要改进一下
+        try {
+            // 一定记得加上timeout时间，防止阻塞主线程
+            latch.await(3000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //5.关闭线程池
+        pool.shutdown();//gracefully shutdown
 
 
+    }
+
+    /**
+     * 从数据库加载
+     */
+    @Override
+    public void loadPojo() {
+        loadService.doLoadService();
+    }
+
+    /**
+     * 生成新的pojo，根据兴奋细胞组合
+     */
+    @Override
+    public void createPojo() {
+
+        while(true){
+            pojoCreatService.doCreatService();
+            //todo 如果不加sleep，cpu使用基本在95%以上
+            try {
+                sleep(1000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
     /**
-     * 从数据库加载Tissue实例
+     * 发送神经冲动，产生消息（但是只是发送到消息仓库）
      */
     @Override
-    public void loadTissue() {
+    public void releaseImpulse() {
+        while(true){
+            pojoImpulseService.doPojoImpulseService();
+            try {
+                sleep(1000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
     /**
-     * 从数据库加载Agent实例
+     * 根据收到的消息决定细胞的状态
      */
     @Override
-    public void loadAgent() {
+    public void changeState() {
+        while(true){
+            pojoStateService.doPojoStateService();
+            try {
+                sleep(1000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
-
-    /**
-     * 从数据库加载Scene实例
-     */
-    @Override
-    public void loadScene() {
-
-    }
-
-    /**
-     * 从数据库加载Story实例
-     */
-    @Override
-    public void loadStory() {
-
-    }
-
-    /**
-     * 从数据库加载Connection到各个已经加载的实例
-     *
-     * @param name
-     */
-    @Override
-    public void loadConnection(String name) {
-
-    }
-
-    /**
-     * 从数据库加载Message到各个已经加载的实例
-     *
-     * @param name
-     */
-    @Override
-    public void loadMessage(String name) {
-
-    }
-
-    /**
-     * 从数据库加载Element到各个已经加载的实例
-     *
-     * @param name
-     */
-    @Override
-    public void loadElement(String name) {
-
-    }
-
-    /**
-     * 从数据库加载ElementCss到各个已经加载的实例
-     *
-     * @param name
-     */
-    @Override
-    public void loadElementCss(String name) {
-
-    }
-
-    /**
-     * 从数据库加载ElementJs到各个已经加载的实例
-     *
-     * @param name
-     */
-    @Override
-    public void loadElementJs(String name) {
-
-    }
-
-
 }

@@ -42,11 +42,19 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
                 .take().getNormalizedDocument();
 
         //依次读取用户输入的每一个字符
-        //2020年6月27日12:23:43 存储进cellWarehouse中的输入细胞队列，
+
         while (!userInput.isEmpty()) {
             Character firstCharacter = stringUtil.obtainFirstCharacter(userInput);
             String cellName = "textCell" + firstCharacter;
+            /**
+             *  转换成为textCell，并存储到相应的动态，静态仓库中.
+             *  存储的操作本来属于send方法的范围，但是如果分开来处理的话，
+             *  需要增加新的结构，虽然利于后期维护，但是降低了效率，
+             *  此处先一起处理，等以后再优化代码
+             */
+           //todo 不符合分层的原则。发送要用send方法单独处理
             textCellUtil.doService(cellName);
+
             userInput = userInput.substring(1);
 
         }

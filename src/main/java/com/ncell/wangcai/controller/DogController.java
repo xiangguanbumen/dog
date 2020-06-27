@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -28,6 +27,8 @@ public class DogController {
     CellWarehouse cellWarehouse;
 
 
+
+
     @GetMapping(value = {"/index",""})
     public String index(HttpSession session){
 
@@ -35,27 +36,27 @@ public class DogController {
 
     }
 
-    @GetMapping(value = {"/admin"})
+    @GetMapping(value = {"/myadmin"})
     public String admin(){
 
-        return "admin";
+        return "myadmin";
     }
 
-    @GetMapping(value = {"/start"})
+    @GetMapping(value = {"/mystart"})
     public String start(){
 
         startService.doStartService();
-        return "redirect:/info";
+        return "redirect:/myinfo";
     }
 
-    @GetMapping(value = {"/stop"})
+    @GetMapping(value = {"/mystop"})
     public String stop(){
 
         stopService.doStopService();
-        return "redirect:/info";
+        return "redirect:/myinfo";
     }
 
-    @GetMapping(value = {"/info"})
+    @GetMapping(value = {"/myinfo"})
     public String showDogInfo(Model model){
 
         int allCellCount = cellWarehouse.getAllCell().size();

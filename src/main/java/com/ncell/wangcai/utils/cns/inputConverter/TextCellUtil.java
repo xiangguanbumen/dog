@@ -27,18 +27,28 @@ public class TextCellUtil {
      * @param cellName
      */
     public void doService(String cellName) {
+
+        Cell cell=null;
         //如果细胞不存在，创建并注册到allCell和textCell集合
         if (!this.textCellExist(cellName)) {
-            this.registerTextCell(this.creatTextCell(cellName));
+            cell=this.creatTextCell(cellName);
+            this.registerInBaseWarehouse(cell);
         }
-        cellWarehouse.getInputTextCellQueue().add(cellName);
+        //如果细胞存在,修改细胞状态
+        else{
+            cell=this.findCellByName(cellName);
+            this.changeCellState(cellName);
+        }
+        //最后所有的textCell全部注册到几个工作集合中
+        this.registerInWorkWarehouse(cell);
+
     }
 
     /**
      * 通过细胞名称查询细胞
      */
     public Cell findCellByName(String cellName) {
-
+        //在文字细胞仓库中查找，还是直接在所有细胞仓库中查找？这里使用文字仓库，减少主仓库查找压力
         Cell textCell = cellWarehouse.getTextCell().get(cellName);
         return textCell;
     }
@@ -54,6 +64,11 @@ public class TextCellUtil {
         return cellWarehouse.getAllCell().containsKey(cellName);
     }
 
+    /**
+     * 创造新的细胞
+     * @param cellName
+     * @return
+     */
 
     Cell creatTextCell(String cellName) {
 
@@ -64,30 +79,42 @@ public class TextCellUtil {
         return newCell;
     }
 
-    void registerTextCell(Cell cell) {
+    /**
+     * 注册到静态仓库
+     * @param cell
+     */
+    void registerInBaseWarehouse(Cell cell) {
 
         //注册到allCell中
         cellWarehouse.getAllCell().put(cell.getName(), cell);
         //注册到textCell中
         cellWarehouse.getTextCell().put(cell.getName(), cell);
-        //注册到excitedCell中,
-        // 2020年6月27日12:22:16 注册到兴奋细胞集合的服务由其他类进行，因为要进行包判断，决定是否分组进行激活
-        // 2020年6月27日12:30:16 可以多进程同时处理一个细胞，所有这里也可以注册到兴奋队列和兴奋集合
-        cellWarehouse.getExcitedCell().put(cell.getName(), cell);
-        cellWarehouse.getExcitedCellQueue().add(cell.getName());
 
     }
 
-    void exciteAndRegisterTextCell(String cellName) {
+    /**
+     * 注册到动态仓库
+     * @param cell
+     */
+    void registerInWorkWarehouse(Cell cell) {
+        //注册到excitedCell集合和兴奋队列中
+        cellWarehouse.getExcitedCell().put(cell.getName(), cell);
+        cellWarehouse.getExcitedCellQueue().add(cell.getName());
+        //注册到同一批次输入的包
+        cellWarehouse.getInputTextCellQueue().add(cell.getName());
+
+    }
+
+    /**
+     * 改变细胞状态
+     * @param cellName
+     */
+    void changeCellState(String cellName) {
         //如果存在激活细胞,找到它
         Cell textCell = this.findCellByName(cellName);
         //修改细胞参数
         textCell.setCurrentState(1);
         textCell.setCurrentStateStartTime(System.currentTimeMillis());
-
-        //注册到excitedhashmap中
-        cellWarehouse.getExcitedCell().put(textCell.getName(), textCell);
-
 
     }
 
