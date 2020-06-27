@@ -26,6 +26,7 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
     CellWarehouse cellWarehouse;
 
 
+
     @Override
     /**
      * 已经通过autowire自动注入，直接使用就可以了
@@ -41,6 +42,7 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
                 .take().getNormalizedDocument();
 
         //依次读取用户输入的每一个字符
+        //2020年6月27日12:23:43 存储进cellWarehouse中的输入细胞队列，
         while (!userInput.isEmpty()) {
             Character firstCharacter = stringUtil.obtainFirstCharacter(userInput);
             String cellName = "textCell" + firstCharacter;
@@ -57,6 +59,9 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
      */
     public void sendCell() {
 
+        //将同一批转换好的文字细胞打包存放到兴奋细胞队列
+        cellWarehouse.getExcitedCellPackageQueue().add(cellWarehouse.getInputTextCellQueue());
+
     }
 
     @Override
@@ -64,7 +69,7 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
         this.obtainData();
         this.convertDocToCell();
         this.sendCell();
-        System.out.println("将文字输入转换成textcell");
+        System.out.println("将文字输入转换成textCell，并发送到cellWarehouse");
 
     }
 

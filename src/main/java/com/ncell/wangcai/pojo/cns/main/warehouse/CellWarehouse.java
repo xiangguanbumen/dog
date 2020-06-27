@@ -11,6 +11,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  *  细胞仓库
+ *  分成以下几个部分，
+ *  第一部分，allCell所有的细胞都需要注册到这个集合中，是总的仓库
+ *  第二部分 excitedCell，兴奋细胞集合，为了快速查找
+ *  第三部分，excitedCellQueue和excitedCellPackageQueue分别存储时间相关和时间不太相关的兴奋细胞
+ *
  * //细胞仓库,为了减少主ConcurrentHashMap的查询修改压力，不同类型的细胞，建立各自的ConcurrentHashMap。
  * //先查询或修改各个类型细胞的ConcurrentHashMap，然后同步到主ConcurrentHashMap，及其他功能运行的ConcurrentHashMap
  *
@@ -40,6 +45,7 @@ public class CellWarehouse {
      *
      * excitedCell表格包含所有的兴奋细胞用来进行快速查找。
      */
+
     ConcurrentHashMap<String,Cell> excitedCell = new ConcurrentHashMap(1024000);
 
 
@@ -59,9 +65,14 @@ public class CellWarehouse {
      * 但是如果一直处于传输的流输入就不太适合比如声音输入，我们不可能中断外界声音输入。
      * 此时就存入excitedCellQueue中
      *
+     * 2020年6月27日10:38:38
+     * 编程的难点在于如何确定包的界限，标准化后，信息以流的方式传入，包的起始信息不好传递进下一层。
+     * 等以后处理图片信息时增加packagePojoStates服务
+     *
      */
-    ConcurrentLinkedQueue<ConcurrentLinkedQueue>  excitedCellPackageQueue=new ConcurrentLinkedQueue();
 
+    ConcurrentLinkedQueue<ConcurrentLinkedQueue>  excitedCellPackageQueue=new ConcurrentLinkedQueue();
+    //todo 增加packagePojoStates服务用来处理像图片之类的一组pojo 的状态
     /**
      * 为生成消息服务
      */
@@ -77,6 +88,9 @@ public class CellWarehouse {
     ConcurrentHashMap<String,Cell> partExcitedCell = new ConcurrentHashMap(1024000);
     /**
      * 刚刚兴奋完，不应期细胞
+     * @update
+     * 2020年6月27日09:18:34
+     * 暂时不用
      */
     ConcurrentHashMap<String,Cell> refractoryCell = new ConcurrentHashMap(1024000);
 
@@ -86,4 +100,12 @@ public class CellWarehouse {
      */
     ConcurrentHashMap<String,Cell> textCell = new ConcurrentHashMap(1024000);
 
+    /**
+     * 从文字转换的文字细胞队列
+     * 2020年6月27日12:10:32
+     * 可以添加打包的信息到excitedCellPackageQueue
+     */
+
+    ConcurrentLinkedQueue<String>  inputTextCellQueue =new ConcurrentLinkedQueue();
+    //todo 打包发送信息到excitedCellPackageQueue
 }

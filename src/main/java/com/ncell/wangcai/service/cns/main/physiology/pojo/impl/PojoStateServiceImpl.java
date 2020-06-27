@@ -11,6 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Delayed;
+
 /**
  * 1、细胞状态的改变服务，
  * 有四种可能
@@ -40,20 +43,31 @@ import org.springframework.stereotype.Service;
 @Data
 public class PojoStateServiceImpl implements PojoStateService {
 
+
     Warehouse warehouse;
     RunningPojoCenter runningPojoCenter;
     MessageUtil messageUtil;
     StemUtil stemUtil;
+    PojoRegisterServiceImpl pojoRegisterService;
 
     /**
      * 供外界调用的整体服务
      */
     @Override
     public void doPojoStateService(Stem stem) {
-        //如果pojo可以兴奋或已经兴奋，就注册的细胞仓库中的兴奋细胞存储结构中（包括队列，map等）
+        //todo 增加packagePojoStates服务用来处理像图片之类的一组pojo 的状态，  处理的结果放进，cellWarehouse中的ConcurrentLinkedQueue<ConcurrentLinkedQueue>  excitedCellPackageQueue
+
+        //如果pojo已经兴奋，调用注册服务
+        if(stem.getCurrentState()==1){
+            pojoRegisterService.excitedPojoRegisterIn(stem.getName());
+        }
+        //如果经过输入信息和自身机构对比可以兴奋，调用注册服务
+        else
         if (this.compare(stem)) {
-            this.registerPojo(stem);
-        } else {
+            pojoRegisterService.excitedPojoRegisterIn(stem.getName());
+        }
+        //如果不能兴奋，什么也不做
+        else {
 
             //do nothing
         }
@@ -80,6 +94,11 @@ public class PojoStateServiceImpl implements PojoStateService {
     }
 
     /**
+     * @update
+     * 2020年6月27日11:53:56
+     * 注册服务，由专门的注册服务类提供，
+     * 这里不再使用这个内部的注册方法。
+     *
      * 将兴奋pojo发送到runningPojoCenter
      *  ConcurrentHashMap<String,Cell>调用put方法
      * 返回值：
