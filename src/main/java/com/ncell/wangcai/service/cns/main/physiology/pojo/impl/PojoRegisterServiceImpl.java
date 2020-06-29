@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
- * pojo组成，注销服务类
+ * pojo注册，注销服务类
  * 新生成pojo，新兴奋pojo注册
  * 无用pojo，不在兴奋pojo注销
  *

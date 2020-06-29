@@ -48,8 +48,8 @@ spring:
           # 禁用 HTML 中 Reset All 按钮
           reset-enable: false
           # 登录用户名/密码
-          login-username: root
-          login-password: 123
+          login-username: admin
+          login-password: 123456
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml

@@ -46,10 +46,15 @@ public class StartServiceImpl implements StartService {
                 0L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
-       // pool.execute(()-> System.out.println(Thread.currentThread().getName()));
 
         CountDownLatch latch = new CountDownLatch(3);
 
+        /**
+         * 创建新的pojo
+         * 发送消息
+         * 确定pojo状态
+         * 三个进程同时进行
+         */
         pool.execute(new Runnable() {
             @Override
             public void run() {

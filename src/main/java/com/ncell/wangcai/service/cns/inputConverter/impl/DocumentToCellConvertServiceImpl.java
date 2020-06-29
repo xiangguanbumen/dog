@@ -26,7 +26,6 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
     CellWarehouse cellWarehouse;
 
 
-
     @Override
     /**
      * 已经通过autowire自动注入，直接使用就可以了
@@ -37,7 +36,7 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
     @Override
     public void convertDocToCell() throws InterruptedException {
 
-        String  userInput = normalizedDocumentWarehouse
+        String userInput= normalizedDocumentWarehouse
                 .getNormalizedDocumentLinkedBlockingQueue()
                 .take().getNormalizedDocument();
 
@@ -52,9 +51,9 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
              *  需要增加新的结构，虽然利于后期维护，但是降低了效率，
              *  此处先一起处理，等以后再优化代码
              */
-           //todo 不符合分层的原则。发送要用send方法单独处理
+            //todo 不符合分层的原则。发送要用send方法单独处理
             textCellUtil.doService(cellName);
-
+            //去掉第一个字符
             userInput = userInput.substring(1);
 
         }

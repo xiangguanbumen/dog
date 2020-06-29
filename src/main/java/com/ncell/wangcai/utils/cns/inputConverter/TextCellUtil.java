@@ -45,7 +45,7 @@ public class TextCellUtil {
     }
 
     /**
-     * 通过细胞名称查询细胞
+     * 通过细胞名称查询细胞,这里是文字细胞工具类，所有在文字细胞库中查找
      */
     public Cell findCellByName(String cellName) {
         //在文字细胞仓库中查找，还是直接在所有细胞仓库中查找？这里使用文字仓库，减少主仓库查找压力
@@ -60,8 +60,8 @@ public class TextCellUtil {
      */
 
     Boolean textCellExist(String cellName) {
-
-        return cellWarehouse.getAllCell().containsKey(cellName);
+        //在文字仓库中查找
+        return cellWarehouse.getTextCell().containsKey(cellName);
     }
 
     /**
@@ -97,10 +97,11 @@ public class TextCellUtil {
      * @param cell
      */
     void registerInWorkWarehouse(Cell cell) {
-        //注册到excitedCell集合和兴奋队列中
+        //注册到excitedCell集合,同时注册细胞名称，和细胞实体
         cellWarehouse.getExcitedCell().put(cell.getName(), cell);
+        //注册到兴奋队列中，只注册细胞名称
         cellWarehouse.getExcitedCellQueue().add(cell.getName());
-        //注册到同一批次输入的包
+        //注册到同一批次输入的包，只注册细胞名称
         cellWarehouse.getInputTextCellQueue().add(cell.getName());
 
     }
@@ -112,8 +113,9 @@ public class TextCellUtil {
     void changeCellState(String cellName) {
         //如果存在激活细胞,找到它
         Cell textCell = this.findCellByName(cellName);
-        //修改细胞参数
+        //修改细胞状态
         textCell.setCurrentState(1);
+        //修改细胞此次兴奋时间
         textCell.setCurrentStateStartTime(System.currentTimeMillis());
 
     }

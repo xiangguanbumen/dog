@@ -5,4 +5,5 @@ package com.ncell.wangcai.service.cns.main.physiology.warehouse;
  * @Date 2020/6/26 11:59
  */
 public interface CellWarehouseService {
+
 }

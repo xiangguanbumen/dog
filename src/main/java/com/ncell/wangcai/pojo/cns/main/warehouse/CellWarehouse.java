@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -59,6 +60,8 @@ public class CellWarehouse {
      * 不分组存放的兴奋细胞
      */
     ConcurrentLinkedQueue<String>  excitedCellQueue = new ConcurrentLinkedQueue<String>();
+
+
     /**
      * 2020年6月26日13:02:31
      * 仿照IP传输协议中使用包传输的方法，将输入侧信号打包处理。
@@ -78,21 +81,13 @@ public class CellWarehouse {
 
     ConcurrentLinkedQueue<ConcurrentLinkedQueue>  excitedCellPackageQueue=new ConcurrentLinkedQueue();
     //todo 增加packagePojoStates服务用来处理像图片之类的一组pojo 的状态
-    /**
-     * 为生成消息服务
-     */
-    ConcurrentHashMap<String,Cell> excitedCellForMessage = new ConcurrentHashMap(1024000);
-    /**
-     * 为生成拐点服务
-     */
-    ConcurrentHashMap<String,Cell> excitedCellForTurningPoint = new ConcurrentHashMap(1024000);
+
 
     /**
      * 接收到信息的细胞，兴奋与否需要等待控制器调用细胞compare方法决定
      *
      */
     ConcurrentLinkedQueue<String> partExcitedCell = new ConcurrentLinkedQueue<String>();
-            //ConcurrentHashMap<String,Cell> partExcitedCell = new ConcurrentHashMap(1024000);
 
     /**
      * 刚刚兴奋完，不应期细胞
@@ -105,8 +100,30 @@ public class CellWarehouse {
 
     /**
      * 文字细胞
+     * @update
+     * 2020年6月29日23:07:21
+     * 如果不使用tissue的话，只要是纯文字细胞组合在一起的仍然是文字细胞
+     *
      */
     ConcurrentHashMap<String,Cell> textCell = new ConcurrentHashMap(1024000);
+
+    /**
+     * 图形细胞
+     * 2020年6月29日23:10:01
+     * 如果不使用tissue的话，只要是纯图形细胞组合在一起的仍然是图形细胞
+     *
+     */
+    ConcurrentHashMap<String,Cell> imageCell = new ConcurrentHashMap(1024000);
+
+    /**
+     * 声音细胞
+     * 2020年6月29日23:10:40
+     * 如果不使用tissue的话，只要是纯声音细胞组合在一起的仍然是声音细胞
+     *
+     */
+    ConcurrentHashMap<String,Cell> soundCell = new ConcurrentHashMap(1024000);
+
+
 
     /**
      * 从文字转换的文字细胞队列
@@ -116,4 +133,24 @@ public class CellWarehouse {
 
     ConcurrentLinkedQueue<String>  inputTextCellQueue =new ConcurrentLinkedQueue();
     //todo 打包发送信息到excitedCellPackageQueue
+
+    /**
+     * 从图形转换的图形细胞队列
+     * 2020年6月29日23:05:02
+     * 可以添加打包的信息到excitedCellPackageQueue
+     */
+
+    ConcurrentLinkedQueue<String>  inputImageCellQueue =new ConcurrentLinkedQueue();
+    //todo 打包发送信息到excitedCellPackageQueue
+
+    /**
+     * 从声音转换的声音细胞队列
+     * 2020年6月29日23:05:54
+     * 可以添加打包的信息到excitedCellPackageQueue
+     */
+
+    ConcurrentLinkedQueue<String>  inputSoundCellQueue =new ConcurrentLinkedQueue();
+    //todo 打包发送信息到excitedCellPackageQueue
+
+
 }
