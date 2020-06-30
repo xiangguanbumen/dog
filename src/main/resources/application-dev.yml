@@ -44,7 +44,7 @@ spring:
           # IP 白名单，没有配置或者为空，则允许所有访问
           allow: 127.0.0.1
           # IP 黑名单，若白名单也存在，则优先使用
-          deny: 192.168.31.253
+          deny:
           # 禁用 HTML 中 Reset All 按钮
           reset-enable: false
           # 登录用户名/密码

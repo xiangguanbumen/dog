@@ -50,6 +50,10 @@ public class CellWarehouse {
      * 正在兴奋的细胞
      *
      * excitedCell表格包含所有的兴奋细胞用来进行快速查找。
+     *
+     * @update
+     * 2020年6月30日19:52:29
+     * 所有的兴奋的细胞都要注册到这个map中，相当于兴奋细胞的索引。
      */
 
     ConcurrentHashMap<String,Cell> excitedCell = new ConcurrentHashMap(1024000);
@@ -57,10 +61,97 @@ public class CellWarehouse {
 
     /**
      * 2020年6月26日16:12:28
-     * 不分组存放的兴奋细胞
+     * 兴奋细胞队列
+     *
+     * @update
+     * 2020年6月30日19:53:38
+     * 所有的兴奋细胞的名称都在这里注册。
+     *
+     * 各种针对兴奋细胞的服务都是，以这个队列为对象，进行加工的。
+     *
      */
     ConcurrentLinkedQueue<String>  excitedCellQueue = new ConcurrentLinkedQueue<String>();
 
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////准备发送信息的兴奋细胞队列////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 准备发送消息的兴奋细胞队列
+     */
+    ConcurrentLinkedQueue<String>  excitedCellQueueForSendMessage = new ConcurrentLinkedQueue<String>();
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////准备生成细胞的兴奋细胞队列////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+    ConcurrentLinkedQueue<String>  excitedCellQueueForGenerateNewCell = new ConcurrentLinkedQueue<String>();
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////接受信息后的细胞仓库/////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+
+    /**
+     * 接收到信息的细胞，兴奋与否需要等待控制器调用细胞compare方法决定
+     *
+     * @update
+     * 2020年6月30日19:48:58
+     * 非常关键的一个队列，
+     * 所有的只要细胞接受信息，都要在这里注册，
+     * 等待确定细胞下一步的状态。
+     *
+     */
+    ConcurrentLinkedQueue<String> partExcitedCell = new ConcurrentLinkedQueue<String>();
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////分类实体细胞仓库////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 文字细胞仓库
+     * 存储单个的文字细胞，和由多个单文字细胞所组成的多文字细胞，以及更复杂的文字细胞。
+     *
+     * @update
+     * 2020年6月29日23:07:21
+     * 如果不使用tissue的话，只要是纯文字细胞组合在一起的仍然是文字细胞
+     *
+     */
+    ConcurrentHashMap<String,Cell> textCell = new ConcurrentHashMap(1024000);
+
+    /**
+     * 图形细胞仓库
+     * 存储单图形细胞和多个单图形细胞组成的图形细胞。
+     * 2020年6月29日23:10:01
+     * 如果不使用tissue的话，只要是纯图形细胞组合在一起的仍然是图形细胞
+     *
+     */
+    ConcurrentHashMap<String,Cell> imageCell = new ConcurrentHashMap(1024000);
+
+    /**
+     * 声音细胞仓库
+     * 存储单声音细胞和由多个单声音细胞组成的声音细胞
+     * 2020年6月29日23:10:40
+     * 如果不使用tissue的话，只要是纯声音细胞组合在一起的仍然是声音细胞
+     *
+     */
+    ConcurrentHashMap<String,Cell> soundCell = new ConcurrentHashMap(1024000);
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////
+    ////////////////////////下面内容为暂时不使用的类//////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ///////////////////////2020年6月30日19:57:25/////////////////////////////
 
     /**
      * 2020年6月26日13:02:31
@@ -77,17 +168,14 @@ public class CellWarehouse {
      * 编程的难点在于如何确定包的界限，标准化后，信息以流的方式传入，包的起始信息不好传递进下一层。
      * 等以后处理图片信息时增加packagePojoStates服务
      *
+     * 2020年6月30日19:50:20
+     * 暂时不适用这个队列，分组的结束不好确定
+     *
      */
 
     ConcurrentLinkedQueue<ConcurrentLinkedQueue>  excitedCellPackageQueue=new ConcurrentLinkedQueue();
     //todo 增加packagePojoStates服务用来处理像图片之类的一组pojo 的状态
 
-
-    /**
-     * 接收到信息的细胞，兴奋与否需要等待控制器调用细胞compare方法决定
-     *
-     */
-    ConcurrentLinkedQueue<String> partExcitedCell = new ConcurrentLinkedQueue<String>();
 
     /**
      * 刚刚兴奋完，不应期细胞
@@ -96,33 +184,6 @@ public class CellWarehouse {
      * 暂时不用
      */
     ConcurrentHashMap<String,Cell> refractoryCell = new ConcurrentHashMap(1024000);
-
-
-    /**
-     * 文字细胞
-     * @update
-     * 2020年6月29日23:07:21
-     * 如果不使用tissue的话，只要是纯文字细胞组合在一起的仍然是文字细胞
-     *
-     */
-    ConcurrentHashMap<String,Cell> textCell = new ConcurrentHashMap(1024000);
-
-    /**
-     * 图形细胞
-     * 2020年6月29日23:10:01
-     * 如果不使用tissue的话，只要是纯图形细胞组合在一起的仍然是图形细胞
-     *
-     */
-    ConcurrentHashMap<String,Cell> imageCell = new ConcurrentHashMap(1024000);
-
-    /**
-     * 声音细胞
-     * 2020年6月29日23:10:40
-     * 如果不使用tissue的话，只要是纯声音细胞组合在一起的仍然是声音细胞
-     *
-     */
-    ConcurrentHashMap<String,Cell> soundCell = new ConcurrentHashMap(1024000);
-
 
 
     /**
