@@ -78,7 +78,7 @@ public class CellWarehouse {
     ///////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * 准备发送消息的兴奋细胞队列
+     * 发送消息的兴奋细胞队列
      */
     ConcurrentLinkedQueue<String>  excitedCellQueueForSendMessage = new ConcurrentLinkedQueue<String>();
 
@@ -86,9 +86,24 @@ public class CellWarehouse {
     //////////////////////////准备生成细胞的兴奋细胞队列////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * 生成细胞的兴奋细胞队列
+     */
     ConcurrentLinkedQueue<String>  excitedCellQueueForGenerateNewCell = new ConcurrentLinkedQueue<String>();
 
 
+    /**
+     * 生成细胞的过程中的中间队列
+     * m代表方法变化
+     * s代表步骤变化
+     * 比如m1s1就是生成细胞的第一种方法的第一个步骤产生的结果
+     */
+
+    ConcurrentLinkedQueue<String>  m1s1 = new ConcurrentLinkedQueue<String>();
+
+    ConcurrentLinkedQueue<String>  m1s2 = new ConcurrentLinkedQueue<String>();
+
+    ConcurrentLinkedQueue<String>  m1s3 = new ConcurrentLinkedQueue<String>();
 
 
     ////////////////////////////////////////////////////////////////////////////////////////

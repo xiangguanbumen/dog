@@ -24,7 +24,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .password("{noop}123456")
                 .roles("ADMIN", "USER")
                 .and()
-                // 普通用户，只能访问 /product/**
                 .withUser("user").password("{noop}123456")
                 .roles("USER");
     }
@@ -33,13 +32,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/*").hasRole("USER")
-               // .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/**").hasRole("ADMIN")
+                .antMatchers("/").permitAll()
+                .antMatchers("/convert/doc").permitAll()
+                .antMatchers("/myadmin/**").hasRole("ADMIN")
+                //.antMatchers("/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().and()
                 .httpBasic();
+
+        http.formLogin();
+        http.logout().logoutSuccessUrl("/");
+        http.rememberMe();
+
         // 关闭CSRF跨域
         http.csrf().disable();
     }
