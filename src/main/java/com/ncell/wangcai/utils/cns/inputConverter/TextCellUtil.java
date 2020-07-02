@@ -70,9 +70,10 @@ public class TextCellUtil {
      * @return
      */
 
-    Cell creatTextCell(String cellName) {
+     Cell creatTextCell(String cellName) {
 
         Cell newCell = new Cell();
+        newCell.setType(11);
         newCell.setCurrentState(1);
         newCell.setCurrentStateStartTime(System.currentTimeMillis());
         newCell.setName(cellName);
@@ -101,6 +102,10 @@ public class TextCellUtil {
         cellWarehouse.getExcitedCell().put(cell.getName(), cell);
         //注册到兴奋队列中，只注册细胞名称
         cellWarehouse.getExcitedCellQueue().add(cell.getName());
+        //注册到兴奋细胞队列，创建新细胞使用
+        cellWarehouse.getExcitedCellQueueForGenerateNewCell().add(cell.getName());
+        //注册到兴奋细胞队列，发送消息使用
+        cellWarehouse.getExcitedCellQueueForSendMessage().add(cell.getName());
         //注册到同一批次输入的包，只注册细胞名称
         cellWarehouse.getInputTextCellQueue().add(cell.getName());
 

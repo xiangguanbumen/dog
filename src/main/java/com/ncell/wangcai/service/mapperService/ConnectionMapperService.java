@@ -30,4 +30,11 @@ public interface ConnectionMapperService {
      * @return
      */
     int addConnection(Connection connection);
+
+    /**
+     *
+     * 找到所有connection
+     * @return
+     */
+    List<Connection> findAllConnection();
 }

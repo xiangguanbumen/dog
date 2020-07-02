@@ -5,10 +5,6 @@ package com.ncell.wangcai.service.cns.starter;
  * @Date 2020/6/27 16:44
  */
 public interface StartService {
-    /**
-     * 从数据库加载
-     */
-    void loadPojo();
 
     /**
      * 生成新的pojo，根据兴奋细胞组合

@@ -21,10 +21,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 // 管理员，同事具有 ADMIN,USER权限，可以访问所有资源
                 .withUser("admin")
-                .password("{noop}123456")
+                .password("{noop}123")
                 .roles("ADMIN", "USER")
                 .and()
-                .withUser("user").password("{noop}123456")
+                .withUser("user").password("{noop}123")
                 .roles("USER");
     }
 
@@ -34,7 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/convert/doc").permitAll()
-                .antMatchers("/myadmin/**").hasRole("ADMIN")
+                .antMatchers("/myadmin").permitAll()
+                //.antMatchers("/myadmin/**").hasRole("ADMIN")
                 //.antMatchers("/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

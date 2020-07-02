@@ -69,6 +69,14 @@ public class CellWarehouse {
      *
      * 各种针对兴奋细胞的服务都是，以这个队列为对象，进行加工的。
      *
+     * @update
+     * 2020年7月1日21:09:40
+     * 如果保存的足够长，但是没有超过存储极限的话，
+     * 可以在休息的时候，启动做梦机制，
+     * 来对兴奋细胞序列进行整理，清空
+     * 或者是海马的振荡学习。
+     *
+     *
      */
     ConcurrentLinkedQueue<String>  excitedCellQueue = new ConcurrentLinkedQueue<String>();
 
@@ -90,20 +98,6 @@ public class CellWarehouse {
      * 生成细胞的兴奋细胞队列
      */
     ConcurrentLinkedQueue<String>  excitedCellQueueForGenerateNewCell = new ConcurrentLinkedQueue<String>();
-
-
-    /**
-     * 生成细胞的过程中的中间队列
-     * m代表方法变化
-     * s代表步骤变化
-     * 比如m1s1就是生成细胞的第一种方法的第一个步骤产生的结果
-     */
-
-    ConcurrentLinkedQueue<String>  m1s1 = new ConcurrentLinkedQueue<String>();
-
-    ConcurrentLinkedQueue<String>  m1s2 = new ConcurrentLinkedQueue<String>();
-
-    ConcurrentLinkedQueue<String>  m1s3 = new ConcurrentLinkedQueue<String>();
 
 
     ////////////////////////////////////////////////////////////////////////////////////////

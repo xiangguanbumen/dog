@@ -37,4 +37,12 @@ public interface ConnectionMapper {
     @Insert("insert into connection_table (id,name,owner,from,to,type,count,createTime,lastExcitedTime) values (#{id},#{name},#{owner},#{connectionFrom},#{connectionTo},#{connectionType},#{excitedCount},#{creatTime},#{lastExcitedTime})")
     int addConnection(Connection connection);
 
+    /**
+     * 查找所有连接
+     * @return
+     */
+    @Select("select * from connection_table ")
+    List<Connection> findAllConnection();
+
+
 }

@@ -1,6 +1,7 @@
 package com.ncell.wangcai.controller;
 
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.service.cns.loader.impl.LoadServiceImpl;
 import com.ncell.wangcai.service.cns.starter.Impl.StartServiceImpl;
 import com.ncell.wangcai.service.cns.stopper.impl.StopServiceImpl;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/")
 public class DogController {
 
-
+    LoadServiceImpl loadService;
     StartServiceImpl startService;
     StopServiceImpl stopService;
     CellWarehouse cellWarehouse;
@@ -42,6 +43,12 @@ public class DogController {
         return "myadmin";
     }
 
+    @GetMapping(value = {"/myload"})
+    public String load(){
+
+        loadService.doLoadService();
+        return "redirect:/myinfo";
+    }
     @GetMapping(value = {"/mystart"})
     public String start(){
 

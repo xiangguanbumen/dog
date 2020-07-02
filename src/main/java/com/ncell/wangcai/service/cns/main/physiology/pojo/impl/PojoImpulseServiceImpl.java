@@ -51,8 +51,12 @@ public class PojoImpulseServiceImpl implements PojoImpulseService {
 
         /**
          * 遍历兴奋细胞队列
+         *
+         * @update
+         * 2020年7月1日21:36:57
+         * 遍历兴奋细胞发放消息队列
          */
-        while((cellWarehouse.getExcitedCellQueue().size()>0)){
+        while((cellWarehouse.getExcitedCellQueueForSendMessage().size()>0)){
             String name=cellWarehouse.getExcitedCellQueue().poll();
             if(name!=null){
                 fire(cellWarehouse.getAllCell().get(name));

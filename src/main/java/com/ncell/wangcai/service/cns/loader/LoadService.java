@@ -1,4 +1,4 @@
-package com.ncell.wangcai.service.cns.starter;
+package com.ncell.wangcai.service.cns.loader;
 
 /**
  * @author anliwei
@@ -12,10 +12,22 @@ public interface LoadService {
     void doLoadService();
 
     /**
+     * load 主体pojo
+     */
+    void loadBasePojo();
+
+    /**
+     * 加载pojo实体类的各种组成部分，如connection。message。element等
+     *
+     */
+    void loadPojoPart();
+
+
+    /**
      * 加载pojo实体类的各种组成部分，如connection。message。element等
      * @param name
      */
-    void loadPart(String name);
+    void loadPartForOnePojo(String name);
     /**
      * 从数据库加载cell实例
      */
@@ -42,6 +54,33 @@ public interface LoadService {
     void loadStory();
 
 
+
+    /**
+     * 从数据库加载Connection到各个已经加载的实例
+     *
+
+     */
+    void loadConnection();
+
+    /**
+     * 从数据库加载Message到各个已经加载的实例
+     */
+    void loadMessage();
+
+    /**
+     * 从数据库加载Element到各个已经加载的实例
+     */
+    void loadElement();
+
+    /**
+     * 从数据库加载ElementCss到各个已经加载的实例
+     */
+    void loadElementCss();
+
+    /**
+     * 从数据库加载ElementJs到各个已经加载的实例
+     */
+    void loadElementJs();
 
     /**
      * 从数据库加载Connection到各个已经加载的实例

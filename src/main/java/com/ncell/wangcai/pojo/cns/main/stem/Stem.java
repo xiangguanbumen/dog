@@ -34,9 +34,20 @@ public class Stem implements Serializable {
     String name = "";
     /**
      * 类型，0表示实体，1表示关系
+     * @update
+     * 2020年7月2日12:57:44
+     * 因为所有的实体目前都使用细胞表示
+     * 暂时不使用实体和关系的分类，
+     * 不同的数字代表不同的细胞类型
+     *
      * 建立一个常量池，
      * 感知cell就是从各种根式转换成细胞格式的转换器，
      * cell
+     * 未分类细胞 1
+     * textcell 11
+     * soundcell 12
+     * imagecell 13
+     *
      * tissue
      * agent
      * scene
@@ -67,13 +78,13 @@ public class Stem implements Serializable {
     /**
      * 输入连接
      */
-    HashSet<String> connectionsInput;
+    HashSet<String> connectionsInput=new HashSet<String>();
 
     /**
      * 输出连接
      */
 
-    HashSet<String> connectionsOutput;
+    HashSet<String> connectionsOutput=new HashSet<String>();
 
 
     /**
@@ -93,6 +104,9 @@ public class Stem implements Serializable {
      *
      * 当自身pojo兴奋的是可以直接兴奋，它的自身组成element
      * 是上层直接激活。
+     *
+     * 2020年7月2日16:57:39
+     * 先运行再迭代，暂时先不适用element元素
      */
     HashSet<String> elements;
 

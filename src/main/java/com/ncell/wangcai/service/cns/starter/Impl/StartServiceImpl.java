@@ -1,13 +1,14 @@
 package com.ncell.wangcai.service.cns.starter.Impl;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.service.cns.loader.impl.LoadServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoCreatServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoImpulseServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoStateServiceImpl;
 import com.ncell.wangcai.service.cns.starter.StartService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.*;
@@ -23,7 +24,8 @@ import static java.lang.Thread.sleep;
 @Service("startServiceImpl")
 public class StartServiceImpl implements StartService {
 
-    LoadServiceImpl loadService;
+
+    CellWarehouse cellWarehouse;
     PojoCreatServiceImpl pojoCreatService;
     PojoImpulseServiceImpl pojoImpulseService;
     PojoStateServiceImpl pojoStateService;
@@ -34,8 +36,7 @@ public class StartServiceImpl implements StartService {
      */
     public void doStartService(){
 
-        //加载pojo单独进行
-        this.loadPojo();
+
 
         //创建线程池
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
@@ -93,13 +94,6 @@ public class StartServiceImpl implements StartService {
 
     }
 
-    /**
-     * 从数据库加载
-     */
-    @Override
-    public void loadPojo() {
-        loadService.doLoadService();
-    }
 
     /**
      * 生成新的pojo，根据兴奋细胞组合
@@ -108,7 +102,11 @@ public class StartServiceImpl implements StartService {
     public void createPojo() {
 
         while(true){
-            pojoCreatService.doCreatService();
+            //如果兴奋队列不为空，也就是有细胞处于兴奋状态
+            if(!cellWarehouse.getExcitedCellQueueForGenerateNewCell().isEmpty()){
+                pojoCreatService.doCreatService();
+            }
+
             //todo 如果不加sleep，cpu使用基本在95%以上
             try {
                 sleep(1000L);
@@ -125,7 +123,9 @@ public class StartServiceImpl implements StartService {
     @Override
     public void releaseImpulse() {
         while(true){
-            pojoImpulseService.doPojoImpulseService();
+            //如果兴奋队列不为空，也就是有细胞处于兴奋状态
+            if(!cellWarehouse.getExcitedCellQueueForSendMessage().isEmpty()){
+            pojoImpulseService.doPojoImpulseService();}
             try {
                 sleep(1000L);
             } catch (InterruptedException e) {
@@ -141,7 +141,9 @@ public class StartServiceImpl implements StartService {
     @Override
     public void changeState() {
         while(true){
-            pojoStateService.doPojoStateService();
+            //如果接受到消息的细胞队列不为空，也就是有细胞处于部分兴奋状态
+            if(!cellWarehouse.getPartExcitedCell().isEmpty()){
+            pojoStateService.doPojoStateService();}
             try {
                 sleep(1000L);
             } catch (InterruptedException e) {

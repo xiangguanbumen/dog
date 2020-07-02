@@ -1,33 +1,133 @@
 package com.ncell.wangcai.utils.cns.main;
 
+import com.ncell.wangcai.pojo.cns.inputConverter.document.TextCell;
+import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author anliwei
  * @Date 2020/6/26 12:30
  */
+
+@AllArgsConstructor
+@Data
+@Service("cellUtil")
 public class CellUtil {
+
+    CellWarehouse cellWarehouse;
+
 
     /**
      * 细胞分组工具
      */
-   public void cellGroup(){
+    public void cellGroup() {
 
     }
 
     /**
      * 一阶导数分类法
      */
-    void groupByFirstDerivative(){
+    void groupByFirstDerivative() {
 
     }
 
     /**
      * 二阶导数分类法
      */
-    void groupBySecondDerivative(){
+    void groupBySecondDerivative() {
 
     }
 
-    void cellRegister(){
+    void cellRegister() {
+
+    }
+
+    public void creatCellByNameList(LinkedList linkedList) {
+
+
+        //如果所有细胞都是一个类型细胞
+        if (this.containSameCellType(linkedList)) {
+            //取出一个元素，查看细胞类型是否是文字细胞，文字细胞的type值为，11.以后使用统一的全局变量来表示
+            if (cellWarehouse.getAllCell().get((String) linkedList.peek()).getType() == 11) {
+                //获取文字细胞的个数
+                int cellNumber = cellWarehouse.getTextCell().size();
+                //生成细胞的名称：textcell+数字
+                String newCellName = "textCell" + Integer.toString(cellNumber);
+                //根据细胞名称创造新细胞
+                Cell newTextCell = this.creatTextCell(newCellName);
+                //调整细胞元素，连接等变量
+                //将元素添加到新生成的细胞的输入连接中
+                for (Object s : linkedList
+                ) {
+                    String name = (String) s;
+                    newTextCell.getConnectionsInput().add(name);
+                    //将元素添加到生成细胞的输出连接中
+                    cellWarehouse.getAllCell().get(name).getConnectionsOutput().add(newCellName);
+                }
+                //注册到静态仓库
+                this.registerInBaseWarehouse(newTextCell);
+                System.out.println(newTextCell.getName());
+
+
+            } else if (cellWarehouse.getAllCell().get((String) linkedList.peek()).getType() == 12) {
+                //todo 增加创建声音细胞的代码
+            } else if (cellWarehouse.getAllCell().get((String) linkedList.peek()).getType() == 13) {
+                //todo 增加创建图形细胞的代码
+            }
+        }
+        //如果有不同类型的细胞，以后与声音和图像细胞同时激活的时候
+        else {
+            //todo 增加创建混杂细胞的代码
+        }
+    }
+
+    Boolean containSameCellType(LinkedList linkedList) {
+        boolean flag = false;
+        //判断方法，将所有的细胞的类型都放进一个集合中，如果集合的元素数量大于一个就表示，list中有不同的类型
+        HashSet<Integer> set = new HashSet<Integer>();
+        for (Object s : linkedList
+        ) {
+            set.add(cellWarehouse.getAllCell().get((String) s).getType());
+        }
+        if (set.size() > 1) {
+            flag = false;
+        } else {
+            flag = true;
+        }
+        return flag;
+
+    }
+
+    Cell creatTextCell(String cellName) {
+
+        Cell newCell = new Cell();
+        newCell.setType(11);
+        newCell.setCurrentState(1);
+        newCell.setCurrentStateStartTime(System.currentTimeMillis());
+        newCell.setName(cellName);
+        return newCell;
+    }
+
+    /**
+     * 注册到静态仓库
+     *
+     * @param cell
+     */
+    void registerInBaseWarehouse(Cell cell) {
+
+        //注册到allCell中
+        cellWarehouse.getAllCell().put(cell.getName(), cell);
+        //注册到textCell中
+        cellWarehouse.getTextCell().put(cell.getName(), cell);
 
     }
 }
