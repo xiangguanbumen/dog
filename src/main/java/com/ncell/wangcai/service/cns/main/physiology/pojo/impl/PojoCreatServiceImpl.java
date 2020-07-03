@@ -200,6 +200,7 @@ public class PojoCreatServiceImpl implements PojoCreatService {
                 if(m1s00.get(i).contains("#")){
                     linkedList.add(m1s00.get(i).replace("#",""));
 
+                    //生成新的细胞，关键步骤
                     cellUtil.creatCellByNameList(linkedList);
 
                     //标记符复位

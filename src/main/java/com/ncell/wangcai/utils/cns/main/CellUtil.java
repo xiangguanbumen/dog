@@ -2,6 +2,7 @@ package com.ncell.wangcai.utils.cns.main;
 
 import com.ncell.wangcai.pojo.cns.inputConverter.document.TextCell;
 import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ import java.util.List;
 public class CellUtil {
 
     CellWarehouse cellWarehouse;
-
+    ConnectionUtil connectionUtil;
 
     /**
      * 细胞分组工具
@@ -65,17 +66,25 @@ public class CellUtil {
                 //根据细胞名称创造新细胞
                 Cell newTextCell = this.creatTextCell(newCellName);
                 //调整细胞元素，连接等变量
+                //生成连接
                 //将元素添加到新生成的细胞的输入连接中
+                //将连接注册到连接仓库
                 for (Object s : linkedList
                 ) {
-                    String name = (String) s;
-                    newTextCell.getConnectionsInput().add(name);
+                    String FromCellName = (String) s;
+                    newTextCell.getConnectionsInput().add(FromCellName);
                     //将元素添加到生成细胞的输出连接中
-                    cellWarehouse.getAllCell().get(name).getConnectionsOutput().add(newCellName);
+                    cellWarehouse.getAllCell().get(FromCellName).getConnectionsOutput().add(newCellName);
+                    //生产新的连接
+                    Connection connection=connectionUtil.makeConnectionByName(FromCellName,newCellName);
+                    //将新连接注册到连接仓库
+                    connectionUtil.registerConnection(connection);
+
+
                 }
                 //注册到静态仓库
                 this.registerInBaseWarehouse(newTextCell);
-                System.out.println(newTextCell.getName());
+
 
 
             } else if (cellWarehouse.getAllCell().get((String) linkedList.peek()).getType() == 12) {

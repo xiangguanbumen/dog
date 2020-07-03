@@ -1,10 +1,13 @@
 package com.ncell.wangcai.service.cns.stopper.impl;
 
 import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
 import com.ncell.wangcai.service.cns.stopper.StopService;
 import com.ncell.wangcai.service.mapperService.impl.CellMapperServiceImpl;
+import com.ncell.wangcai.service.mapperService.impl.ConnectionMapperServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -27,8 +30,10 @@ public class StopServiceImpl implements StopService {
 
 
     CellMapperServiceImpl cellService;
+    ConnectionMapperServiceImpl connectionMapperService;
 
     CellWarehouse cellWarehouse;
+    ConnectionWarehouse connectionWarehouse;
 
     @Override
     public void doStopService() {
@@ -67,19 +72,25 @@ public class StopServiceImpl implements StopService {
     public void saveCell() {
 
         //如果数据库cell_table中有数据，清空cell_table
-        if(!cellService.findAllCell().isEmpty()){
+        if (!cellService.findAllCell().isEmpty()) {
             cellService.truncateTable();
             for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
-                cellService.addCell(entry.getValue());
+
+                Cell cell = entry.getValue();
+                cellService.addCell(cell);
+                //调用存储part方法
+                this.savePart(cell);
             }
-            //调用存储part方法
-            this.savePart();
-        }else{
-        for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
-            cellService.addCell(entry.getValue());
+
+        } else {
+            for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
+                Cell cell = entry.getValue();
+                cellService.addCell(cell);
+                //调用存储part方法
+                this.savePart(cell);
             }
-        this.savePart();
         }
+
     }
 
     @Override
@@ -153,7 +164,23 @@ public class StopServiceImpl implements StopService {
     @Override
     public void saveConnection(Stem stem) {
 
-        //todo 保存connection代码
+        //todo 暂时只保存输出的连接
+        if(!stem.getConnectionsOutput().isEmpty()){
+
+            for (String  connectionName:stem.getConnectionsOutput()
+            ) {
+                System.out.println(connectionName);
+                Connection connection = connectionWarehouse.getAllConnection().get(connectionName);
+                connectionMapperService.getConnectionMapper().addConnection(connection);
+
+            }
+
+        }
+
+
+
+
+
     }
 
     /**
