@@ -40,7 +40,7 @@ public class ConnectionUtil {
        Connection newConnection = new Connection();
        newConnection.setConnectionFrom(cellNameFrom);
        newConnection.setConnectionTo(cellNameTo);
-       newConnection.setCreatTime(System.currentTimeMillis());
+       newConnection.setCreateTime(System.currentTimeMillis());
        newConnection.setName("from"+cellNameFrom+"to"+cellNameTo);
        newConnection.setOwner(cellNameFrom);
        return newConnection;

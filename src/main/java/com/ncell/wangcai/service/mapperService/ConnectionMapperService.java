@@ -37,4 +37,9 @@ public interface ConnectionMapperService {
      * @return
      */
     List<Connection> findAllConnection();
+
+    /**
+     * 清空数据库connection_table
+     */
+    void truncateTable();
 }

@@ -19,6 +19,10 @@ import java.util.Map;
  * 保存pojo实体类的时候，同时将其内部的connection等实体一并保存，
  * 这点与从数据库加载正好相反，
  * 因为如果此时不保存，保存connection实体的时候任然需要再次读取。
+ * @update
+ * 2020年7月3日22:12:53
+ * connection也采用细胞的存储方式，全部存放到仓库中，细胞中只保留文字索引。
+ *
  *
  * @author anliwei
  * @create 2020/6/10 14:12
@@ -29,7 +33,7 @@ import java.util.Map;
 public class StopServiceImpl implements StopService {
 
 
-    CellMapperServiceImpl cellService;
+    CellMapperServiceImpl cellMapperService;
     ConnectionMapperServiceImpl connectionMapperService;
 
     CellWarehouse cellWarehouse;
@@ -38,8 +42,8 @@ public class StopServiceImpl implements StopService {
     @Override
     public void doStopService() {
         this.savePojo();
-        //在存储pojo的时候调用存储part方法
-        // this.savePart();
+
+        this.savePart();
     }
 
     /**
@@ -72,22 +76,21 @@ public class StopServiceImpl implements StopService {
     public void saveCell() {
 
         //如果数据库cell_table中有数据，清空cell_table
-        if (!cellService.findAllCell().isEmpty()) {
-            cellService.truncateTable();
+        if (!cellMapperService.findAllCell().isEmpty()) {
+            cellMapperService.truncateTable();
+
             for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
 
                 Cell cell = entry.getValue();
-                cellService.addCell(cell);
-                //调用存储part方法
-                this.savePart(cell);
+                cellMapperService.addCell(cell);
+
             }
 
         } else {
             for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
                 Cell cell = entry.getValue();
-                cellService.addCell(cell);
-                //调用存储part方法
-                this.savePart(cell);
+                cellMapperService.addCell(cell);
+
             }
         }
 
@@ -119,6 +122,26 @@ public class StopServiceImpl implements StopService {
 
     @Override
     public void saveConnection() {
+
+        //如果数据库cell_table中有数据，清空cell_table
+        if (!connectionMapperService.findAllConnection().isEmpty()) {
+            connectionMapperService.truncateTable();
+
+            for (Map.Entry<String, Connection> entry : connectionWarehouse.getAllConnection().entrySet()) {
+
+                Connection connection = entry.getValue();
+                connectionMapperService.addConnection(connection);
+
+            }
+
+        } else {
+            for (Map.Entry<String, Connection> entry : connectionWarehouse.getAllConnection().entrySet()) {
+
+                Connection connection = entry.getValue();
+                connectionMapperService.addConnection(connection);
+
+            }
+        }
 
 
     }

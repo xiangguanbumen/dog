@@ -4,6 +4,7 @@ import com.ncell.wangcai.pojo.cns.main.Cell;
 import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
 import com.ncell.wangcai.service.cns.loader.LoadService;
 import com.ncell.wangcai.service.mapperService.impl.CellMapperServiceImpl;
 import com.ncell.wangcai.service.mapperService.impl.ConnectionMapperServiceImpl;
@@ -42,6 +43,7 @@ public class LoadServiceImpl implements LoadService {
     CellMapperServiceImpl cellMapperService;
     CellWarehouse cellWarehouse;
     ConnectionMapperServiceImpl connectionMapperService;
+    ConnectionWarehouse connectionWarehouse;
 
     /**
      * loadService主方法，调用其他pojo加载方法
@@ -146,13 +148,16 @@ public class LoadServiceImpl implements LoadService {
     }
 
     /**
-     * 从数据库加载Connection到各个已经加载的实例
+     * 从数据库加载Connection到connection仓库
      */
     @Override
     public void loadConnection() {
-        //获取全部连接
-        List<Connection> allConnection =
-        connectionMapperService.getConnectionMapper().findAllConnection();
+
+        for (Connection connection : connectionMapperService.findAllConnection()) {
+
+            connectionWarehouse.getAllConnection().put(connection.getName(),connection);
+
+        }
 
     }
 

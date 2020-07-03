@@ -61,4 +61,12 @@ public class ConnectionMapperServiceImpl implements ConnectionMapperService {
     public List<Connection> findAllConnection() {
         return connectionMapper.findAllConnection();
     }
+
+    /**
+     * 清空数据库connection_table
+     */
+    @Override
+    public void truncateTable() {
+         connectionMapper.truncateTable();
+    }
 }

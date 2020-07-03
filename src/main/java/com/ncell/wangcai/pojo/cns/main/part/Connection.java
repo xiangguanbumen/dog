@@ -36,9 +36,9 @@ public class Connection {
 
     String connectionFrom;
     String connectionTo;
-    int connectionType;
-    int excitedCount;
-    long creatTime;
-    long lastExcitedTime;
+    int connectionType=-1;
+    int excitedCount=-1;
+    long createTime=-1;
+    long lastExcitedTime=-1;
 
 }

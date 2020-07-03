@@ -4,6 +4,7 @@ import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public interface ConnectionMapper {
      * @param connection
      * @return
      */
-    @Insert("insert into connection_table (id,name,owner,from,to,type,count,createTime,lastExcitedTime) values (#{id},#{name},#{owner},#{connectionFrom},#{connectionTo},#{connectionType},#{excitedCount},#{creatTime},#{lastExcitedTime})")
+    @Insert("insert into connection_table (id,name,owner,connectionFrom,connectionTo,connectionType,excitedCount,createTime,lastExcitedTime) values (#{id},#{name},#{owner},#{connectionFrom},#{connectionTo},#{connectionType},#{excitedCount},#{createTime},#{lastExcitedTime})")
     int addConnection(Connection connection);
 
     /**
@@ -43,6 +44,12 @@ public interface ConnectionMapper {
      */
     @Select("select * from connection_table ")
     List<Connection> findAllConnection();
+
+    /**
+     * 清空数据库connection_table
+     */
+    @Update("truncate table connection_table")
+    void truncateTable();
 
 
 }
