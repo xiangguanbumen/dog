@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>显示dog系统信息</title>
+</head>
+<body>
+<h4>细胞状态：</h4>
+<ul>
+    <li > allCell：<span th:text="${allCellCount}">-1</span></li>
+    <li>excitedCell：<span th:text="${excitedCellCount}">-1</span></li>
+    <li>partExcitedCell：<span th:text="${partExcitedCellCount}">-1</span></li>
+    <li>allTextCell：<span th:text="${allTextCellCount}">-1</span></li>
+</ul>
+<h4>连接状态：</h4>
+<ul>
+    <li > allConnection：<span th:text="${allConnectionCount}">-1</span></li>
+<!--    <li>newConnection：<span th:text="${excitedCellCount}">-1</span></li>-->
+</ul>
+<h4>消息状态：</h4>
+<ul>
+    <li > allMessage：<span th:text="${allMessageCount}">-1</span></li>
+<!--    <li>newConnection：<span th:text="${excitedCellCount}">-1</span></li>-->
+</ul>
+
+<div th:insert="./include/footer::footer"></div>
+</body>
+</html>

@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller("inputController")
 @RequestMapping("/input")
-//@NoArgsConstructor
 @AllArgsConstructor
 public class InputController {
 

@@ -50,6 +50,8 @@ spring:
           # 登录用户名/密码
           login-username: admin
           login-password: 123456
+  thymeleaf:
+    cache: false
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml

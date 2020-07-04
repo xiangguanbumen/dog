@@ -1,6 +1,8 @@
 package com.ncell.wangcai.controller;
 
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
+import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import com.ncell.wangcai.service.cns.loader.impl.LoadServiceImpl;
 import com.ncell.wangcai.service.cns.starter.Impl.StartServiceImpl;
 import com.ncell.wangcai.service.cns.stopper.impl.StopServiceImpl;
@@ -26,6 +28,8 @@ public class DogController {
     StartServiceImpl startService;
     StopServiceImpl stopService;
     CellWarehouse cellWarehouse;
+    ConnectionWarehouse connectionWarehouse;
+    MessageWarehouse messageWarehouse;
 
 
 
@@ -40,7 +44,7 @@ public class DogController {
     @GetMapping(value = {"/myadmin"})
     public String admin(){
 
-        return "myadmin";
+        return "admin/myadmin";
     }
 
     @GetMapping(value = {"/myload"})
@@ -66,10 +70,31 @@ public class DogController {
     @GetMapping(value = {"/myinfo"})
     public String showDogInfo(Model model){
 
+        //获取细胞状态
         int allCellCount = cellWarehouse.getAllCell().size();
+        int excitedCellCount = cellWarehouse.getExcitedCell().size();
+        int allTextCellCount = cellWarehouse.getTextCell().size();
+        int partExcitedCellCount =cellWarehouse.getPartExcitedCell().size();
 
+        //获取连接状态
+        int allConnectionCount = connectionWarehouse.getAllConnection().size();
+
+        //获取消息状态
+        int allMessageCount = messageWarehouse.getAllMessage().size();
+
+        //添加消息状态
         model.addAttribute("allCellCount",allCellCount);
-        return "showdoginfo";
+        model.addAttribute("excitedCellCount",excitedCellCount);
+        model.addAttribute("allTextCellCount",allTextCellCount);
+        model.addAttribute("partExcitedCellCount",partExcitedCellCount);
+        //添加连接状态
+        model.addAttribute("allConnectionCount",allConnectionCount);
+        //添加消息状态
+        model.addAttribute("allMessageCount",allMessageCount);
+
+
+
+        return "admin/showdoginfo";
     }
 
     @GetMapping(value = {"/foot"})
@@ -78,6 +103,11 @@ public class DogController {
         return "foot";
     }
 
+    @GetMapping(value = {"/test"})
+    public String test(){
+
+        return "test";
+    }
 
 
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
 <head>
     <meta charset="UTF-8">
     <title>myadmin</title>
@@ -9,6 +10,6 @@
 <a href="/mystart">开始</a><br>
 <a href="/mystop">结束</a>注意操作会清空原来数据<br>
 <a href="/myinfo">运行状态</a>
-<div th:include="foot :: foot"></div>
+<div th:insert="/include/footer::footer"></div>
 </body>
 </html>
