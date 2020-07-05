@@ -1,6 +1,6 @@
 package com.ncell.wangcai.pojo.cns.outoutConverter.sound;
 
-import com.ncell.wangcai.pojo.cns.main.Agent;
+import com.ncell.wangcai.pojo.cns.main.base.Agent;
 
 /**
  * @author anliwei

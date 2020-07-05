@@ -1,6 +1,6 @@
 package com.ncell.wangcai.service.mapperService;
 
-import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 
 import java.util.List;

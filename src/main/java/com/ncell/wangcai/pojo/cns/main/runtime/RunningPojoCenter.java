@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 2020年6月24日11:16:32
  * 经过各种服务处理的兴奋pojo组合在一起形成一个个的pojo组。
  *
- * 因为可能有重复的元素，所有使用list存储，
+ * 因为可能有重复的元素，所以使用list存储，
  * 使用非并发的list一是这里没有并发操作，二是为了提高读写效率。
  * @author anliwei
  * @Date 2020/6/11 20:56

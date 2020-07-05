@@ -1,6 +1,6 @@
 package com.ncell.wangcai.mapper;
 
-import com.ncell.wangcai.pojo.cns.main.Tissue;
+import com.ncell.wangcai.pojo.cns.main.base.Tissue;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;

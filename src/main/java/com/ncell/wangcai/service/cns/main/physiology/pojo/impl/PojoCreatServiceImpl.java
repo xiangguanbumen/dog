@@ -1,6 +1,6 @@
 package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
-import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningMessageCenter;
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * 创造新的pojo，这是最难的部分。
@@ -87,14 +86,6 @@ public class PojoCreatServiceImpl implements PojoCreatService {
          * m1s0 表示方法m1所需要的原始队列的复制队列
          */
 
-        //ConcurrentLinkedQueue<String>  m1s0 = new ConcurrentLinkedQueue<String>();
-
-        // ConcurrentLinkedQueue<Long>  m1s1 = new ConcurrentLinkedQueue<Long>();
-
-        //ConcurrentLinkedQueue<String>  m1s2 = new ConcurrentLinkedQueue<String>();
-
-        // ConcurrentLinkedQueue<String>  m1s3 = new ConcurrentLinkedQueue<String>();
-
         ArrayList<String> m1s00 = new ArrayList<String>();
         ArrayList<Cell> m1s0 = new ArrayList<Cell>();
         ArrayList<Long> m1s1 = new ArrayList<Long>();
@@ -106,7 +97,7 @@ public class PojoCreatServiceImpl implements PojoCreatService {
          * 第负一步复制队列
          */
         for (String string : cellWarehouse.getExcitedCellQueueForGenerateNewCell()) {
-            System.out.println(string);
+           // System.out.println(string);
             m1s00.add(string);
         }
 
@@ -125,7 +116,7 @@ public class PojoCreatServiceImpl implements PojoCreatService {
          */
         for (Cell cell : m1s0) {
             Long excitedTime = cell.getCurrentStateStartTime();
-            System.out.println(excitedTime);
+           // System.out.println(excitedTime);
             m1s1.add(excitedTime);
         }
 
@@ -140,7 +131,7 @@ public class PojoCreatServiceImpl implements PojoCreatService {
             Long excitedTimeOne = m1s1.get(i);
             Long excitedTimeTwo = m1s1.get(i + 1);
             Long timeSpan = excitedTimeTwo - excitedTimeOne;
-            System.out.println(timeSpan);
+           // System.out.println(timeSpan);
             m1s2.add(timeSpan);
         }
 

@@ -1,6 +1,6 @@
 package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
-import com.ncell.wangcai.pojo.cns.main.*;
+import com.ncell.wangcai.pojo.cns.main.base.*;
 import com.ncell.wangcai.pojo.cns.main.runtime.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
@@ -11,9 +11,6 @@ import com.ncell.wangcai.utils.cns.main.StemUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Delayed;
 
 /**
  * 1、细胞状态的改变服务，

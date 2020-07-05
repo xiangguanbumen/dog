@@ -1,18 +1,14 @@
 package com.ncell.wangcai.utils.cns.main;
 
-import com.ncell.wangcai.pojo.cns.inputConverter.document.TextCell;
-import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author anliwei

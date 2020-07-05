@@ -1,7 +1,6 @@
 package com.ncell.wangcai.pojo.cns.main.warehouse;
 
-import com.ncell.wangcai.pojo.cns.main.Scene;
-import com.ncell.wangcai.pojo.cns.main.Story;
+import com.ncell.wangcai.pojo.cns.main.base.Story;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

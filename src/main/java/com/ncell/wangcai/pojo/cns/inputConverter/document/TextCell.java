@@ -1,6 +1,6 @@
 package com.ncell.wangcai.pojo.cns.inputConverter.document;
 
-import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.base.Cell;
 
 /**
  * @author anliwei

@@ -1,6 +1,6 @@
 package com.ncell.wangcai.service.cns.loader.impl;
 
-import com.ncell.wangcai.pojo.cns.main.Cell;
+import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
@@ -11,8 +11,6 @@ import com.ncell.wangcai.service.mapperService.impl.ConnectionMapperServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * 系统load时，需要先加载各个实体类，然后再启动各种服务。

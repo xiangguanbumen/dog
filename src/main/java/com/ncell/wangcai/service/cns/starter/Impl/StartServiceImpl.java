@@ -40,7 +40,7 @@ public class StartServiceImpl implements StartService {
 
         //创建线程池
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
-                .setNameFormat("demo-pool-%d").build();
+                .setNameFormat("Thread-pool-%d").build();
 
         //Common Thread Pool
         ExecutorService pool = new ThreadPoolExecutor(5, 200,
@@ -100,19 +100,19 @@ public class StartServiceImpl implements StartService {
      */
     @Override
     public void createPojo() {
-
-        while(true){
-            //如果兴奋队列不为空，也就是有细胞处于兴奋状态
+        //如果兴奋队列不为空，也就是有细胞处于兴奋状态
+        while(!cellWarehouse.getExcitedCellQueueForGenerateNewCell().isEmpty()){
+            pojoCreatService.doCreatService();
+            /*//如果兴奋队列不为空，也就是有细胞处于兴奋状态
             if(!cellWarehouse.getExcitedCellQueueForGenerateNewCell().isEmpty()){
                 pojoCreatService.doCreatService();
-            }
+            }*/
 
-            //todo 如果不加sleep，cpu使用基本在95%以上
-            try {
+            /*try {
                 sleep(1000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
     }
@@ -122,15 +122,17 @@ public class StartServiceImpl implements StartService {
      */
     @Override
     public void releaseImpulse() {
-        while(true){
-            //如果兴奋队列不为空，也就是有细胞处于兴奋状态
+        //如果兴奋队列不为空，也就是有细胞处于兴奋状态
+        while(!cellWarehouse.getExcitedCellQueueForSendMessage().isEmpty()){
+            pojoImpulseService.doPojoImpulseService();
+            /*//如果兴奋队列不为空，也就是有细胞处于兴奋状态
             if(!cellWarehouse.getExcitedCellQueueForSendMessage().isEmpty()){
-            pojoImpulseService.doPojoImpulseService();}
-            try {
+            pojoImpulseService.doPojoImpulseService();}*/
+           /* try {
                 sleep(1000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
     }
@@ -140,15 +142,18 @@ public class StartServiceImpl implements StartService {
      */
     @Override
     public void changeState() {
-        while(true){
-            //如果接受到消息的细胞队列不为空，也就是有细胞处于部分兴奋状态
+        //如果接受到消息的细胞队列不为空，也就是有细胞处于部分兴奋状态
+        while(!cellWarehouse.getPartExcitedCell().isEmpty()){
+
+            pojoStateService.doPojoStateService();
+           /* //如果接受到消息的细胞队列不为空，也就是有细胞处于部分兴奋状态
             if(!cellWarehouse.getPartExcitedCell().isEmpty()){
-            pojoStateService.doPojoStateService();}
-            try {
+            pojoStateService.doPojoStateService();}*/
+            /*try {
                 sleep(1000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
     }
