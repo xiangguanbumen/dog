@@ -6,6 +6,7 @@ import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import com.ncell.wangcai.service.cns.loader.impl.LoadServiceImpl;
 import com.ncell.wangcai.service.cns.starter.Impl.StartServiceImpl;
 import com.ncell.wangcai.service.cns.stopper.impl.StopServiceImpl;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
@@ -97,16 +98,17 @@ public class DogController {
         return "admin/showdoginfo";
     }
 
-    @GetMapping(value = {"/foot"})
+   /* @GetMapping(value = {"/foot"})
     public String foot(){
 
         return "foot";
-    }
+    }*/
 
-    @GetMapping(value = {"/test"})
-    public String test(){
+    @GetMapping(value = {"/debug"})
+    public String debug(){
 
-        return "test";
+        System.out.println("debug...");
+        return "admin/showdoginfo";
     }
 
 

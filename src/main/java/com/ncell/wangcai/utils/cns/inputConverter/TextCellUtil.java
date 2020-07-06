@@ -103,6 +103,8 @@ public class TextCellUtil {
         cellWarehouse.getExcitedCellQueueForGenerateNewCell().add(cell.getName());
         //注册到兴奋细胞队列，发送消息使用
         cellWarehouse.getExcitedCellQueueForSendMessage().add(cell.getName());
+        //注册到兴奋细胞队列，细胞状态判断使用
+        cellWarehouse.getExcitedCellQueueForStateService().add(cell.getName());
         //注册到同一批次输入的包，只注册细胞名称
         cellWarehouse.getInputTextCellQueue().add(cell.getName());
 

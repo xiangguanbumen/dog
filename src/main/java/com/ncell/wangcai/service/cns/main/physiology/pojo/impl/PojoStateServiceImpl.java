@@ -11,6 +11,9 @@ import com.ncell.wangcai.utils.cns.main.StemUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
+import sun.util.resources.ga.LocaleNames_ga;
+
+import java.security.acl.LastOwnerException;
 
 /**
  * 1、细胞状态的改变服务，
@@ -52,12 +55,15 @@ public class PojoStateServiceImpl implements PojoStateService {
     /**
      * pojo状态改变服务的主方法
      * 供外界调用的整体服务
+     *
+     * todo 不同的遍历方法遍历不同的细胞集合， 应该是同步进行的。
+     * 按照先运行再迭代的原则，先分步骤运行。
      */
     @Override
     public void doPojoStateService() {
 
         /**
-         * 先遍历部分兴奋细胞
+         * 遍历部分兴奋细胞,判断接收的消息是否能改变细胞状态
          */
         while(!cellWarehouse.getPartExcitedCell().isEmpty()){
             String name=cellWarehouse.getPartExcitedCell().poll();
@@ -66,7 +72,25 @@ public class PojoStateServiceImpl implements PojoStateService {
             }
 
         }
-       //todo 遍历allcell
+
+        /**
+         * 遍历所有的兴奋细胞，判断是否超过了兴奋时长
+         */
+
+
+        while(!cellWarehouse.getExcitedCellQueueForStateService().isEmpty()){
+
+                String cellName =cellWarehouse.getExcitedCellQueueForStateService().poll();
+                Cell cell = cellWarehouse.getAllCell().get(cellName);
+                //如果不再兴奋，改变细胞状态
+                if(!stillExcited(cell)){
+                    cell.setCurrentState(0);
+                    cell.setCurrentStateStartTime(System.currentTimeMillis());
+                }
+
+        }
+
+        //todo 遍历allcell
         //todo 遍历兴奋细胞，看看有些是否需要改变为静息状态
     }
 
@@ -97,8 +121,6 @@ public class PojoStateServiceImpl implements PojoStateService {
 
     /**
      * 较接收到的消息和自身的element对比
-     *
-
      *
      * @param stem
      * @return
@@ -153,6 +175,25 @@ public class PojoStateServiceImpl implements PojoStateService {
 
 
     }
+
+    /**
+     *
+     * @param stem
+     * @return
+     */
+    boolean stillExcited(Stem stem){
+        Long currentTime = System.currentTimeMillis();
+        Long startTime =stem.getCurrentStateStartTime();
+        Long duration = stem.getExcitedStateDuration();
+        //如果超出兴奋时效
+        if((currentTime-startTime)>duration){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
 
 
 }

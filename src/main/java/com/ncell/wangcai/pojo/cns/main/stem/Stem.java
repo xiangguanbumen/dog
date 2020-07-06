@@ -66,9 +66,9 @@ public class Stem implements Serializable {
     long currentStateStartTime;
 
     /**
-     * 状态持续时间
+     * 状态持续时间.默认兴奋持续时间1000毫秒
      */
-    long excitedStateDuration;
+    long excitedStateDuration =1000;
 
     /**
      * 不应期持续时间
@@ -91,13 +91,13 @@ public class Stem implements Serializable {
      * 输出消息,根据connectionOutput来决定给那个pojo传送消息
      */
 
-    LinkedList<String> messagesOutput ;
+    LinkedList<String> messagesOutput =new LinkedList<>();
 
     /**
      * 输入消息，与connectionsInput相比较来确定自身的状态
      * 是自身通过下层的兴奋来激活的，
      */
-    LinkedList<String> messagesInput ;
+    LinkedList<String> messagesInput =new LinkedList<>();
 
     /**
      * 组成元素,使用元素的名称，需要的时候根据元素名称到仓库去取
@@ -106,7 +106,7 @@ public class Stem implements Serializable {
      * 是上层直接激活。
      *
      * 2020年7月2日16:57:39
-     * 先运行再迭代，暂时先不适用element元素
+     * 先运行再迭代，暂时先不使用element元素
      */
     HashSet<String> elements;
 

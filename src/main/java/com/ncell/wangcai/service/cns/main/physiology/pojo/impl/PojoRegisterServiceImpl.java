@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
  * @author anliwei
  * @Date 2020/6/26 23:09
  */
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Service("pojoRegisterServiceImpl")
@@ -87,11 +86,16 @@ public class PojoRegisterServiceImpl implements PojoRegisterService {
     /**
      * 兴奋pojo注册
      *
+     * @update
+     * 2020年7月6日11:32:20
+     * 只要是兴奋细胞，状态判断后的都可以注册，不存在重复注册的问题
+     *
      * @param stemName
      */
     @Override
     public void excitedPojoRegisterIn(String stemName) {
         //注册到excitedCell集合
+
         cellWarehouse.getExcitedCell().put(stemName,cellWarehouse.getAllCell().get(stemName));
         //注册到兴奋队列
         cellWarehouse.getExcitedCellQueue().add(stemName);

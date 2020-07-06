@@ -4,6 +4,8 @@ import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocument;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.service.input.document.StringService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +14,12 @@ import org.springframework.stereotype.Service;
  * @Data 2020/6/6 13:17
  */
 @Service("StringServiceImpl")
+@AllArgsConstructor
+@Data
 public class StringServiceImpl implements StringService {
 
-    String beforeNormalize;
-    String afterNormalize;
-
-    @Autowired
     DocumentWarehouse documentWarehouse;
-    @Autowired
     NormalizedDocument normalizedDocument;
-    @Autowired
     NormalizedDocumentWarehouse normalizedDocumentWarehouse;
 
 
@@ -37,6 +35,8 @@ public class StringServiceImpl implements StringService {
      * 只需要把流程走一遍即可
      */
     public void normalizeData() {
+        String beforeNormalize;
+        String afterNormalize;
 
         beforeNormalize = documentWarehouse.getDocumentLinkedBlockingQueue().peek().getStringDocument();
         afterNormalize = beforeNormalize;

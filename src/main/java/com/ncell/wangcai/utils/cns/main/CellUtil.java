@@ -69,10 +69,13 @@ public class CellUtil {
                 ) {
                     String FromCellName = (String) s;
                     newTextCell.getConnectionsInput().add(FromCellName);
-                    //将元素添加到生成细胞的输出连接中
-                    cellWarehouse.getAllCell().get(FromCellName).getConnectionsOutput().add(newCellName);
+
                     //生产新的连接
                     Connection connection=connectionUtil.makeConnectionByName(FromCellName,newCellName);
+
+                    //将连接实例的名称添加到生成细胞的输出连接中
+                    cellWarehouse.getAllCell().get(FromCellName).getConnectionsOutput().add(connection.getName());
+
                     //将新连接注册到连接仓库
                     connectionUtil.registerConnection(connection);
 

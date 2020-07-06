@@ -24,6 +24,7 @@ public class ConvertController {
         docCellConvertService.doService();
         String msg="文档已经转化成文档细胞";
         model.addAttribute("msg",msg);
-    return "/cns/convert";
+        return "/cns/convert";
+       // return "redirect:/run/doc";
     }
 }

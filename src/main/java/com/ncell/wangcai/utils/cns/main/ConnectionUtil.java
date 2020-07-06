@@ -41,6 +41,7 @@ public class ConnectionUtil {
        newConnection.setConnectionFrom(cellNameFrom);
        newConnection.setConnectionTo(cellNameTo);
        newConnection.setCreateTime(System.currentTimeMillis());
+       //新产生的连接的命名，from+发送细胞名称+to+接收细胞名称
        newConnection.setName("from"+cellNameFrom+"to"+cellNameTo);
        newConnection.setOwner(cellNameFrom);
        return newConnection;

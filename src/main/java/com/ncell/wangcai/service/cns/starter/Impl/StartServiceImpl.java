@@ -2,7 +2,8 @@ package com.ncell.wangcai.service.cns.starter.Impl;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.service.cns.loader.impl.LoadServiceImpl;
+import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
+import com.ncell.wangcai.service.cns.main.physiology.message.impl.MessageSendServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoCreatServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoImpulseServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoStateServiceImpl;
@@ -26,9 +27,13 @@ public class StartServiceImpl implements StartService {
 
 
     CellWarehouse cellWarehouse;
+    MessageWarehouse messageWarehouse;
+
     PojoCreatServiceImpl pojoCreatService;
     PojoImpulseServiceImpl pojoImpulseService;
     PojoStateServiceImpl pojoStateService;
+
+    MessageSendServiceImpl messageSendService;
 
     /**
      * 使用并发启动各种服务，
@@ -48,7 +53,7 @@ public class StartServiceImpl implements StartService {
                 new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
 
-        CountDownLatch latch = new CountDownLatch(3);
+        CountDownLatch latch = new CountDownLatch(4);
 
         /**
          * 创建新的pojo
@@ -61,7 +66,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //1.创建新的pojo服务
                 createPojo();
-                latch.countDown();
+               // latch.countDown();
             }
         });
         pool.execute(new Runnable() {
@@ -69,7 +74,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //2.发送信息
                 releaseImpulse();
-                latch.countDown();
+               // latch.countDown();
             }
         });
         pool.execute(new Runnable() {
@@ -77,19 +82,27 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //3.改变状态
                 changeState();
-                latch.countDown();
+               // latch.countDown();
+            }
+        });
+        pool.execute(new Runnable() {
+            @Override
+            public void run() {
+                //4.消息发送
+                sendMessage();
+              //  latch.countDown();
             }
         });
         //todo 并发处理要改进一下
-        try {
+        /*try {
             // 一定记得加上timeout时间，防止阻塞主线程
-            latch.await(3000, TimeUnit.MILLISECONDS);
+            latch.await(1000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
         //5.关闭线程池
-        pool.shutdown();//gracefully shutdown
+       // pool.shutdown();//gracefully shutdown
 
 
     }
@@ -103,16 +116,8 @@ public class StartServiceImpl implements StartService {
         //如果兴奋队列不为空，也就是有细胞处于兴奋状态
         while(!cellWarehouse.getExcitedCellQueueForGenerateNewCell().isEmpty()){
             pojoCreatService.doCreatService();
-            /*//如果兴奋队列不为空，也就是有细胞处于兴奋状态
-            if(!cellWarehouse.getExcitedCellQueueForGenerateNewCell().isEmpty()){
-                pojoCreatService.doCreatService();
-            }*/
 
-            /*try {
-                sleep(1000L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
+            System.out.println("create pojo");
         }
 
     }
@@ -125,14 +130,8 @@ public class StartServiceImpl implements StartService {
         //如果兴奋队列不为空，也就是有细胞处于兴奋状态
         while(!cellWarehouse.getExcitedCellQueueForSendMessage().isEmpty()){
             pojoImpulseService.doPojoImpulseService();
-            /*//如果兴奋队列不为空，也就是有细胞处于兴奋状态
-            if(!cellWarehouse.getExcitedCellQueueForSendMessage().isEmpty()){
-            pojoImpulseService.doPojoImpulseService();}*/
-           /* try {
-                sleep(1000L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
+
+            System.out.println("impulse ");
         }
 
     }
@@ -146,15 +145,22 @@ public class StartServiceImpl implements StartService {
         while(!cellWarehouse.getPartExcitedCell().isEmpty()){
 
             pojoStateService.doPojoStateService();
-           /* //如果接受到消息的细胞队列不为空，也就是有细胞处于部分兴奋状态
-            if(!cellWarehouse.getPartExcitedCell().isEmpty()){
-            pojoStateService.doPojoStateService();}*/
-            /*try {
-                sleep(1000L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
+
+            System.out.println("change state");
         }
 
+    }
+
+    /**
+     * 发送消息到具体目标细胞
+     */
+    @Override
+    public void sendMessage() {
+        //如果消息仓库中消息队列不为空
+        while(!messageWarehouse.getMessageQueue().isEmpty()){
+            messageSendService.doSendMessageService();
+        }
+
+        System.out.println("send message");
     }
 }

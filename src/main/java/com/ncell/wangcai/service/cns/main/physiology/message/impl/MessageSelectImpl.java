@@ -24,6 +24,14 @@ public class MessageSelectImpl implements MessageSelect {
     }
 
     /**
+     * 执行消息选择的主方法
+     */
+    @Override
+    public void SelectMessage() {
+
+    }
+
+    /**
      * 查找running仓库中实体类
      *
      * @return

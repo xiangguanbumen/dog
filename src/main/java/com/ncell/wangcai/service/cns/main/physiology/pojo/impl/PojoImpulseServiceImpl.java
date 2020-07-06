@@ -57,9 +57,15 @@ public class PojoImpulseServiceImpl implements PojoImpulseService {
          * 遍历兴奋细胞发放消息队列
          */
         while((cellWarehouse.getExcitedCellQueueForSendMessage().size()>0)){
-            String name=cellWarehouse.getExcitedCellQueue().poll();
+            String name=cellWarehouse.getExcitedCellQueueForSendMessage().poll();
             if(name!=null){
+                //根据对外连接发送消息冲动
                 fire(cellWarehouse.getAllCell().get(name));
+                //将细胞状态改为静息
+                cellWarehouse.getAllCell().get(name).setCurrentState(0);
+                //设置状态改变时间
+                cellWarehouse.getAllCell().get(name).setCurrentStateStartTime(System.currentTimeMillis());
+
             }
 
         }
@@ -82,24 +88,28 @@ public class PojoImpulseServiceImpl implements PojoImpulseService {
         //如果连接为空。一般应该是新产生的pojo,生成没有目标实体的message并保存到runningMessageCenter。
         if (stem.getConnectionsOutput() == null) {
             //生成没有目标实体的消息并注册到runningMessageCenter
-            messageUtil.creatMessageWithoutMessageToAndPutIntoRunningMessageCenterAndMessageWarehouse(stem.getName());
+            //2020年7月6日09:46:49暂时注释掉，先运行再迭代原则。没有连接的细胞就不发送消息了。
+            //messageUtil.creatMessageWithoutMessageToAndPutIntoRunningMessageCenterAndMessageWarehouse(stem.getName());
 
         }
-        //如果连接不为空
+        //如果连接队列不为空
         else {
             //遍历连接索引
             for (String connectionName : stem.getConnectionsOutput()) {
+
                 //根据索引查找 connection实例
                 connection = connectionWarehouse.getAllConnection().get(connectionName);
-                //如果连接不为空
+                //如果连接实例不为空
                 if (connection != null) {
                     //更新connection
                     connectionUtil.connectionUpdateAfterUsed(connection);
                     //生成message并注册到仓库
-                    message = messageUtil.creatMessageAndPutIntoMessageWarehouse(connection.getConnectionFrom(), connection.getConnectionTo());
+                    messageUtil.creatMessageAndPutIntoMessageWarehouse(connection);
+                   // message = messageUtil.creatMessageAndPutIntoMessageWarehouse(connection.getConnectionFrom(), connection.getConnectionTo());
                     //2020年6月24日11:13:18暂时将这个方法注释掉，所有的消息存放的消息仓库，经过筛选后进入下一关
                     //根据连接查找，连接到的实体类并将message名称字符串添加到messagesInput
                    // stemUtil.findStemByName(connection.getConnectionTo()).getMessagesInput().add(message.getName());
+                    //
                 }
 
             }

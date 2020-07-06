@@ -12,7 +12,7 @@ public interface StartService {
     void createPojo();
 
     /**
-     * 发送神经冲动，产生消息（但是只是发送到消息仓库）
+     * 产生消息（但是只是发送到消息仓库）
      */
     void releaseImpulse();
 
@@ -20,5 +20,10 @@ public interface StartService {
      * 根据收到的消息决定细胞的状态
      */
     void changeState();
+
+    /**
+     * 发送消息到具体目标细胞
+     */
+    void sendMessage();
 
 }
