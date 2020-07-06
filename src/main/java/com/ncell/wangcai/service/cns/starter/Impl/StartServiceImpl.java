@@ -66,7 +66,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //1.创建新的pojo服务
                 createPojo();
-               // latch.countDown();
+                latch.countDown();
             }
         });
         pool.execute(new Runnable() {
@@ -74,7 +74,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //2.发送信息
                 releaseImpulse();
-               // latch.countDown();
+              latch.countDown();
             }
         });
         pool.execute(new Runnable() {
@@ -82,7 +82,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //3.改变状态
                 changeState();
-               // latch.countDown();
+                latch.countDown();
             }
         });
         pool.execute(new Runnable() {
@@ -90,7 +90,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //4.消息发送
                 sendMessage();
-              //  latch.countDown();
+               latch.countDown();
             }
         });
         //todo 并发处理要改进一下
@@ -118,6 +118,7 @@ public class StartServiceImpl implements StartService {
             pojoCreatService.doCreatService();
 
             System.out.println("create pojo");
+
         }
 
     }
@@ -145,8 +146,8 @@ public class StartServiceImpl implements StartService {
         while(!cellWarehouse.getPartExcitedCell().isEmpty()){
 
             pojoStateService.doPojoStateService();
-
             System.out.println("change state");
+
         }
 
     }
@@ -159,8 +160,21 @@ public class StartServiceImpl implements StartService {
         //如果消息仓库中消息队列不为空
         while(!messageWarehouse.getMessageQueue().isEmpty()){
             messageSendService.doSendMessageService();
+            System.out.println("send message");
         }
 
-        System.out.println("send message");
+
+    }
+
+
+    public void alwaysRun()  {
+        while(true){
+            doStartService();
+            try {
+                sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

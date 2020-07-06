@@ -6,7 +6,7 @@ import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import com.ncell.wangcai.service.cns.loader.impl.LoadServiceImpl;
 import com.ncell.wangcai.service.cns.starter.Impl.StartServiceImpl;
 import com.ncell.wangcai.service.cns.stopper.impl.StopServiceImpl;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+//import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
@@ -57,7 +57,8 @@ public class DogController {
     @GetMapping(value = {"/mystart"})
     public String start(){
 
-        startService.doStartService();
+        //startService.doStartService();
+        startService.alwaysRun();
         return "redirect:/myinfo";
     }
 
