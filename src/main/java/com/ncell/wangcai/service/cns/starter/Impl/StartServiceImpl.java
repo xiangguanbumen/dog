@@ -66,7 +66,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //1.创建新的pojo服务
                 createPojo();
-                latch.countDown();
+                //latch.countDown();
             }
         });
         pool.execute(new Runnable() {
@@ -74,7 +74,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //2.发送信息
                 releaseImpulse();
-              latch.countDown();
+              //latch.countDown();
             }
         });
         pool.execute(new Runnable() {
@@ -82,7 +82,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //3.改变状态
                 changeState();
-                latch.countDown();
+                //latch.countDown();
             }
         });
         pool.execute(new Runnable() {
@@ -90,7 +90,7 @@ public class StartServiceImpl implements StartService {
             public void run() {
                 //4.消息发送
                 sendMessage();
-               latch.countDown();
+               //latch.countDown();
             }
         });
         //todo 并发处理要改进一下
@@ -144,7 +144,6 @@ public class StartServiceImpl implements StartService {
     public void changeState() {
         //如果接受到消息的细胞队列不为空，也就是有细胞处于部分兴奋状态
         while(!cellWarehouse.getPartExcitedCell().isEmpty()){
-
             pojoStateService.doPojoStateService();
             System.out.println("change state");
 
@@ -171,7 +170,7 @@ public class StartServiceImpl implements StartService {
         while(true){
             doStartService();
             try {
-                sleep(200);
+                sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
