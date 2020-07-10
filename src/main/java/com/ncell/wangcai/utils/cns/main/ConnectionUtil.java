@@ -21,7 +21,7 @@ public class ConnectionUtil {
      * 当connection被使用后，相应参数调整
      * @param connection
      */
-    public void connectionUpdateAfterUsed(Connection connection){
+    public void updateConnectionAfterUsed(Connection connection){
         //设置最后激活时间
         connection.setLastExcitedTime(System.currentTimeMillis());
         //设置激活次数
@@ -36,7 +36,7 @@ public class ConnectionUtil {
      * @param cellNameTo
      * @return
      */
-   public Connection makeConnectionByName(String cellNameFrom,String cellNameTo){
+   public Connection createConnectionByName(String cellNameFrom, String cellNameTo){
        Connection newConnection = new Connection();
        newConnection.setConnectionFrom(cellNameFrom);
        newConnection.setConnectionTo(cellNameTo);

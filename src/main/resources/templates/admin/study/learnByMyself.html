@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>自主学习</title>
+</head>
+<body>
+<h1>网络自主学习</h1>
+<p>类似网络爬虫，从某一个随机或指定网页开始，遍历所有链接。</p>
+<ul>
+    <li><a href="admin/study/doLearnByMyselFromAllWeb">开始全网络自主学习</a></li>
+    <li><a href="admin/study/doLearnByMyselFromOneWeb">开始指定网络自主学习</a></li>
+</ul>
+<h1>本地自主学习</h1>
+<p>读取本地指定文件夹下的内容，分文档，声音，图像，视频几个类比学习。
+    <br>暂时不支持选定文件夹，
+    <br>文档文件夹在c:/ncell/doc文件夹下面,
+    <br>声音文件夹在c:/ncell/sound文件夹下面,
+    <br>图像文件夹在c:/ncell/image文件夹下面,
+    <br>视频文件夹在c:/ncell/video文件夹下面,<br>
+</p>
+<ul>
+    <li><a href="/admin/study/doLearnByMyselfFromLocalDoc">开始本地文档自主学习</a></li>
+    <li><a href="/admin/study/doLearnByMyselfFromLocalSound">开始本地声音自主学习</a></li>
+    <li><a href="/admin/study/doLearnByMyselfFromLocalImage">开始本地图像自主学习</a></li>
+    <li><a href="/admin/study/doLearnByMyselfFromLocalVideo">开始本地视频自主学习</a></li>
+</ul>
+
+<ul>
+    <li><a href="/admin/study/doLearnByMyselfFromLocal">开始本地全部自主学习</a></li>
+</ul>
+<div th:insert="/include/footer::footer"></div>
+</body>
+</html>

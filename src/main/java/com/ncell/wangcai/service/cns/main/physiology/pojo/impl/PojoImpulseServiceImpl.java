@@ -14,7 +14,6 @@ import com.ncell.wangcai.utils.cns.main.MessageUtil;
 import com.ncell.wangcai.utils.cns.main.StemUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 
@@ -102,7 +101,7 @@ public class PojoImpulseServiceImpl implements PojoImpulseService {
                 //如果连接实例不为空
                 if (connection != null) {
                     //更新connection
-                    connectionUtil.connectionUpdateAfterUsed(connection);
+                    connectionUtil.updateConnectionAfterUsed(connection);
                     //生成message并注册到仓库
                     messageUtil.creatMessageAndPutIntoMessageWarehouse(connection);
                    // message = messageUtil.creatMessageAndPutIntoMessageWarehouse(connection.getConnectionFrom(), connection.getConnectionTo());

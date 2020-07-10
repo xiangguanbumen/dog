@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 /**
  * @author anliwei
  *
- * exclude= {DataSourceAutoConfiguration.class, SecurityAutoConfiguration.class}
+ *
  */
 @MapperScan("com.ncell.wangcai.mapper")
 @SpringBootApplication()

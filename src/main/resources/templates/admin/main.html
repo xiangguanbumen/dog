@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<head>
+    <meta charset="UTF-8">
+    <title>myadmin</title>
+</head>
+<body>
+<!--<a href="/myload">加载数据库</a><br>-->
+<h1>系统初始化</h1>
+<a href="/myload">初始化</a>
+<h1>运行启停</h1>
+<a href="/mystart">开始运行</a>
+<a href="/mystop">结束运行</a>
+<br>注意：<br>
+1.开始后系统一直运行，界面不更新。<br>
+2.结束操作会清空数据库原来数据<br>
+
+<h1>系统状态</h1>
+<a href="/myinfo">运行状态</a>
+<h1>系统训练</h1>
+<a href="/mytrain">开始训练</a>
+<a href="/mystop">结束训练</a>
+<br>注意：<br>
+1.开始训练后系统一直运行，界面不更新。<br>
+2.结束训练操作会清空数据库原来数据<br>
+
+<a href="admin/study/learnFromTeacher">老师教学</a>
+<a href="admin/study/learnByMyself">自主学习</a><br>
+<div th:insert="/include/footer::footer"></div>
+</body>
+</html>

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
- * 文档类型主要是存放字符串数据的标准化结构，Word，Excel，ppt有对应的软件直接读取
+ * 文档类型主要是存放字符串数据的标准化结构，Word，ExcelUnit，ppt有对应的软件直接读取
  *
  *
  * @author anliwei

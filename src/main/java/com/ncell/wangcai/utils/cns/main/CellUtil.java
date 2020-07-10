@@ -3,6 +3,8 @@ package com.ncell.wangcai.utils.cns.main;
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.service.cns.main.physiology.connection.impl.ConnectionCreatServiceImpl;
+import com.ncell.wangcai.service.cns.main.physiology.connection.impl.ConnectionRegisterServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,8 @@ import java.util.LinkedList;
 public class CellUtil {
 
     CellWarehouse cellWarehouse;
-    ConnectionUtil connectionUtil;
+    ConnectionCreatServiceImpl connectionCreatService;
+    ConnectionRegisterServiceImpl connectionRegisterService;
 
     /**
      * 细胞分组工具
@@ -71,13 +74,13 @@ public class CellUtil {
                     newTextCell.getConnectionsInput().add(FromCellName);
 
                     //生产新的连接
-                    Connection connection=connectionUtil.makeConnectionByName(FromCellName,newCellName);
+                    Connection connection=connectionCreatService.getConnectionUtil().createConnectionByName(FromCellName,newCellName);
 
                     //将连接实例的名称添加到生成细胞的输出连接中
                     cellWarehouse.getAllCell().get(FromCellName).getConnectionsOutput().add(connection.getName());
 
                     //将新连接注册到连接仓库
-                    connectionUtil.registerConnection(connection);
+                    connectionRegisterService.getConnectionUtil().registerConnection(connection);
 
 
                 }

@@ -39,6 +39,7 @@ public class StringServiceImpl implements StringService {
         String afterNormalize;
 
         beforeNormalize = documentWarehouse.getDocumentLinkedBlockingQueue().peek().getStringDocument();
+        //因为string字符串已经被过滤器标准化了，这里不需要做任何动作.
         afterNormalize = beforeNormalize;
         normalizedDocument.setNormalizedDocument(afterNormalize);
     }
@@ -55,12 +56,15 @@ public class StringServiceImpl implements StringService {
         }
     }
 
+
     @Override
     public void doService()  {
         this.obtainData();
         this.normalizeData();
         this.sendData();
     }
+
+
 
 
 }

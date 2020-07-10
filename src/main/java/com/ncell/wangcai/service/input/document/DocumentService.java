@@ -3,13 +3,29 @@ package com.ncell.wangcai.service.input.document;
 
 /**
  * @author anliwei
- * @Data 2020/6/6 13:00
+ * @Date 2020/6/6 13:00
+ * @upadte 2020-7-10 12:20:23
  */
 public interface DocumentService  {
     /**
-     * 整体调用其他几个复杂，统一对外
+     * 整体调用其他几个服务，统一对外
      */
     void doService() ;
+
+    /**
+     * 本地文档服务
+     */
+    void doLocalDocumentService();
+
+    /**
+     * 网络文档服务
+     */
+    void doWebDocumentService();
+
+    /**
+     * 用户输入文档服务
+     */
+    void doUserInputDocumentService();
 
     /**
      * 获取数据
@@ -28,5 +44,24 @@ public interface DocumentService  {
      * 不需要senddata，高层来低层的仓库取数据就可以了
      */
     void sendData();
+
+    /**
+     * 获取本地文档（指定的本地文件夹）
+     * 主要是用作系统训练时使用。
+     */
+    void obtainLocalDocument();
+
+    /**
+     * 获取web文档
+     * 可以是生产环境用户指定，也可以是系统训练
+     */
+
+    void obtainWebDocument();
+
+    /**
+     * 获取用户输入文档（也是一个固定的用户上传文档的存储文件夹）
+     * 主要是用作生产环境
+     */
+    void obtainUserInputDocument();
 
 }

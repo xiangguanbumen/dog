@@ -21,6 +21,6 @@ public class DocumentWarehouse {
     /**
      * 使用阻塞链表，控制接收的文件数量，文档文件问题不大，但是视频图象文档要注意控制缓存大小
      */
-    LinkedBlockingQueue<Document> documentLinkedBlockingQueue = new LinkedBlockingQueue(16);
+    LinkedBlockingQueue<Document> documentLinkedBlockingQueue = new LinkedBlockingQueue(20480);
 
 }

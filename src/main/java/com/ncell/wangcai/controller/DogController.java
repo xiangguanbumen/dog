@@ -1,12 +1,16 @@
 package com.ncell.wangcai.controller;
 
+import ch.qos.logback.core.util.SystemInfo;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
-import com.ncell.wangcai.service.cns.loader.impl.LoadServiceImpl;
-import com.ncell.wangcai.service.cns.starter.Impl.StartServiceImpl;
-import com.ncell.wangcai.service.cns.stopper.impl.StopServiceImpl;
+import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
+import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
+import com.ncell.wangcai.service.dogService.loader.impl.LoadServiceImpl;
+import com.ncell.wangcai.service.dogService.starter.Impl.StartServiceImpl;
+import com.ncell.wangcai.service.dogService.stopper.impl.StopServiceImpl;
 //import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import com.ncell.wangcai.service.dogService.trainer.impl.StartTrainServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
@@ -28,9 +32,24 @@ public class DogController {
     LoadServiceImpl loadService;
     StartServiceImpl startService;
     StopServiceImpl stopService;
+    StartTrainServiceImpl startTrainService;
+
+
+    /**
+     * input部分
+     */
+
+    DocumentWarehouse documentWarehouse;
+    NormalizedDocumentWarehouse normalizedDocumentWarehouse;
+
+    /**
+     * cns部分
+     */
     CellWarehouse cellWarehouse;
     ConnectionWarehouse connectionWarehouse;
     MessageWarehouse messageWarehouse;
+
+
 
 
 
@@ -42,10 +61,11 @@ public class DogController {
 
     }
 
-    @GetMapping(value = {"/myadmin"})
+
+    @GetMapping(value = {"/admin"})
     public String admin(){
 
-        return "admin/myadmin";
+        return "admin/main";
     }
 
     @GetMapping(value = {"/myload"})
@@ -54,11 +74,12 @@ public class DogController {
         loadService.doLoadService();
         return "redirect:/myinfo";
     }
+
     @GetMapping(value = {"/mystart"})
     public String start(){
+        System.out.println("startService.doStartService();"+System.currentTimeMillis());
+        startService.doStartService();
 
-        //startService.doStartService();
-        startService.alwaysRun();
         return "redirect:/myinfo";
     }
 
@@ -69,9 +90,23 @@ public class DogController {
         return "redirect:/myinfo";
     }
 
+    @GetMapping(value = {"/mytrain"})
+    public String train(){
+        System.out.println(" startTrainService.doStartTrainService();"+System.currentTimeMillis());
+        startTrainService.doStartTrainService();
+
+        return "redirect:/myinfo";
+    }
+
     @GetMapping(value = {"/myinfo"})
     public String showDogInfo(Model model){
 
+        ///////////////第一部分获取输入部分信息/////////////////
+
+        int documentCount = documentWarehouse.getDocumentLinkedBlockingQueue().size();
+        int normalizedDocumentCount = normalizedDocumentWarehouse.getNormalizedDocumentLinkedBlockingQueue().size();
+
+        ///////////////第二部分获取cns部分信息/////////////////
         //获取细胞状态
         int allCellCount = cellWarehouse.getAllCell().size();
         int excitedCellCount = cellWarehouse.getExcitedCell().size();
@@ -84,6 +119,12 @@ public class DogController {
         //获取消息状态
         int allMessageCount = messageWarehouse.getAllMessage().size();
 
+
+        ///////////////第三部分获取输出部分信息/////////////////
+
+
+
+
         //添加消息状态
         model.addAttribute("allCellCount",allCellCount);
         model.addAttribute("excitedCellCount",excitedCellCount);
@@ -94,22 +135,21 @@ public class DogController {
         //添加消息状态
         model.addAttribute("allMessageCount",allMessageCount);
 
+        //添加input信息
+        model.addAttribute("documentCount",documentCount);
+        model.addAttribute("normalizedDocumentCount",normalizedDocumentCount);
+
 
 
         return "admin/showdoginfo";
     }
 
-   /* @GetMapping(value = {"/foot"})
-    public String foot(){
-
-        return "foot";
-    }*/
 
     @GetMapping(value = {"/debug"})
     public String debug(){
 
         System.out.println("debug...");
-        return "admin/showdoginfo";
+        return "redirect:/myinfo";
     }
 
 

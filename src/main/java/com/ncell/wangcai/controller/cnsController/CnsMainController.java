@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @create 2020/7/6 13:03
  */
 
-@Controller
+@Controller("cnsMainController")
 @RequestMapping("/run")
 @Data
 @AllArgsConstructor
-public class MainController {
+public class CnsMainController {
     PojoCreatServiceImpl pojoCreatService;
     PojoImpulseServiceImpl pojoImpulseService;
     PojoStateServiceImpl pojoStateService;

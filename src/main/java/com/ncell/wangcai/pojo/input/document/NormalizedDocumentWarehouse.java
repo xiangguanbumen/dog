@@ -25,7 +25,7 @@ public class NormalizedDocumentWarehouse {
      * 此处使用16，没有任何依据，以后根据实际需要修改
      *
      */
-    LinkedBlockingQueue<NormalizedDocument> normalizedDocumentLinkedBlockingQueue = new LinkedBlockingQueue(16);
+    LinkedBlockingQueue<NormalizedDocument> normalizedDocumentLinkedBlockingQueue = new LinkedBlockingQueue(10240);
 
 
 
