@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -161,8 +163,13 @@ public class CellWarehouse {
     ConcurrentHashMap<String,Cell> soundCell = new ConcurrentHashMap(1024000);
 
 
+    //////////////////////////////////////////////////////////////////////////
+    ////////////////////////成组输入细胞序列的存放队列//////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ///////////////////////2020年7月11日16:50:17/////////////////////////////
 
 
+    ConcurrentLinkedQueue<LinkedList>  inputTextCellListQueue =new ConcurrentLinkedQueue();
 
 
     //////////////////////////////////////////////////////////////////////////

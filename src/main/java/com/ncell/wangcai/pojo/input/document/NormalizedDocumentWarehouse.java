@@ -17,7 +17,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Component("normalizedDocumentWarehouse")
 public class NormalizedDocumentWarehouse {
 
-    String name="normalizedDocumentWarehouseModel";
+    //String name="normalizedDocumentWarehouseModel";
 
     /**
      * 使用阻塞链表，控制接收的文件数量，文档文件问题不大，但是视频图象文档要注意控制缓存大小
@@ -25,7 +25,7 @@ public class NormalizedDocumentWarehouse {
      * 此处使用16，没有任何依据，以后根据实际需要修改
      *
      */
-    LinkedBlockingQueue<NormalizedDocument> normalizedDocumentLinkedBlockingQueue = new LinkedBlockingQueue(10240);
+    LinkedBlockingQueue<NormalizedDocument> normalizedDocumentLinkedBlockingQueue = new LinkedBlockingQueue(20480);
 
 
 

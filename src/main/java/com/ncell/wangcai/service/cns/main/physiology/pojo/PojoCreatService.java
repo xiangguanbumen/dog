@@ -27,4 +27,9 @@ public interface PojoCreatService {
      */
     void creatPojoByPojo();
 
+    /**
+     * 通过一起输入的成组（list）的细胞来创建新的细胞，
+     */
+    void creatPojoByListPojo();
+
 }

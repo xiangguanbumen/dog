@@ -43,6 +43,7 @@ public class PojoCreatServiceImpl implements PojoCreatService {
     public void doCreatService() {
 
         this.creatPojoByPojo();
+        this.creatPojoByListPojo();
     }
 
     /**
@@ -66,6 +67,18 @@ public class PojoCreatServiceImpl implements PojoCreatService {
          */
 
         createCellMethodOne();
+
+    }
+
+    /**
+     * 通过一起输入的成组（list）的细胞来创建新的细胞，
+     */
+    @Override
+    public void creatPojoByListPojo() {
+        while(!cellWarehouse.getInputTextCellListQueue().isEmpty()){
+            cellUtil.creatCellByNameList(cellWarehouse.getInputTextCellListQueue().poll());
+        }
+
 
     }
 
@@ -169,7 +182,7 @@ public class PojoCreatServiceImpl implements PojoCreatService {
          *
          */
         //用于存储分割好的细胞名称队列
-        LinkedList linkedList=new LinkedList();
+        LinkedList<String> linkedList=new LinkedList();
         //标识符
         boolean start =false;
         boolean end =false;

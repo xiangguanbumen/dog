@@ -2,7 +2,7 @@ package com.ncell.wangcai.service.dogService.trainer.impl;
 
 import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
 import com.ncell.wangcai.service.dogService.trainer.LocalLearnService;
-import com.ncell.wangcai.utils.learn.ExcelUnit;
+import com.ncell.wangcai.utils.input.doc.ExcelUnit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;

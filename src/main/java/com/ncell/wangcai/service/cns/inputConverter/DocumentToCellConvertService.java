@@ -5,6 +5,12 @@ package com.ncell.wangcai.service.cns.inputConverter;
  * @Data 2020/6/7 16:53
  */
 public interface DocumentToCellConvertService {
+
+    /**
+     * 集合三个方法，获取转换，发送
+     *
+     */
+    void doService() throws InterruptedException;
     /**
      * 获取数据
      */
@@ -20,9 +26,5 @@ public interface DocumentToCellConvertService {
      */
     void sendCell();
 
-    /**
-     * 集合三个方法，获取转换，发送
-     *
-     */
-    void doService() throws InterruptedException;
+
 }

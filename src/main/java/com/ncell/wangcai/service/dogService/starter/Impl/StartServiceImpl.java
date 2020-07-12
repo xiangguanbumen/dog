@@ -122,10 +122,11 @@ public class StartServiceImpl implements StartService {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //System.out.println("create pojo");
+
             //如果兴奋队列不为空，也就是有细胞处于兴奋状态
             while (!cellWarehouse.getExcitedCellQueueForGenerateNewCell().isEmpty()) {
                 pojoCreatService.doCreatService();
+                System.out.println("create pojo");
 
 
             }
@@ -216,15 +217,16 @@ public class StartServiceImpl implements StartService {
                 e.printStackTrace();
             }
 
-           // System.out.println("转换输入文档");
-            while (!normalizedDocumentWarehouse.getNormalizedDocumentLinkedBlockingQueue().isEmpty()) {
-            }
+
+            if (!normalizedDocumentWarehouse.getNormalizedDocumentLinkedBlockingQueue().isEmpty()) {
+
             try {
                 documentToCellConvertService.doService();
+                System.out.println("转换输入文档");
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }}
         }
     }
 

@@ -35,8 +35,12 @@ public class Document {
      * 2020年7月10日16:54:16
      * 接受内容调整为excel的每一个cell
      * poi以cell来处理数据
+     *
+     * @update
+     * 2020年7月11日13:18:18
+     * 为方便，使用string接收数据
      */
-    Object excelCell=null;
+    String excelCell=null;
     /**
      * 接收PPT格式文档文件
      */

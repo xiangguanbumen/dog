@@ -1,8 +1,12 @@
 package com.ncell.wangcai.controller.adminController;
 
+import com.ncell.wangcai.service.cns.inputConverter.impl.DocumentToCellConvertServiceImpl;
+import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoCreatServiceImpl;
 import com.ncell.wangcai.service.dogService.trainer.impl.LocalLearnServiceImpl;
 import com.ncell.wangcai.service.dogService.trainer.impl.WebLearnServiceImpl;
 import com.ncell.wangcai.service.dogService.trainer.impl.StartTrainServiceImpl;
+import com.ncell.wangcai.service.input.document.impl.DocumentServiceImpl;
+import com.ncell.wangcai.utils.cns.main.CellUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
@@ -23,6 +27,15 @@ public class AdminController {
 
     WebLearnServiceImpl webLearnService;
     LocalLearnServiceImpl localLearnService;
+
+    DocumentToCellConvertServiceImpl documentToCellConvertService;
+
+    DocumentServiceImpl documentService;
+
+    CellUtil cellUtil;
+
+    PojoCreatServiceImpl pojoCreatService;
+
 
     /**
      * 跳转控制
@@ -60,8 +73,16 @@ public class AdminController {
      */
     @GetMapping(value = {"/study/doLearnByMyselfFromLocalDoc"})
     public String doLearnByMyselfFromLocalDoc(){
-        
-            localLearnService.learnDoc();
+
+        documentService.doLocalDocumentService();
+
+        try {
+            documentToCellConvertService.convertDocToCell();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        pojoCreatService.creatPojoByListPojo();
 
         return "admin/study/learnByMyself";
     }

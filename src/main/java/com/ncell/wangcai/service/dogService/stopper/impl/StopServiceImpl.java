@@ -80,7 +80,6 @@ public class StopServiceImpl implements StopService {
             cellMapperService.truncateTable();
 
             for (Map.Entry<String, Cell> entry : cellWarehouse.getAllCell().entrySet()) {
-
                 Cell cell = entry.getValue();
                 cellMapperService.addCell(cell);
 
@@ -123,12 +122,11 @@ public class StopServiceImpl implements StopService {
     @Override
     public void saveConnection() {
 
-        //如果数据库cell_table中有数据，清空cell_table
+        //如果数据库connection_table中有数据，清空connection_table
         if (!connectionMapperService.findAllConnection().isEmpty()) {
             connectionMapperService.truncateTable();
 
             for (Map.Entry<String, Connection> entry : connectionWarehouse.getAllConnection().entrySet()) {
-
                 Connection connection = entry.getValue();
                 connectionMapperService.addConnection(connection);
 
@@ -136,7 +134,6 @@ public class StopServiceImpl implements StopService {
 
         } else {
             for (Map.Entry<String, Connection> entry : connectionWarehouse.getAllConnection().entrySet()) {
-
                 Connection connection = entry.getValue();
                 connectionMapperService.addConnection(connection);
 

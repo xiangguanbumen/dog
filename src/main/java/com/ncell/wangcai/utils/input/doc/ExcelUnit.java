@@ -1,4 +1,4 @@
-package com.ncell.wangcai.utils.learn;
+package com.ncell.wangcai.utils.input.doc;
 
 
 import com.ncell.wangcai.pojo.input.document.Document;
@@ -30,7 +30,7 @@ import java.util.List;
 public class ExcelUnit {
 
     StringServiceImpl stringService;
-    Document document;
+
     DocumentWarehouse documentWarehouse;
     /**
      * 2003- 版本的excel
@@ -58,14 +58,20 @@ public class ExcelUnit {
             if(sheet==null){continue;}
 
             //遍历当前sheet中的所有行
-            for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
+           // for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
+            for (int j = 0; j <= sheet.getLastRowNum(); j++) {
+                Document document = new Document();
                 row = sheet.getRow(j);
                 if(row==null||row.getFirstCellNum()==j){continue;}
                 //这里只遍历需要的列。没有遍历所有列
                 cell = row.getCell(1);
-                document.setExcelCell(cell);
+                //将cell值添加到document中
+                if((cell.getStringCellValue()!=null)&&(cell.getStringCellValue()!="")){
+                document.setExcelCell(cell.getStringCellValue());
                 documentWarehouse.getDocumentLinkedBlockingQueue().put(document);
-                System.out.println("将cell内容添加到doc仓库");
+                System.out.println("将cell内容"+cell+"添加到doc仓库");
+               // wait(2000);
+                }
 
             }
         }
