@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
  * 位置相关细胞
  * 位置关系细胞
  *
+ * 关系细胞要配合注意来确定，不同的注意焦点下，关系细胞就会发生改变。
+ *
  * 根据两个细胞的位置来激活
  * 大概分为360种
  * 简单的分为四种，或八种
@@ -28,7 +30,7 @@ import org.springframework.stereotype.Component;
  * 不同的位置关系细胞的变化主要是
  * elementCSS的变化
  * @author anliwei
- * @create 2020/7/13 15:07
+ * @date 2020/7/13 15:07
  */
 
 @Data

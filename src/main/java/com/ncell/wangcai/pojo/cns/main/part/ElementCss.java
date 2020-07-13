@@ -17,8 +17,12 @@ import org.springframework.stereotype.Component;
  * 再加上距离的远近。
  * 虽然是多例类，但是描述静态结构的可以数量不多
  *
+ * @update
+ * 2020年7月13日19:21:51
+ * 分别使用笛卡尔坐标和极坐标两个系统来表示位置关系
+ *
  * @author anliwei
- * @Data 2020/6/7 11:37
+ * @Date 2020/6/7 11:37
  */
 @NoArgsConstructor
 @AllArgsConstructor
@@ -75,11 +79,9 @@ public class ElementCss {
      * 上下距离
      */
 
-
-
-    int aSpan;
-    int bSpan;
-    int cSpan;
+    int XSpan;
+    int YSpan;
+    int ZSpan;
 
 
     ///////////////////////////////
@@ -102,9 +104,9 @@ public class ElementCss {
      * 16个等级，两个系统同时使用
      */
 
-    int roughInterval8Class;
+    int roughSpan8;
 
-    int roughInterval16Class;
+    int roughSpan16;
 
 
     /**
@@ -120,9 +122,9 @@ public class ElementCss {
      * 与上面表示精确方位的距离是一样的，
      * 只是数值全部为正值
      */
-    int xSpan;
-    int ySpan;
-    int zSpan;
+    int absoluteXSpan;
+    int absoluteYSpan;
+    int absoluteZSpan;
 
 
 
@@ -142,9 +144,21 @@ public class ElementCss {
      *
      */
 
-    int polarCoordinates12Class;
+    int polarCoordinates12;
 
-    int polarCoordinates24Class;
+    int polarCoordinates24;
+
+    /**
+     *
+     * 用极坐标系统表示的两个pojo的距离
+     *
+     * 这个参数可以和xyz坐标共享
+     *
+     * 一个是粗略的直接距离，
+     * 一个是精确的xyz坐标差值
+     */
+
+
 
 
 }

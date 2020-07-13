@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * 主要和关系细胞中sequence细胞配合使用
  * 标记两个事件的时间间隔
  * @author anliwei
- * @create 2020/7/13 15:27
+ * @date 2020/7/13 15:27
  */
 
 @Data
