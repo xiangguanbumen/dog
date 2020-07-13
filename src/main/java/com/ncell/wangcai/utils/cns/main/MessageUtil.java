@@ -3,7 +3,7 @@ package com.ncell.wangcai.utils.cns.main;
 import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.part.ElementJs;
 import com.ncell.wangcai.pojo.cns.main.part.Message;
-import com.ncell.wangcai.pojo.cns.main.runtime.RunningMessageCenter;
+import com.ncell.wangcai.runtime.RunningMessageCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import lombok.AllArgsConstructor;

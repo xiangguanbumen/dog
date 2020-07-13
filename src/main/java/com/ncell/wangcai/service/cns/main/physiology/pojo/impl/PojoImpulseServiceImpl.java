@@ -2,7 +2,7 @@ package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
 import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.part.Message;
-import com.ncell.wangcai.pojo.cns.main.runtime.RunningMessageCenter;
+import com.ncell.wangcai.runtime.RunningMessageCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;

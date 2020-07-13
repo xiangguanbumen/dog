@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojo.cns.main.runtime;
+package com.ncell.wangcai.runtime;
 
 
 import com.ncell.wangcai.pojo.cns.main.part.Message;

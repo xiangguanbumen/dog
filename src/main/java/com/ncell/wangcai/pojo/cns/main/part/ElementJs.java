@@ -15,8 +15,14 @@ import org.springframework.stereotype.Component;
  * 可以控制的element的数量暂时没有想清楚，最好就是先后等时间概念
  * 再加上时间距离的的长短。
  *
+ *
+ * @update
+ * 2020年7月13日16:39:36
+ * 添加具体内容，时间只有一个维度。
+ * 但是又先后，仍然需要两个量来表示。
+ *
  * @author anliwei
- * @Data 2020/6/7 11:38
+ * @Date 2020/6/7 11:38
  */
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,4 +33,36 @@ public class ElementJs {
 
     String name;
     String owner;
+
+
+    /**
+     * 时间先后
+     */
+    boolean before;
+    boolean after;
+
+
+    /**
+     * 事件相对时间
+     *
+     * 通过期间细胞兴奋事件数量做间隔
+     *
+     * 分为几个等级
+     * 分钟， 小时
+     * 马上，立刻，一会儿，好久
+     *
+     *  相隔一个事件
+     *
+     *  相隔两个事件
+     *
+     *  相隔四个事件
+     *
+     *  相隔八个事件
+     *
+     *  相隔16个事件
+     *
+     */
+
+
+
 }
