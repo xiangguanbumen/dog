@@ -24,43 +24,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @NoArgsConstructor
 @Component("runningPojoCenter")
 public class RunningPojoCenter {
-    /**
-     * 第一个string保存产生消息的pojo的名称，第二个String没有意义可以重复，因为没有并发set，使用hashMap取代
-     */
-    //ConcurrentHashMap<String, String> pojoInRunningPojoCenter = new ConcurrentHashMap(1024000);
-    
-    /**
-     * 时间分组
-     * linkedList保存pojo名称
-     */
-    ConcurrentHashMap<String, LinkedList> pojoGroupByTime = new ConcurrentHashMap(1024000);
-    /**
-     * 空间分组
-     */
-    ConcurrentHashMap<String, LinkedList> pojoGroupBySpace = new ConcurrentHashMap(1024000);
-    /**
-     * 颜色分组
-     */
-    ConcurrentHashMap<String, LinkedList> pojoGroupByColorGray = new ConcurrentHashMap(1024000);
-    ConcurrentHashMap<String, LinkedList> pojoGroupByColorGreen = new ConcurrentHashMap(1024000);
-    ConcurrentHashMap<String, LinkedList> pojoGroupByColorBlue = new ConcurrentHashMap(1024000);
-    ConcurrentHashMap<String, LinkedList> pojoGroupByColorRed = new ConcurrentHashMap(1024000);
 
-    /**
-     * 声音分组
-     * linkedList保存pojo名称
-     */
-    ConcurrentHashMap<String, LinkedList> pojoGroupBySoundVolume = new ConcurrentHashMap(1024000);
-    ConcurrentHashMap<String, LinkedList> pojoGroupBySoundFrequency = new ConcurrentHashMap(1024000);
-
-    /**
-     * 连接分组
-     */
-    ConcurrentHashMap<String, LinkedList> pojoGroupByConnectionFrequency = new ConcurrentHashMap(1024000);
-    ConcurrentHashMap<String, LinkedList> pojoGroupByConnectionStrength = new ConcurrentHashMap(1024000);
-
-    /**
-     * 还有其他的分类，根据需要再增加
-     */
 
 }
