@@ -51,4 +51,22 @@ public class ConnectionMapperServiceImpl implements ConnectionMapperService {
     public int addConnection(Connection connection) {
         return connectionMapper.addConnection(connection);
     }
+
+    /**
+     * 找到所有connection
+     *
+     * @return
+     */
+    @Override
+    public List<Connection> findAllConnection() {
+        return connectionMapper.findAllConnection();
+    }
+
+    /**
+     * 清空数据库connection_table
+     */
+    @Override
+    public void truncateTable() {
+         connectionMapper.truncateTable();
+    }
 }

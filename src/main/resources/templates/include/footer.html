@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<style>
+     a{
+        display: block;
+        height: 50px;
+        width: 50px;
+        margin-right: 10px;
+        font: bold 20px/50px Arial;
+    }
+</style>
+<div th:align="center" th:fragment ="footer" id="footer">
+
+        <a th:href="@{/}" title="index">index</a></li>
+        <a th:href="@{/myinfo}" title="info">info</a></li>
+        <a th:href="@{/admin}" title="admin">admin</a></li>
+<!--        <a th:href="@{/logout}" title="logout">logout</a></li>-->
+        <a th:href="@{/debug}" title="debug">debug</a></li>
+
+</div>
+</html>

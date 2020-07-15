@@ -13,7 +13,7 @@ public interface PojoCreatService {
     /**
      * 总的方法
      */
-    void doCreat();
+    void doCreatService();
 
     /**
      * 通过消息生产pojo
@@ -26,5 +26,10 @@ public interface PojoCreatService {
      * 将生成的pojo放到对应的仓库中
      */
     void creatPojoByPojo();
+
+    /**
+     * 通过一起输入的成组（list）的细胞来创建新的细胞，
+     */
+    void creatPojoByListPojo();
 
 }

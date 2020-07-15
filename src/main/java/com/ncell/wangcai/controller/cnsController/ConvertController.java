@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 public class ConvertController {
 
-    DocumentToCellConvertServiceImpl docCellConvertService;
+    DocumentToCellConvertServiceImpl documentToCellConvertService;
 
     @RequestMapping(value = {"/doc"})
     public String convertDocToCell(Model model) throws InterruptedException {
-        docCellConvertService.doService();
+        documentToCellConvertService.doService();
         String msg="文档已经转化成文档细胞";
         model.addAttribute("msg",msg);
-    return "/cns/convert";
+        return "/cns/convert";
+       // return "redirect:/run/doc";
     }
 }

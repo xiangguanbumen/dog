@@ -2,6 +2,7 @@ package com.ncell.wangcai.service.cns.inputConverter.impl;
 
 
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.pojo.input.document.NormalizedDocument;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.service.cns.inputConverter.DocumentToCellConvertService;
 import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;
@@ -10,9 +11,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
+ * 将用户输入的信息转换为细胞
+ *
  * @author anliwei
+ * @update 2020年7月11日11:04:17
+ * 将所有的标准化后的文档数据转换为细胞
  * @Data 2020/6/7 16:59
  */
 @Service("documentToCellConvertServiceImpl")
@@ -25,6 +34,14 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
     NormalizedDocumentWarehouse normalizedDocumentWarehouse;
     CellWarehouse cellWarehouse;
 
+    @Override
+    public void doService() throws InterruptedException {
+        this.obtainData();
+        this.convertDocToCell();
+        this.sendCell();
+        // System.out.println("将文字输入转换成textCell，并发送到cellWarehouse");
+
+    }
 
     @Override
     /**
@@ -36,19 +53,38 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
     @Override
     public void convertDocToCell() throws InterruptedException {
 
-        String  userInput = normalizedDocumentWarehouse
-                .getNormalizedDocumentLinkedBlockingQueue()
-                .take().getNormalizedDocument();
+        while (!normalizedDocumentWarehouse
+                .getNormalizedDocumentLinkedBlockingQueue().isEmpty()) {
+            String normalizeString = normalizedDocumentWarehouse
+                    .getNormalizedDocumentLinkedBlockingQueue()
+                    .take().getNormalizedDocument();
 
-        //依次读取用户输入的每一个字符
-        while (!userInput.isEmpty()) {
-            Character firstCharacter = stringUtil.obtainFirstCharacter(userInput);
-            String cellName = "textCell" + firstCharacter;
-            textCellUtil.doService(cellName);
-            userInput = userInput.substring(1);
+
+            LinkedList cellNameList = new LinkedList();
+
+            //依次读取每一个字符
+            while ((normalizeString != null) && (!normalizeString.isEmpty())) {
+                Character firstCharacter = stringUtil.obtainFirstCharacter(normalizeString);
+                String cellName = "textCell" + firstCharacter;
+                /**
+                 *  转换成为textCell，并存储到相应的动态，静态仓库中.
+                 *  存储的操作本来属于send方法的范围，但是如果分开来处理的话，
+                 *  需要增加新的结构，虽然利于后期维护，但是降低了效率，
+                 *  此处先一起处理，等以后再优化代码
+                 */
+                //todo 不符合分层的原则。发送要用send方法单独处理
+                textCellUtil.doService(cellName);
+
+                cellNameList.add(cellName);
+                //去掉第一个字符
+                normalizeString = normalizeString.substring(1);
+
+            }
+
+
+            cellWarehouse.getInputTextCellListQueue().add(cellNameList);
 
         }
-
     }
 
     @Override
@@ -57,14 +93,8 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
      */
     public void sendCell() {
 
-    }
-
-    @Override
-    public void doService() throws InterruptedException {
-        this.obtainData();
-        this.convertDocToCell();
-        this.sendCell();
-        System.out.println("将文字输入转换成textcell");
+        //将同一批转换好的文字细胞打包存放到兴奋细胞队列
+       // cellWarehouse.getExcitedCellPackageQueue().add(cellWarehouse.getInputTextCellQueue());
 
     }
 

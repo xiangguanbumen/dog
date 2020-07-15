@@ -10,24 +10,37 @@ import org.springframework.stereotype.Component;
 /**
  * @author anliwei
  * @create 2020/6/4 9:06
+ * @update 2020年7月10日16:52:59
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component("documentModel")
+@Component("document")
 @Scope("prototype")
 public class Document {
 
     //需要引入poi相关资料，进行Word，Excel等格式的解析,
     /**
-     * 接收Word格式文档文件
+     * 接收Word格式文档文件，
+     * @update
+     * 2020年7月10日16:53:14
+     * 接受内容调整为文档的每一个段落，
+     * poi是以段落来切分word
      */
-    Object word=null;
+    Object wordParagraph=null;
 
     /**
      * 接收Excel格式文档文件
+     * @update
+     * 2020年7月10日16:54:16
+     * 接受内容调整为excel的每一个cell
+     * poi以cell来处理数据
+     *
+     * @update
+     * 2020年7月11日13:18:18
+     * 为方便，使用string接收数据
      */
-    Object excel=null;
+    String excelCell=null;
     /**
      * 接收PPT格式文档文件
      */
@@ -44,7 +57,7 @@ public class Document {
     String  stringDocument=null;
 
 
-    String docNanme="doc文件名称";
+    String docName ="doc文件名称";
 
 
 

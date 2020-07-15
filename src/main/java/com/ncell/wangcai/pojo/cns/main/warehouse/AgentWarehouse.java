@@ -1,6 +1,6 @@
 package com.ncell.wangcai.pojo.cns.main.warehouse;
 
-import com.ncell.wangcai.pojo.cns.main.Agent;
+import com.ncell.wangcai.pojo.cns.main.base.Agent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +17,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AgentWarehouse {
+    String name = "agentWarehouse";
     ConcurrentHashMap<String, Agent> allAgent =new ConcurrentHashMap<String, Agent>(10240000);
 }

@@ -1,7 +1,6 @@
 package com.ncell.wangcai.mapper;
 
-import com.ncell.wangcai.pojo.cns.main.Cell;
-import com.ncell.wangcai.pojo.cns.main.stem.Stem;
+import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import org.apache.ibatis.annotations.*;
 
 

@@ -1,8 +1,9 @@
 package com.ncell.wangcai.utils.cns.main;
 
+import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.part.ElementJs;
 import com.ncell.wangcai.pojo.cns.main.part.Message;
-import com.ncell.wangcai.pojo.cns.main.runtime.RunningMessageCenter;
+import com.ncell.wangcai.runtime.RunningMessageCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import lombok.AllArgsConstructor;
@@ -103,6 +104,7 @@ public class MessageUtil {
     }
 
     /**
+     * 根据消息发送和接收细胞
      * 产生消息实体，注册到仓库
      *
      * @param messageFrom
@@ -116,6 +118,19 @@ public class MessageUtil {
     }
 
     /**
+     * 根据连接
+     * 产生消息实体，注册到仓库
+     *
+     * @param connection
+     * @return
+     */
+    public Message creatMessageAndPutIntoMessageWarehouse(Connection connection) {
+
+        return this.creatMessageAndPutIntoMessageWarehouse(connection.getConnectionFrom(),connection.getConnectionTo());
+
+    }
+
+    /**
      * 产生新的消息实体
      *
      * @param messageFrom
@@ -124,7 +139,7 @@ public class MessageUtil {
      */
     Message creatMessage(String messageFrom, String messageTo) {
         Message message = new Message();
-        message.setName("message@" + messageTo + Long.toString(System.currentTimeMillis()));
+        message.setName("from"+ messageFrom+ "to"+messageTo);
         message.setUser(messageTo);
         message.setMessageFrom(messageFrom);
         message.setMessageTo(messageTo);
@@ -137,7 +152,9 @@ public class MessageUtil {
      */
 
     void putIntoMessageWarehouse(Message message) {
+
         messageWarehouse.getAllMessage().put(message.getName(), message);
+        messageWarehouse.getMessageQueue().offer(message.getName());
     }
 
     /**

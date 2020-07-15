@@ -1,15 +1,22 @@
 package com.ncell.wangcai.controller;
 
+import ch.qos.logback.core.util.SystemInfo;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.service.cns.starter.Impl.StartServiceImpl;
-import com.ncell.wangcai.service.cns.stopper.impl.StopServiceImpl;
+import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
+import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
+import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
+import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
+import com.ncell.wangcai.service.dogService.loader.impl.LoadServiceImpl;
+import com.ncell.wangcai.service.dogService.starter.Impl.StartServiceImpl;
+import com.ncell.wangcai.service.dogService.stopper.impl.StopServiceImpl;
+//import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import com.ncell.wangcai.service.dogService.trainer.impl.StartTrainServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -22,10 +29,29 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/")
 public class DogController {
 
-
+    LoadServiceImpl loadService;
     StartServiceImpl startService;
     StopServiceImpl stopService;
+    StartTrainServiceImpl startTrainService;
+
+
+    /**
+     * input部分
+     */
+
+    DocumentWarehouse documentWarehouse;
+    NormalizedDocumentWarehouse normalizedDocumentWarehouse;
+
+    /**
+     * cns部分
+     */
     CellWarehouse cellWarehouse;
+    ConnectionWarehouse connectionWarehouse;
+    MessageWarehouse messageWarehouse;
+
+
+
+
 
 
     @GetMapping(value = {"/index",""})
@@ -35,41 +61,96 @@ public class DogController {
 
     }
 
+
     @GetMapping(value = {"/admin"})
     public String admin(){
 
-        return "admin";
+        return "admin/main";
     }
 
-    @GetMapping(value = {"/start"})
+    @GetMapping(value = {"/myload"})
+    public String load(){
+
+        loadService.doLoadService();
+        return "redirect:/myinfo";
+    }
+
+    @GetMapping(value = {"/mystart"})
     public String start(){
-
+        System.out.println("startService.doStartService();"+System.currentTimeMillis());
         startService.doStartService();
-        return "redirect:/info";
+
+        return "redirect:/myinfo";
     }
 
-    @GetMapping(value = {"/stop"})
+    @GetMapping(value = {"/mystop"})
     public String stop(){
 
         stopService.doStopService();
-        return "redirect:/info";
+        return "redirect:/myinfo";
     }
 
-    @GetMapping(value = {"/info"})
+    @GetMapping(value = {"/mytrain"})
+    public String train(){
+        System.out.println(" startTrainService.doStartTrainService();"+System.currentTimeMillis());
+        startTrainService.doStartTrainService();
+
+        return "redirect:/myinfo";
+    }
+
+    @GetMapping(value = {"/myinfo"})
     public String showDogInfo(Model model){
 
+        ///////////////第一部分获取输入部分信息/////////////////
+
+        int documentCount = documentWarehouse.getDocumentLinkedBlockingQueue().size();
+        int normalizedDocumentCount = normalizedDocumentWarehouse.getNormalizedDocumentLinkedBlockingQueue().size();
+
+        ///////////////第二部分获取cns部分信息/////////////////
+        //获取细胞状态
         int allCellCount = cellWarehouse.getAllCell().size();
+        int excitedCellCount = cellWarehouse.getExcitedCell().size();
+        int allTextCellCount = cellWarehouse.getTextCell().size();
+        int partExcitedCellCount =cellWarehouse.getPartExcitedCell().size();
 
+        //获取连接状态
+        int allConnectionCount = connectionWarehouse.getAllConnection().size();
+
+        //获取消息状态
+        int allMessageCount = messageWarehouse.getAllMessage().size();
+
+
+        ///////////////第三部分获取输出部分信息/////////////////
+
+
+
+
+        //添加消息状态
         model.addAttribute("allCellCount",allCellCount);
-        return "showdoginfo";
+        model.addAttribute("excitedCellCount",excitedCellCount);
+        model.addAttribute("allTextCellCount",allTextCellCount);
+        model.addAttribute("partExcitedCellCount",partExcitedCellCount);
+        //添加连接状态
+        model.addAttribute("allConnectionCount",allConnectionCount);
+        //添加消息状态
+        model.addAttribute("allMessageCount",allMessageCount);
+
+        //添加input信息
+        model.addAttribute("documentCount",documentCount);
+        model.addAttribute("normalizedDocumentCount",normalizedDocumentCount);
+
+
+
+        return "admin/showdoginfo";
     }
 
-    @GetMapping(value = {"/foot"})
-    public String foot(){
 
-        return "foot";
+    @GetMapping(value = {"/debug"})
+    public String debug(){
+
+        System.out.println("debug...");
+        return "redirect:/myinfo";
     }
-
 
 
 }

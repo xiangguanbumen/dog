@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
  *
  * connection需要css和js结构吗？
  * 暂时不要了，等下一代升级的时候在添加。
+ * @update
+ * 2020年7月12日11:03:27
+ * 从语料库直接加载的词汇，
+ * 这些词汇之间的连接暂时设定为1024
+ *
  *
  *
  * @author anliwei
@@ -27,6 +32,10 @@ public class Connection {
     int id;
     /**
      * connectionName connection+数字序号
+     * @update
+     * 2020年7月12日11:04:47
+     * 连接的名称使用
+     * from xxxcell to xxxcell
      */
     String name;
     /**
@@ -36,9 +45,9 @@ public class Connection {
 
     String connectionFrom;
     String connectionTo;
-    int connectionType;
-    int excitedCount;
-    long creatTime;
-    long lastExcitedTime;
+    int connectionType=-1;
+    int excitedCount=-1;
+    long createTime=-1;
+    long lastExcitedTime=-1;
 
 }

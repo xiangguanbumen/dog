@@ -30,4 +30,16 @@ public interface ConnectionMapperService {
      * @return
      */
     int addConnection(Connection connection);
+
+    /**
+     *
+     * 找到所有connection
+     * @return
+     */
+    List<Connection> findAllConnection();
+
+    /**
+     * 清空数据库connection_table
+     */
+    void truncateTable();
 }

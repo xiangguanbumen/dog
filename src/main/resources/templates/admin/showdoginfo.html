@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--2秒自动刷新界面-->
+    <meta http-equiv="refresh" content="2">
+    <title>显示dog系统信息</title>
+    <style>
+        .leftColumn{
+            float: left;
+            width: 50%;
+            /*background-color: black;*/
+            /*color: green;*/
+            height: 600px;
+        }
+        .rightColumn {
+            float: right;
+            width: 50%;
+            /*background-color: white;*/
+            /*color: red;*/
+            height: 600px;
+        }
+
+        /*.footer{
+            text-align:center;
+        }*/
+
+    </style>
+</head>
+<body>
+<div class="leftColumn">
+<h2 style="font-family:arial;color:#00ff00;">实体类状态显示</h2>
+<h3 style="font-family:arial;color:red;">input输入部分</h3>
+<h4>文档状态：</h4>
+<ul>
+    <li>Document：<span th:text="${documentCount}">-1</span></li>
+    <li>NormalizedDocument：<span th:text="${normalizedDocumentCount}">-1</span></li>
+</ul>
+
+<h3 style="font-family:arial;color:red;">cns中央处理部分</h3>
+<h4>细胞状态：</h4>
+<ul>
+    <li > allCell：<span th:text="${allCellCount}">-1</span></li>
+    <li>excitedCell：<span th:text="${excitedCellCount}">-1</span></li>
+    <li>partExcitedCell：<span th:text="${partExcitedCellCount}">-1</span></li>
+    <li>allTextCell：<span th:text="${allTextCellCount}">-1</span></li>
+</ul>
+<h4>连接状态：</h4>
+<ul>
+    <li > allConnection：<span th:text="${allConnectionCount}">-1</span></li>
+<!--    <li>newConnection：<span th:text="${excitedCellCount}">-1</span></li>-->
+</ul>
+<h4>消息状态：</h4>
+<ul>
+    <li > allMessage：<span th:text="${allMessageCount}">-1</span></li>
+<!--    <li>newConnection：<span th:text="${excitedCellCount}">-1</span></li>-->
+</ul>
+<h3 style="font-family:arial;color:red;">output输出部分</h3>
+<!--<h4>文字输出：</h4>
+<h4>声音输出：</h4>
+<h4>图像输出：</h4>
+<h4>控制输出：</h4>-->
+</div>
+<div class="rightColumn">
+<h2 style="font-family:arial;color:#00ff00;">服务类状态显示</h2>
+
+<h3 style="font-family:arial;color:red;font-size:20px;">input</h3>
+<h3 style="font-family:arial;color:red;font-size:20px;">cns</h3>
+<h3 style="font-family:arial;color:red;font-size:20px;">output</h3>
+</div>
+
+<div th:align="center" th:insert="./include/footer::footer"></div>
+</body>
+</html>

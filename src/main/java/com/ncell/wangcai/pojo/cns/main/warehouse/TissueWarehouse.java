@@ -1,7 +1,6 @@
 package com.ncell.wangcai.pojo.cns.main.warehouse;
 
-import com.ncell.wangcai.pojo.cns.main.Cell;
-import com.ncell.wangcai.pojo.cns.main.Tissue;
+import com.ncell.wangcai.pojo.cns.main.base.Tissue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +17,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @AllArgsConstructor
 @Component("tissueWarehouse")
 public class TissueWarehouse {
+
+    String name = "tissueWarehouse";
 
     /**
      * 所有tissue
