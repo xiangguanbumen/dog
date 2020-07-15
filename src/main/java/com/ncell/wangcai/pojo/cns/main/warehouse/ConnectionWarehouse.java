@@ -19,7 +19,21 @@ import java.util.concurrent.ConcurrentHashMap;
 @NoArgsConstructor
 @Data
 public class ConnectionWarehouse {
+
+    /**
+     * 所有连接，通过连接名称索引
+     */
     ConcurrentHashMap<String, Connection> allConnection = new ConcurrentHashMap(1024000);
+
+    /**
+     * 所有连接，通过连接发出方索引
+     */
+    ConcurrentHashMap<String, Connection> allConnectionByConnectionFrom = new ConcurrentHashMap(1024000);
+
+    /**
+     * 所有连接，通过连接接受方索引
+     */
+    ConcurrentHashMap<String, Connection> allConnectionByConnectionTo = new ConcurrentHashMap(1024000);
 
     /**
      * 连接建立时间小于某一个时间阈值的，可以舍弃的

@@ -111,7 +111,7 @@ public class CellWarehouse {
 
 
     ////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////接受信息后的细胞仓库/////////////////////////////////////////////
+    //////////////////////////接受信息后的细胞队列/////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -128,9 +128,39 @@ public class CellWarehouse {
     ConcurrentLinkedQueue<String> partExcitedCell = new ConcurrentLinkedQueue<String>();
 
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////分类关系细胞集合////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////2020年7月15日20:34:51/////////////////////////////
+
+
+    /**
+     * 关系细胞
+     * 方向细胞
+     */
+    ConcurrentHashMap<String,Cell> directionCell = new ConcurrentHashMap(1024000);
+
+    /**
+     * 关系细胞
+     * 空间距离细胞
+     */
+    ConcurrentHashMap<String,Cell> spanCell = new ConcurrentHashMap(1024000);
+
+    /**
+     * 关系细胞
+     * 先后细胞
+     */
+    ConcurrentHashMap<String,Cell> sequenceCell = new ConcurrentHashMap(1024000);
+
+    /**
+     * 关系细胞
+     * 时间距离细胞
+     */
+    ConcurrentHashMap<String,Cell> intervalCell = new ConcurrentHashMap(1024000);
+
 
     ////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////分类实体细胞仓库////////////////////////////////////////////////
+    //////////////////////////分类实体细胞集合////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -169,7 +199,69 @@ public class CellWarehouse {
     ///////////////////////2020年7月11日16:50:17/////////////////////////////
 
 
+
+
     ConcurrentLinkedQueue<LinkedList>  inputTextCellListQueue =new ConcurrentLinkedQueue();
+    ConcurrentLinkedQueue<LinkedList>  inputSoundCellListQueue =new ConcurrentLinkedQueue();
+    ConcurrentLinkedQueue<LinkedList>  inputImageCellListQueue =new ConcurrentLinkedQueue();
+    ConcurrentLinkedQueue<LinkedList>  inputVideoCellListQueue =new ConcurrentLinkedQueue();
+
+
+    //////////////////////////////////////////////////////////////////////////
+    ////////////////////////分组服务处理后的细胞//////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ///////////////////////2020年7月15日20:12:02/////////////////////////////
+
+   /** @update
+    * 2020年6月24日11:16:32
+    * 2020年7月15日20:15:34
+    * 经过各种服务处理的兴奋pojo组合在一起形成一个个的pojo组。
+    * 因为可能有重复的元素，所以使用list存储，
+    * 使用非并发的list一是这里没有并发操作，二是为了提高读写效率。
+    */
+
+
+    /**
+     * 第一个string保存产生消息的pojo的名称，第二个String没有意义可以重复，因为没有并发set，使用hashMap取代
+     */
+    //ConcurrentHashMap<String, String> pojoInRunningPojoCenter = new ConcurrentHashMap(1024000);
+
+    /**
+     * 时间分组
+     * linkedList保存pojo名称
+     */
+    ConcurrentHashMap<String, LinkedList> pojoGroupByTime = new ConcurrentHashMap(1024000);
+    /**
+     * 空间分组
+     */
+    ConcurrentHashMap<String, LinkedList> pojoGroupBySpace = new ConcurrentHashMap(1024000);
+    /**
+     * 颜色分组
+     */
+    ConcurrentHashMap<String, LinkedList> pojoGroupByColorGray = new ConcurrentHashMap(1024000);
+    ConcurrentHashMap<String, LinkedList> pojoGroupByColorGreen = new ConcurrentHashMap(1024000);
+    ConcurrentHashMap<String, LinkedList> pojoGroupByColorBlue = new ConcurrentHashMap(1024000);
+    ConcurrentHashMap<String, LinkedList> pojoGroupByColorRed = new ConcurrentHashMap(1024000);
+
+    /**
+     * 声音分组
+     * linkedList保存pojo名称
+     */
+    ConcurrentHashMap<String, LinkedList> pojoGroupBySoundVolume = new ConcurrentHashMap(1024000);
+    ConcurrentHashMap<String, LinkedList> pojoGroupBySoundFrequency = new ConcurrentHashMap(1024000);
+
+    /**
+     * 连接分组
+     */
+    ConcurrentHashMap<String, LinkedList> pojoGroupByConnectionFrequency = new ConcurrentHashMap(1024000);
+    ConcurrentHashMap<String, LinkedList> pojoGroupByConnectionStrength = new ConcurrentHashMap(1024000);
+
+    /**
+     * 还有其他的分类，根据需要再增加
+     */
+
+
+
 
 
     //////////////////////////////////////////////////////////////////////////
