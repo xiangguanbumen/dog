@@ -21,7 +21,6 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Component("runningPojoCenter")
 public class RunningPojoCenter {

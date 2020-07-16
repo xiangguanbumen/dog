@@ -25,11 +25,7 @@ import org.springframework.stereotype.Component;
  * @author anliwei
  * @date 2020/7/13 14:57
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Component()
-@Scope("prototype")
+
 public class SequenceCell extends Stem {
 
 }

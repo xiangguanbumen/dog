@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+ * 标化后的图像文件仓库
+ *
  * @author anliwei
  * @Data 2020/6/7 9:31
  */

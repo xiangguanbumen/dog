@@ -7,6 +7,7 @@ import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.service.dogService.loader.impl.LoadServiceImpl;
+import com.ncell.wangcai.service.dogService.manager.impl.ManagerServiceImpl;
 import com.ncell.wangcai.service.dogService.starter.Impl.StartServiceImpl;
 import com.ncell.wangcai.service.dogService.stopper.impl.StopServiceImpl;
 //import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
@@ -33,6 +34,8 @@ public class DogController {
     StartServiceImpl startService;
     StopServiceImpl stopService;
     StartTrainServiceImpl startTrainService;
+
+    ManagerServiceImpl managerService;
 
 
     /**
@@ -87,6 +90,13 @@ public class DogController {
     public String stop(){
 
         stopService.doStopService();
+        return "redirect:/myinfo";
+    }
+
+    @GetMapping(value = {"/mymanager"})
+    public String manager(){
+
+        managerService.doService();
         return "redirect:/myinfo";
     }
 

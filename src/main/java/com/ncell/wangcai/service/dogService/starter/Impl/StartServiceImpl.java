@@ -145,7 +145,7 @@ public class StartServiceImpl implements StartService {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //System.out.println("impulse ");
+
             //如果兴奋队列不为空，也就是有细胞处于兴奋状态
             while (!cellWarehouse.getExcitedCellQueueForSendMessage().isEmpty()) {
                 pojoImpulseService.doPojoImpulseService();
@@ -165,7 +165,7 @@ public class StartServiceImpl implements StartService {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-           // System.out.println("change state");
+
             //如果接受到消息的细胞队列不为空，也就是有细胞处于部分兴奋状态
             while (!cellWarehouse.getPartExcitedCell().isEmpty()) {
                 pojoStateService.doPojoStateService();
@@ -187,7 +187,7 @@ public class StartServiceImpl implements StartService {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //System.out.println("send message");
+
             //如果消息仓库中消息队列不为空
             while (!messageWarehouse.getMessageQueue().isEmpty()) {
                 messageSendService.doSendMessageService();
@@ -222,7 +222,7 @@ public class StartServiceImpl implements StartService {
 
             try {
                 documentToCellConvertService.doService();
-                System.out.println("转换输入文档");
+                //System.out.println("转换输入文档");
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
