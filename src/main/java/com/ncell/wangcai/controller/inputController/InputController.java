@@ -59,7 +59,7 @@ public class InputController {
         String userInput=req.getParameter("inputtext");
         document.setStringDocument(userInput);
         documentWarehouse.getDocumentLinkedBlockingQueue().put(document);
-        stringService.doService();
+       // stringService.doService();
         return "redirect:/convert/doc";
 
     }

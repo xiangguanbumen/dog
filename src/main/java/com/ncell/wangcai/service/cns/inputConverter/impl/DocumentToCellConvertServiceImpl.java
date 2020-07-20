@@ -81,7 +81,11 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
 
             }
 
+            //将同时兴奋的一组细胞队列，注册到cell仓库中相应的存储中
 
+            //注册到同时兴奋细胞组hashmap中
+            cellWarehouse.getGroupExcitedCell().put(System.currentTimeMillis(),cellNameList);
+            //注册到输入文档细胞队列
             cellWarehouse.getInputTextCellListQueue().add(cellNameList);
 
         }

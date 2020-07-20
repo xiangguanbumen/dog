@@ -26,6 +26,18 @@ import org.springframework.stereotype.Component;
 @Component("cnsIndicator")
 public class CnsIndicator {
 
+    /**
+     * 所有细胞
+     */
+    int allCellState = 0;
+    int directionCellState = 0;
+    int spanCellState = 0;
+    int sequenceCellState = 0;
+    int intervalCellState = 0;
+    int textCellState = 0;
+    int imageCellState = 0;
+    int soundCellState = 0;
+
 
     /**
      * 转换后细胞状态
@@ -38,6 +50,8 @@ public class CnsIndicator {
     /**
      * 运行时细胞状态
      */
+    int excitedCellState = 0;
+    int groupExcitedCellState = 0;
     int excitedCellQueueState = 0;
     int excitedCellQueueForSendMessageState = 0;
     int excitedCellQueueForGenerateNewCellState = 0;

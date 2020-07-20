@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -79,7 +80,33 @@ public class CellWarehouse {
      *
      *
      */
-    ConcurrentLinkedQueue<String>  excitedCellQueue = new ConcurrentLinkedQueue<String>();
+    ConcurrentLinkedQueue<String>  excitedCellQueue = new ConcurrentLinkedQueue<>();
+
+
+    /**
+     * @update
+     * 2020年7月18日11:51:15
+     * 存放成组输入的细胞
+     *
+     * 其中hashset存放所有在这一时刻兴奋的细胞的名称，
+     * 按照名称排序后进行MD5运算得到的字符串就是这个set的名称
+     *
+     * 其中string表示细胞所组成的hashset的名称，他的值等于上面MD5运算的结果。
+     *
+     * @update
+     * 2020年7月18日12:02:55
+     * 上面的命名运算量太多，
+     * 使用绝对时间命名
+     * GroupExcitedCell+system。currentTime
+     *
+     * @update
+     * 2020年7月19日14:54:29
+     * 与存储同时输入信息相一致，
+     * 把hashset改为linkedList
+     * 命名直接使用系统时间system。currentTime
+     */
+
+    ConcurrentHashMap<Long, LinkedList> GroupExcitedCell = new ConcurrentHashMap(1024000);
 
 
     ////////////////////////////////////////////////////////////////////////////////////////

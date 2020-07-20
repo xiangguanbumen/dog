@@ -35,6 +35,11 @@ public class InputIndicator {
     /**
      * 文档文件夹
      */
+    /**
+     * 总的标记，所有文档数量（包含word、excel等）
+     */
+    int documentFolderState = 0;
+
     int wordFileFolderState = 0;
     int excelFileFolderState = 0;
     int pptFileFolderState = 0;

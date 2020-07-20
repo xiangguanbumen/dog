@@ -64,6 +64,7 @@ public class ExcelUnit {
                 row = sheet.getRow(j);
                 if(row==null||row.getFirstCellNum()==j){continue;}
                 //这里只遍历需要的列。没有遍历所有列
+                //有效数据存在在第二列，下标为1.
                 cell = row.getCell(1);
                 //将cell值添加到document中
                 if((cell.getStringCellValue()!=null)&&(cell.getStringCellValue()!="")){

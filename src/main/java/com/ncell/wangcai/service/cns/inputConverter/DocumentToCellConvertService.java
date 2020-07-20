@@ -7,10 +7,11 @@ package com.ncell.wangcai.service.cns.inputConverter;
 public interface DocumentToCellConvertService {
 
     /**
-     * 集合三个方法，获取转换，发送
      *
+     * 集合三个方法，获取转换，发送
      */
     void doService() throws InterruptedException;
+
     /**
      * 获取数据
      */

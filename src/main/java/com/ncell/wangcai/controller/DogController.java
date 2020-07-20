@@ -80,7 +80,7 @@ public class DogController {
 
     @GetMapping(value = {"/mystart"})
     public String start(){
-        System.out.println("startService.doStartService();"+System.currentTimeMillis());
+       // System.out.println("startService.doStartService();"+System.currentTimeMillis());
         startService.doStartService();
 
         return "redirect:/myinfo";
