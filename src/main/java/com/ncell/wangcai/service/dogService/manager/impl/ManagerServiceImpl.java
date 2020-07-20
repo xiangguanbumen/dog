@@ -226,12 +226,12 @@ public class ManagerServiceImpl implements ManagerService {
 
         if(wordFileFolder.exists()){
             inputIndicator.setWordFileFolderState(wordFileFolder.list().length);
-            inputIndicator.setDocumentFolderState(wordFileFolder.list().length);
+            inputIndicator.setDocumentFileFolderState(wordFileFolder.list().length);
         }
 
         if(excelFileFolder.exists()){
             inputIndicator.setExcelFileFolderState(excelFileFolder.listFiles().length);
-            inputIndicator.setDocumentFolderState(inputIndicator.getDocumentFileFolderState()+excelFileFolder.listFiles().length);
+            inputIndicator.setDocumentFileFolderState(inputIndicator.getDocumentFileFolderState()+excelFileFolder.listFiles().length);
 
 
         }

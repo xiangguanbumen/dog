@@ -1,6 +1,10 @@
 package com.ncell.wangcai.controller;
 
 import ch.qos.logback.core.util.SystemInfo;
+import com.ncell.wangcai.pojo.assistant.indicator.CnsIndicator;
+import com.ncell.wangcai.pojo.assistant.indicator.InputIndicator;
+import com.ncell.wangcai.pojo.assistant.indicator.OutputIndicator;
+import com.ncell.wangcai.pojo.assistant.indicator.ServiceIndicator;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
@@ -36,6 +40,11 @@ public class DogController {
     StartTrainServiceImpl startTrainService;
 
     ManagerServiceImpl managerService;
+
+    CnsIndicator cnsIndicator;
+    InputIndicator inputIndicator;
+    OutputIndicator outputIndicator;
+    ServiceIndicator serviceIndicator;
 
 
     /**
@@ -80,7 +89,6 @@ public class DogController {
 
     @GetMapping(value = {"/mystart"})
     public String start(){
-       // System.out.println("startService.doStartService();"+System.currentTimeMillis());
         startService.doStartService();
 
         return "redirect:/myinfo";
@@ -133,6 +141,14 @@ public class DogController {
         ///////////////第三部分获取输出部分信息/////////////////
 
 
+        ///////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        //通过indicator来传递信息
+
+        model.addAttribute("cnsIndicator",cnsIndicator);
+        model.addAttribute("inputIndicator",inputIndicator);
+        model.addAttribute("outputIndicator",outputIndicator);
+        model.addAttribute("serviceIndicator",serviceIndicator);
 
 
         //添加消息状态

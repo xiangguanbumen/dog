@@ -336,7 +336,7 @@ public class StartServiceImpl implements StartService {
 
             }
             //如果要处理的文档文件夹不为空，也就是c://ncell//doc有文档未标准化
-            while (inputIndicator.getDocumentFolderState()!=0) {
+            while (inputIndicator.getDocumentFileFolderState()!=0) {
                 documentService.doService();
                // System.out.println("normalize document");
 
