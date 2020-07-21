@@ -1,6 +1,5 @@
 package com.ncell.wangcai.controller;
 
-import ch.qos.logback.core.util.SystemInfo;
 import com.ncell.wangcai.pojo.assistant.indicator.CnsIndicator;
 import com.ncell.wangcai.pojo.assistant.indicator.InputIndicator;
 import com.ncell.wangcai.pojo.assistant.indicator.OutputIndicator;
@@ -77,7 +76,7 @@ public class DogController {
     @GetMapping(value = {"/admin"})
     public String admin(){
 
-        return "admin/main";
+        return "admin/admin";
     }
 
     @GetMapping(value = {"/myload"})
@@ -167,7 +166,7 @@ public class DogController {
 
 
 
-        return "admin/showdoginfo";
+        return "admin/doginfo";
     }
 
 
@@ -178,5 +177,10 @@ public class DogController {
         return "redirect:/myinfo";
     }
 
+    @GetMapping(value = {"/about"})
+    public String about(){
+
+        return "/about";
+    }
 
 }

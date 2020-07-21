@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>CSS 网页布局 - 菜鸟教程(runoob.com)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>doginfo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--2秒自动刷新界面-->
+    <meta http-equiv="refresh" content="2">
     <style>
         * {
             box-sizing: border-box;
@@ -16,7 +18,7 @@
         /* 头部样式 */
         .header {
             background-color: #f1f1f1;
-            padding: 20px;
+            padding: 10px;
             text-align: center;
         }
 
@@ -88,32 +90,95 @@
 </div>
 
 <div class="topnav">
-    <a href="#">主页</a>
-    <a href="#">控制</a>
-    <a href="#">信息</a>
-    <a href="#">调试</a>
+    <a href="/" title="index">主页</a>
+    <a href="/admin" title="admin">控制</a>
+    <a href="/myinfo" title="info">信息</a>
+    <a href="/debug" title="debug">调试</a>
 </div>
 
 <div class="row">
     <div class="column side">
         <h2>输入部分</h2>
-        <p>菜鸟教程 - 学的不仅是技术，更是梦想！</p>
+        <h4>文档状态：</h4>
+        <ul>
+            <li>DocumentFileFolder：<span th:text="${inputIndicator.getDocumentFileFolderState()}">-1</span></li>
+            <li>WordFileFolder：<span th:text="${inputIndicator.getWordFileFolderState()}">-1</span></li>
+            <li>ExcelFileFolder：<span th:text="${inputIndicator.getExcelFileFolderState()}">-1</span></li>
+            <li>Document：<span th:text="${inputIndicator.getDocumentWarehouseState()}">-1</span></li>
+            <li>NormalizedDocument：<span th:text="${inputIndicator.getNormalizedDocumentWarehouseState()}">-1</span></li>
+        </ul>
+        <h4>图像状态：</h4>
+        <ul>
+            <li>Image：<span th:text="${inputIndicator.getImageWarehouseState()}">-1</span></li>
+            <li>NormalizedImage：<span th:text="${inputIndicator.getNormalizedImageWarehouseState()}">-1</span></li>
+        </ul>
+        <h4>声音状态：</h4>
+        <ul>
+            <li>Sound：<span th:text="${inputIndicator.getSoundWarehouseState()}">-1</span></li>
+            <li>NormalizedSound：<span th:text="${inputIndicator.getNormalizedSoundWarehouseState()}">-1</span></li>
+        </ul>
+        <h4>视频状态：</h4>
+        <ul>
+            <li>video：<span th:text="${inputIndicator.getVideoWarehouseState()}">-1</span></li>
+            <li>NormalizedVideo：<span th:text="${inputIndicator.getNormalizedVideoWarehouseState()}">-1</span></li>
+        </ul>
     </div>
 
     <div class="column middle">
         <h2>中央处理部分</h2>
-        <p>菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！</p>
-        <p>菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程 - 学的不仅是技术，更是梦想！</p>
+        <h4>细胞状态：</h4>
+        <ul>
+            <li > allCell：<span th:text="${cnsIndicator.getAllCellState()}">-1</span></li>
+            <li>excitedCell：<span th:text="${cnsIndicator.getExcitedCellState()}">-1</span></li>
+            <li>partExcitedCell：<span th:text="${cnsIndicator.getPartExcitedCellState()}">-1</span></li>
+            <li>allTextCell：<span th:text="${cnsIndicator.getTextCellState()}">-1</span></li>
+            <li>ExcitedCellQueueForGenerateNewCell：<span th:text="${cnsIndicator.getExcitedCellQueueForGenerateNewCellState()}">-1</span></li>
+            <li>ExcitedCellQueueForSendMessage：<span th:text="${cnsIndicator.getExcitedCellQueueForSendMessageState()}">-1</span></li>
+            <li>ExcitedCellQueueForStateService：<span th:text="${cnsIndicator.getExcitedCellQueueForStateServiceState()}">-1</span></li>
+            <li>GroupExcitedCellState()：<span th:text="${cnsIndicator.getGroupExcitedCellState()}">-1</span></li>
+            <li>InputTextCellListQueue：<span th:text="${cnsIndicator.getInputTextCellListQueueState()}">-1</span></li>
+            <li>ImageCell：<span th:text="${cnsIndicator.getImageCellState()}">-1</span></li>
+
+        </ul>
+        <h4>连接状态：</h4>
+        <ul>
+            <li > allConnection：<span th:text="${allConnectionCount}">-1</span></li>
+            <!--    <li>newConnection：<span th:text="${excitedCellCount}">-1</span></li>-->
+        </ul>
+        <h4>消息状态：</h4>
+        <ul>
+            <li > allMessage：<span th:text="${allMessageCount}">-1</span></li>
+            <!--    <li>newConnection：<span th:text="${excitedCellCount}">-1</span></li>-->
+        </ul>
     </div>
 
     <div class="column side">
         <h2>输出部分</h2>
-        <p>菜鸟教程 - 学的不仅是技术，更是梦想！</p>
+        <h4>文档状态：</h4>
+        <ul>
+            <li>Document：<span th:text="${inputIndicator.getDocumentWarehouseState()}">-1</span></li>
+            <li>NormalizedDocument：<span th:text="${inputIndicator.getNormalizedDocumentWarehouseState()}">-1</span></li>
+        </ul>
+        <h4>图像状态：</h4>
+        <ul>
+            <li>Image：<span th:text="${inputIndicator.getImageWarehouseState()}">-1</span></li>
+            <li>NormalizedImage：<span th:text="${inputIndicator.getNormalizedImageWarehouseState()}">-1</span></li>
+        </ul>
+        <h4>声音状态：</h4>
+        <ul>
+            <li>Sound：<span th:text="${inputIndicator.getSoundWarehouseState()}">-1</span></li>
+            <li>NormalizedSound：<span th:text="${inputIndicator.getNormalizedSoundWarehouseState()}">-1</span></li>
+        </ul>
+        <h4>视频状态：</h4>
+        <ul>
+            <li>video：<span th:text="${inputIndicator.getVideoWarehouseState()}">-1</span></li>
+            <li>NormalizedVideo：<span th:text="${inputIndicator.getNormalizedVideoWarehouseState()}">-1</span></li>
+        </ul>
     </div>
 </div>
 
 <div class="footer">
-    <p>关于我们</p>
+    <a href="/about" title="about">关于我们</a>
 </div>
 
 </body>
