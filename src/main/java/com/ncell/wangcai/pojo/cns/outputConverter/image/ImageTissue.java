@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojo.cns.outoutConverter.image;
+package com.ncell.wangcai.pojo.cns.outputConverter.image;
 
 import com.ncell.wangcai.pojo.cns.main.base.Tissue;
 

@@ -1,12 +1,16 @@
 package com.ncell.wangcai.controller;
 
-import ch.qos.logback.core.util.SystemInfo;
+import com.ncell.wangcai.pojo.assistant.indicator.CnsIndicator;
+import com.ncell.wangcai.pojo.assistant.indicator.InputIndicator;
+import com.ncell.wangcai.pojo.assistant.indicator.OutputIndicator;
+import com.ncell.wangcai.pojo.assistant.indicator.ServiceIndicator;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.service.dogService.loader.impl.LoadServiceImpl;
+import com.ncell.wangcai.service.dogService.manager.impl.ManagerServiceImpl;
 import com.ncell.wangcai.service.dogService.starter.Impl.StartServiceImpl;
 import com.ncell.wangcai.service.dogService.stopper.impl.StopServiceImpl;
 //import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
@@ -33,6 +37,13 @@ public class DogController {
     StartServiceImpl startService;
     StopServiceImpl stopService;
     StartTrainServiceImpl startTrainService;
+
+    ManagerServiceImpl managerService;
+
+    CnsIndicator cnsIndicator;
+    InputIndicator inputIndicator;
+    OutputIndicator outputIndicator;
+    ServiceIndicator serviceIndicator;
 
 
     /**
@@ -65,7 +76,7 @@ public class DogController {
     @GetMapping(value = {"/admin"})
     public String admin(){
 
-        return "admin/main";
+        return "admin/admin";
     }
 
     @GetMapping(value = {"/myload"})
@@ -77,7 +88,6 @@ public class DogController {
 
     @GetMapping(value = {"/mystart"})
     public String start(){
-        System.out.println("startService.doStartService();"+System.currentTimeMillis());
         startService.doStartService();
 
         return "redirect:/myinfo";
@@ -87,6 +97,13 @@ public class DogController {
     public String stop(){
 
         stopService.doStopService();
+        return "redirect:/myinfo";
+    }
+
+    @GetMapping(value = {"/mymanager"})
+    public String manager(){
+
+        managerService.doService();
         return "redirect:/myinfo";
     }
 
@@ -123,6 +140,14 @@ public class DogController {
         ///////////////第三部分获取输出部分信息/////////////////
 
 
+        ///////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        //通过indicator来传递信息
+
+        model.addAttribute("cnsIndicator",cnsIndicator);
+        model.addAttribute("inputIndicator",inputIndicator);
+        model.addAttribute("outputIndicator",outputIndicator);
+        model.addAttribute("serviceIndicator",serviceIndicator);
 
 
         //添加消息状态
@@ -141,7 +166,7 @@ public class DogController {
 
 
 
-        return "admin/showdoginfo";
+        return "admin/doginfo";
     }
 
 
@@ -152,5 +177,10 @@ public class DogController {
         return "redirect:/myinfo";
     }
 
+    @GetMapping(value = {"/about"})
+    public String about(){
+
+        return "/about";
+    }
 
 }

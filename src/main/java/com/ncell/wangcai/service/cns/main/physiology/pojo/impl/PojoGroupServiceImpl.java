@@ -8,10 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  *  pojo分组服务，
  *  根据各种维度的拐点将兴奋pojo进行分组，
  *  时间分类法，空间分类法， 连接强度分类法，普遍适用于所有的兴奋pojo集合
+ *
+
  * @author anliwei
  * @Date 2020/6/26 10:25
  */
@@ -22,6 +27,8 @@ import org.springframework.stereotype.Service;
 public class PojoGroupServiceImpl implements PojoGroupService {
     RunningPojoCenter runningPojoCenter;
     CellWarehouse cellWarehouse;
+
+
     /**
      * 按照时间分组
      *

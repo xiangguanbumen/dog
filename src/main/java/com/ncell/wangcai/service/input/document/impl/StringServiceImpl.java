@@ -38,7 +38,7 @@ public class StringServiceImpl implements StringService {
         String beforeNormalize;
         String afterNormalize;
 
-        beforeNormalize = documentWarehouse.getDocumentLinkedBlockingQueue().peek().getStringDocument();
+        beforeNormalize = documentWarehouse.getDocumentLinkedBlockingQueue().poll().getStringDocument();
         //因为string字符串已经被过滤器标准化了，这里不需要做任何动作.
         afterNormalize = beforeNormalize;
         normalizedDocument.setNormalizedDocument(afterNormalize);

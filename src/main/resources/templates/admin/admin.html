@@ -6,6 +6,16 @@
     <title>myadmin</title>
 </head>
 <body>
+<div class="header">
+    <h1>你好，人类！</h1>
+    <p>巴普洛夫的狗是在等待铃声还是在等待食物？</p>
+</div>
+<div class="topnav">
+    <a href="/" title="index">主页</a>
+    <a href="/admin" title="admin">控制</a>
+    <a href="/myinfo" title="info">信息</a>
+    <a href="/debug" title="debug">调试</a>
+</div>
 <!--<a href="/myload">加载数据库</a><br>-->
 <h1>系统初始化</h1>
 <a href="/myload">初始化</a>
@@ -15,6 +25,7 @@
 <br>注意：<br>
 1.开始后系统一直运行，界面不更新。<br>
 2.结束操作会清空数据库原来数据<br>
+<a href="/mymanager">调控运行</a>
 
 <h1>系统状态</h1>
 <a href="/myinfo">运行状态</a>
@@ -28,5 +39,37 @@
 <a href="admin/study/learnFromTeacher">老师教学</a>
 <a href="admin/study/learnByMyself">自主学习</a><br>
 <div th:insert="/include/footer::footer"></div>
+
+
+<style>
+    /* 头部样式 */
+    .header {
+        background-color: #f1f1f1;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* 导航条 */
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    /* 导航链接 */
+    .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    /* 链接 - 修改颜色 */
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+</style>
 </body>
 </html>

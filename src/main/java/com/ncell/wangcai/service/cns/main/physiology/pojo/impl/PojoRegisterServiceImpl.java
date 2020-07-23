@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * 新生成pojo，新兴奋pojo注册
  * 无用pojo，不在兴奋pojo注销
  *
- * 说明，暂时不适用其他pojo类型，所有的pojo都使用cell表示
+ * 说明，暂时不使用其他pojo类型，所有的pojo都使用cell表示
  *
  * @author anliwei
  * @Date 2020/6/26 23:09
@@ -94,8 +94,8 @@ public class PojoRegisterServiceImpl implements PojoRegisterService {
      */
     @Override
     public void excitedPojoRegisterIn(String stemName) {
-        //注册到excitedCell集合
 
+        //注册到excitedCell集合
         cellWarehouse.getExcitedCell().put(stemName,cellWarehouse.getAllCell().get(stemName));
         //注册到兴奋队列
         cellWarehouse.getExcitedCellQueue().add(stemName);

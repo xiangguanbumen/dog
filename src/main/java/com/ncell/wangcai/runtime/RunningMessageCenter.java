@@ -10,6 +10,11 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 注意机制下的消息中心
+ *
+ * @update
+ * 2020年7月15日20:22:20
+ *
  *
  * 运行时消息中心，
  * 负责接收所有消息的备份，此时的备份只是备份发送方

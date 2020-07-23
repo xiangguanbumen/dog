@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojo.cns.outoutConverter.document;
+package com.ncell.wangcai.pojo.cns.outputConverter.document;
 
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
 

@@ -3,6 +3,7 @@ package com.ncell.wangcai.pojo.input.sound;
 import org.springframework.stereotype.Component;
 
 /**
+ * 声音文件
  * @author anliwei
  * @create 2020/6/4 9:12
  */

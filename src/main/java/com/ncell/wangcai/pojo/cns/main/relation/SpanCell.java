@@ -16,10 +16,6 @@ import org.springframework.stereotype.Component;
  * @date 2020/7/13 15:33
  */
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Component()
-@Scope("prototype")
+
 public class SpanCell extends Stem {
 }

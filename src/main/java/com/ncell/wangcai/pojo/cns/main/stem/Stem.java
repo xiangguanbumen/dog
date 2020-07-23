@@ -52,6 +52,13 @@ public class Stem implements Serializable {
      * agent
      * scene
      * story
+     *
+     * @update
+     * 2020年7月17日22:34:53
+     * 增加一个类型为感知细胞
+     * 用来表示眼睛，耳朵，鼻子，身体皮肤的感觉细胞
+     * 以区分皮层的细胞
+     * 以及执行细胞，比如肌肉细胞，腺体细胞等
      */
     int type = 0;
 
@@ -66,6 +73,44 @@ public class Stem implements Serializable {
     long currentStateStartTime;
 
     /**
+     *
+     * @update
+     * 2020年7月17日22:36:57
+     *
+     * 增加一个表示当前状态的
+     * 系统时间
+     * 事件时间
+     * （事件有开始有结束，这里只使用开始时间，数值是与绝对时间一致的）
+     *
+     */
+
+    long currentStateStartTimeInEventTime;
+
+    /**
+     *
+     * @update
+     * 2020年7月17日22:40:33
+     *
+     * 增加一个表示细胞兴奋发送时间用
+     * 绝对时间
+     *
+     */
+    long impulseTime;
+
+    /**
+     *
+     * @update
+     * 2020年7月17日22:44:02
+     *
+     * 增加一个表示细胞兴奋发送时间用
+     * 事件时间
+     * （事件有开始有结束，这里只使用开始时间，数值是与绝对时间一致的）
+     *
+     */
+
+    long impulseTimeInEventTime;
+
+    /**
      * 状态持续时间.默认兴奋持续时间1000毫秒
      */
     long excitedStateDuration =1000;
@@ -75,10 +120,88 @@ public class Stem implements Serializable {
      */
     long refractoryPeriod;
 
+
+    /**
+     * @update
+     * 2020年7月17日22:48:46
+     * 表示方位的属性，只适用于感知细胞，
+     * 比如眼睛，表示兴奋细胞所在的位置
+     *
+     * 比如耳朵的毛细胞至少分左右两大类 。
+     *
+
+     *
+     * 坐标原点是注意的焦点细胞，
+     *
+     * 如果没有设置注意细胞，则默认的是图像正中
+     *
+     * 如果整个视野是偶数，则使用稍小一点的为中点
+     */
+
+    int absoluteXLocation;
+    int absoluteYLocation;
+
+    /**
+     *
+     * @update
+     * 2020年7月17日23:08:18
+     *
+     * 仿照位置关系细胞
+     * 设置不同的精度
+     * 4精度将整个屏幕横向分为4个，整个视野分成16部分
+     * 8精度将整个屏幕横向分为8个，整个视野分成64部分
+     * 16精度将整个屏幕横向分为16个，整个视野分成256部分
+     *
+     */
+
+    int roughXLocation4;
+    int roughYLocation4;
+
+    int roughXLocation8;
+    int roughYLocation8;
+
+    int roughXLocation16;
+    int roughYLocation16;
+
+
+
+
+    /**
+     *
+     * @update
+     * 2020年7月17日23:22:54
+     * 使用极坐标标记方向
+     *
+     * 360度
+     * 分成12份，每一部分30度
+     * 或者分成24份，每一部分15度
+     *
+     */
+
+    int polarCoordinates12;
+
+    int polarCoordinates24;
+
+    /**
+     * @update
+     * 2020年7月17日23:25:22
+     * 相对距离
+     * 采用int来存储
+     * 8等级
+     * 16个等级，
+     */
+
+    int roughSpan8;
+
+    int roughSpan16;
+
+
+
+
     /**
      * 输入连接
      */
-    HashSet<String> connectionsInput=new HashSet<String>();
+    HashSet<String> connectionsInput= new HashSet<>();
 
     /**
      * 输出连接
