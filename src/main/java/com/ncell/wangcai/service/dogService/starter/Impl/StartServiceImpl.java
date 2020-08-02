@@ -129,10 +129,11 @@ public class StartServiceImpl implements StartService {
     public void doCnsRunningService() {
 
         /**
+         * 将输入信息转换成细胞
          * 创建新的pojo
          * 发送消息
          * 确定pojo状态
-         * 将输入信息转换成细胞
+         * 将输出转换成各种信号（目前暂未加入）
          * 四个进程同时进行
          */
         myThreadFactory.getPool().execute(new Runnable() {
@@ -194,6 +195,13 @@ public class StartServiceImpl implements StartService {
 
             }
         });
+
+    }
+
+    /**
+     * 使用并发启动output各种服务，
+     */
+    public void doOutputRunningService() {
 
     }
 
