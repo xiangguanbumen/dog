@@ -38,8 +38,9 @@ public class ManagerServiceImpl implements ManagerService {
 
     InputIndicator inputIndicator;
     CnsIndicator cnsIndicator;
-    ServiceIndicator serviceIndicator;
     OutputIndicator outputIndicator;
+
+    ServiceIndicator serviceIndicator;
 
 
     /**

@@ -7,7 +7,7 @@ import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
-import com.ncell.wangcai.service.cns.inputConverter.impl.DocumentToCellConvertServiceImpl;
+import com.ncell.wangcai.service.cns.entry.impl.DocumentToCellConvertServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.message.impl.MessageSendServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoCreatServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoImpulseServiceImpl;
@@ -77,6 +77,7 @@ public class StartServiceImpl implements StartService {
         doSystemStateService();
         doInputRunningService();
         doCnsRunningService();
+        doOutputRunningService();
     }
 
     /**
@@ -221,7 +222,7 @@ public class StartServiceImpl implements StartService {
             //如果兴奋队列不为空，也就是有细胞处于兴奋状态
             while (!cellWarehouse.getExcitedCellQueueForGenerateNewCell().isEmpty()) {
                 pojoCreatService.doCreatService();
-                System.out.println("create pojo");
+               // System.out.println("create pojo");
 
 
             }
@@ -338,16 +339,14 @@ public class StartServiceImpl implements StartService {
             }
 
 
-            //如果文档队列不为空，也就是有文档未标准化
+            //如果文档队列不为空，也就是有文档未标准化,则调用 documentService.doService()进行文档标准化
             while (!documentWarehouse.getDocumentLinkedBlockingQueue().isEmpty()) {
                 documentService.doService();
 
             }
-            //如果要处理的文档文件夹不为空，也就是c://ncell//doc有文档未标准化
+            //如果要处理的文档文件夹不为空，也就是c://ncell//doc有文档未处理，则调用 documentService.doService()进行文档获取和标准化
             while (inputIndicator.getDocumentFileFolderState()!=0) {
                 documentService.doService();
-               // System.out.println("normalize document");
-
 
             }
         }
@@ -369,13 +368,7 @@ public class StartServiceImpl implements StartService {
 
             managerService.obtainSystemStateAndUpdateIndicator();
 
-            /*//如果文档队列不为空，也就是有文档未标准化
-            while (!documentWarehouse.getDocumentLinkedBlockingQueue().isEmpty()) {
-                documentService.doService();
-                System.out.println("normalize document");
 
-
-            }*/
         }
 
     }

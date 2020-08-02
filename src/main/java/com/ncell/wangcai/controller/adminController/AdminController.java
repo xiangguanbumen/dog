@@ -1,6 +1,6 @@
 package com.ncell.wangcai.controller.adminController;
 
-import com.ncell.wangcai.service.cns.inputConverter.impl.DocumentToCellConvertServiceImpl;
+import com.ncell.wangcai.service.cns.entry.impl.DocumentToCellConvertServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoCreatServiceImpl;
 import com.ncell.wangcai.service.dogService.trainer.impl.LocalLearnServiceImpl;
 import com.ncell.wangcai.service.dogService.trainer.impl.WebLearnServiceImpl;
