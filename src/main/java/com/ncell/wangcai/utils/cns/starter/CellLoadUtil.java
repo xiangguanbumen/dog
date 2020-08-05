@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component("loadCellUtil")
 @AllArgsConstructor
 @Data
-public class LoadCellUtil {
+public class CellLoadUtil {
 
     CellWarehouse cellWarehouse;
     ConnectionWarehouse connectionWarehouse;

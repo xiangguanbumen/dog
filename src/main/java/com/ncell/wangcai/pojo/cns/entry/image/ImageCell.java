@@ -15,6 +15,11 @@ import com.ncell.wangcai.pojo.cns.main.base.Cell;
  * 2020年8月2日17:08:36
  * 将原来在stem中表示方位，位置关系的信息转到image中
  * 用来表示，两种或多个imageCell形成的复杂的imageCell。
+ *
+ * @update
+ * 2020年8月5日21:11:21
+ * 事件细胞
+ * 一个图形细胞的兴奋与静息，都是一个事件
  */
 public class ImageCell extends Cell {
 

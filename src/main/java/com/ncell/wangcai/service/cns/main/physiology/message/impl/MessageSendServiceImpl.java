@@ -27,6 +27,13 @@ public class MessageSendServiceImpl implements MessageSendService {
      * 遍历消息仓库，根据消息的内容，将消息仓库中的消息发送到消息的接收细胞
      *
      *
+     * @update
+     * 2020年8月5日18:06:43
+     * 是否增加一个默认接受消息的类，
+     * 可以是多个，不同的层级有一个默认接受类
+     * 好处就是，当同一批兴奋的细胞有一个同一的接受站，
+     * 便于新细胞的生成。
+     *
      */
 
     @Override

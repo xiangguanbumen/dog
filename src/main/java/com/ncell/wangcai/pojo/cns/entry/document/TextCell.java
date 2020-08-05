@@ -21,5 +21,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class TextCell extends Cell {
 
+    int textType=0;
+
 
 }
