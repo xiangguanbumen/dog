@@ -143,7 +143,7 @@ public class CellWarehouse {
 
 
     /**
-     * 接收到信息的细胞，兴奋与否需要等待控制器调用细胞compare方法决定
+     * 接收到信息的细胞，兴奋与否需要等待与存储的css或js模型对比以后决定
      *
      * @update
      * 2020年6月30日19:48:58
@@ -151,6 +151,9 @@ public class CellWarehouse {
      * 所有的只要细胞接受信息，都要在这里注册，
      * 等待确定细胞下一步的状态。
      *
+     * @update
+     * 2020年8月5日09:55:12
+     * 把partExcitedCell该名称为partAlterCell
      */
     ConcurrentLinkedQueue<String> partExcitedCell = new ConcurrentLinkedQueue<String>();
 

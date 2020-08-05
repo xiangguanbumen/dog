@@ -5,7 +5,7 @@ import com.ncell.wangcai.pojo.cns.main.base.Cell;
 /**
  * 图形细胞
  * 分为两类，
- * 第一类是绝对image细胞，命名为imagecell+rgb值
+ * 第一类是绝对image细胞，命名为imageCell+rgb值
  * 第二类是关系image细胞，有多个绝对image细胞组合而成，加上表示位置关系的属性值。
  *
  * @author anliwei
@@ -17,6 +17,23 @@ import com.ncell.wangcai.pojo.cns.main.base.Cell;
  * 用来表示，两种或多个imageCell形成的复杂的imageCell。
  */
 public class ImageCell extends Cell {
+
+    /**
+     * rgb
+     * 表示法
+     */
+    int redValue;
+    int blueValue;
+    int greenValue;
+    int alphaValue;
+
+    /**
+     * hsl
+     * 标识法
+     */
+    int hueValue;
+    int saturationValue;
+    int lightnessValue;
 
     /**
      * @update

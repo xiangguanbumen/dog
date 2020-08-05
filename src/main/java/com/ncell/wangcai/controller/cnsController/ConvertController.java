@@ -1,6 +1,6 @@
 package com.ncell.wangcai.controller.cnsController;
 
-import com.ncell.wangcai.service.cns.entry.impl.DocumentToCellConvertServiceImpl;
+import com.ncell.wangcai.service.cns.entry.document.impl.DocumentToCellConvertServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;

@@ -1,5 +1,6 @@
 package com.ncell.wangcai.pojo.cns.main.relation;
 
+import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,21 @@ import org.springframework.stereotype.Component;
  * @date 2020/7/13 15:33
  */
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Component()
+@Scope("prototype")
+public class SpanCell extends Cell {
 
-public class SpanCell extends Stem {
+    /**
+     * 相对距离
+     * 采用int来存储
+     * 8等级
+     * 16个等级，
+     */
+
+    int roughSpan8;
+
+    int roughSpan16;
 }

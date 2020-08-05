@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 连接仓库
  *
  * @author anliwei
- * @Data 2020/6/7 12:11
+ * @Date 2020/6/7 12:11
  */
 @Component("connectionWarehouse")
 @AllArgsConstructor

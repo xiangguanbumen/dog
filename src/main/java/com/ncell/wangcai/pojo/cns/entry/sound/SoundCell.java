@@ -1,6 +1,11 @@
 package com.ncell.wangcai.pojo.cns.entry.sound;
 
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  *
@@ -37,6 +42,12 @@ import com.ncell.wangcai.pojo.cns.main.base.Cell;
  *
  *
  */
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Component()
+@Scope("prototype")
 public class SoundCell extends Cell {
 
     /**

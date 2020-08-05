@@ -1,4 +1,4 @@
-package com.ncell.wangcai.service.cns.entry;
+package com.ncell.wangcai.service.cns.entry.document;
 
 /**
  * @author anliwei

@@ -7,7 +7,7 @@ import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
 import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
-import com.ncell.wangcai.service.cns.entry.impl.DocumentToCellConvertServiceImpl;
+import com.ncell.wangcai.service.cns.entry.document.impl.DocumentToCellConvertServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.message.impl.MessageSendServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoCreatServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.impl.PojoImpulseServiceImpl;

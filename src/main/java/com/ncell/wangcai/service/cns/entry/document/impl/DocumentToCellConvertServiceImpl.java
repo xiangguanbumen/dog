@@ -1,9 +1,9 @@
-package com.ncell.wangcai.service.cns.entry.impl;
+package com.ncell.wangcai.service.cns.entry.document.impl;
 
 
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
-import com.ncell.wangcai.service.cns.entry.DocumentToCellConvertService;
+import com.ncell.wangcai.service.cns.entry.document.DocumentToCellConvertService;
 import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;
 import com.ncell.wangcai.utils.input.doc.StringUtil;
 import lombok.AllArgsConstructor;
@@ -17,9 +17,18 @@ import java.util.LinkedList;
  * 将用户输入的信息转换为细胞
  *
  * @author anliwei
+
+ * @Date 2020/6/7 16:59
+ *
  * @update 2020年7月11日11:04:17
  * 将所有的标准化后的文档数据转换为细胞
- * @Date 2020/6/7 16:59
+ *
+ * @update
+ * 2020年8月4日17:25:49
+ * 输入不仅有实质的转换还有关系的转换，
+ * 此时只是形式上的关系，
+ * 需要关系细胞加入
+ *
  */
 @Service("documentToCellConvertServiceImpl")
 @AllArgsConstructor
@@ -42,7 +51,7 @@ public class DocumentToCellConvertServiceImpl implements DocumentToCellConvertSe
 
     @Override
     /**
-     * 已经通过autowire自动注入，直接使用就可以了
+     * 已经通过变量自动注入，直接使用就可以了
      */
     public void obtainData() {
     }
