@@ -1,6 +1,5 @@
 package com.ncell.wangcai.pojo.assistant.indicator;
 
-import com.ncell.wangcai.service.dogService.threadFactory.MyThreadFactory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -5,7 +5,7 @@ import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.service.cns.entry.document.DocumentToCellConvertService;
 import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;
-import com.ncell.wangcai.utils.input.doc.StringUtil;
+import com.ncell.wangcai.utils.input.document.StringUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;

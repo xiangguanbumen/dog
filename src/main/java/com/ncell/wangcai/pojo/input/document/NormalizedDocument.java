@@ -12,6 +12,13 @@ import org.springframework.stereotype.Component;
  *
  * @author anliwei
  * @create 2020/6/4 10:16
+ *
+ *
+ *
+ * @update
+ * 2020年8月9日12:18:47
+ * 对标准化的理解的变化
+ * word。excel等格式，只要是能够处理的就算是标准化的文件。
  */
 @Data
 @NoArgsConstructor

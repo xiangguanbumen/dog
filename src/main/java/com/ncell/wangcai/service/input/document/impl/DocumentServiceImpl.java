@@ -5,7 +5,7 @@ import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocument;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.service.input.document.DocumentService;
-import com.ncell.wangcai.utils.input.doc.ExcelUnit;
+import com.ncell.wangcai.utils.input.document.ExcelUnit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;

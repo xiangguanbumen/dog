@@ -1,7 +1,7 @@
 package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
 import com.ncell.wangcai.pojo.cns.main.base.*;
-import com.ncell.wangcai.runtime.RunningPojoCenter;
+import com.ncell.wangcai.pojoruntime.cns.main.RunningPojoCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
 import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;

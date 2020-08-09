@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Component()
 @Scope("prototype")

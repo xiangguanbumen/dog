@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 @Component()
 @Scope("prototype")
 public class Cell extends Stem {
