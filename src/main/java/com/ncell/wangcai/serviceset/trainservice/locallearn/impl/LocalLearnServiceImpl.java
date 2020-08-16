@@ -21,7 +21,7 @@ import java.io.File;
 @Service("localLearnServiceImpl")
 public class LocalLearnServiceImpl implements LocalLearnService {
 
-     Warehouse warehouse;
+   //  Warehouse warehouse;
     ExcelUnit excelUnit;
     //JFileChooser jFileChooser;
 
@@ -29,7 +29,7 @@ public class LocalLearnServiceImpl implements LocalLearnService {
 
     MyThreadFactory myThreadFactory;
 
-    LocalLearnServiceImpl localLearnService;
+   // LocalLearnServiceImpl localLearnService;
 
     DocumentServiceImpl documentService;
 

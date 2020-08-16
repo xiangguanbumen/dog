@@ -35,7 +35,7 @@ public class DogController {
     LoadServiceImpl loadService;
     StartServiceImpl startService;
     StopServiceImpl stopService;
-    StartTrainServiceImpl startTrainService;
+    //StartTrainServiceImpl startTrainService;
 
     ManagerServiceImpl managerService;
 
@@ -109,7 +109,7 @@ public class DogController {
     @GetMapping(value = {"/mytrain"})
     public String train(){
         System.out.println(" startTrainService.doStartTrainService();"+System.currentTimeMillis());
-        startTrainService.doStartTrainService();
+        //startTrainService.doStartTrainService();
 
         return "redirect:/myinfo";
     }

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 
-    StartTrainServiceImpl startLearnService;
+   // StartTrainServiceImpl startLearnService;
 
     WebLearnServiceImpl webLearnService;
     LocalLearnServiceImpl localLearnService;
@@ -61,7 +61,7 @@ public class AdminController {
      */
     @GetMapping(value = {"/study/doLearnByMyselfFromLocal"})
     public String doLearnByMyselfFromLocal(){
-        startLearnService.doStartTrainService();
+       // startLearnService.doStartTrainService();
         return "admin/study/learnByMyself";
     }
 
