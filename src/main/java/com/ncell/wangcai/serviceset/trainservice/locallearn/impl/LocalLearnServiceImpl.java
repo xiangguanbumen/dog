@@ -1,6 +1,5 @@
 package com.ncell.wangcai.serviceset.trainservice.locallearn.impl;
 
-import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
 import com.ncell.wangcai.service.input.document.impl.DocumentServiceImpl;
 import com.ncell.wangcai.serviceset.dogService.loader.impl.LoadServiceImpl;
 import com.ncell.wangcai.serviceset.dogService.threadFactory.MyThreadFactory;

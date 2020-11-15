@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojoruntime.input.image;
+package com.ncell.wangcai.warehouse.runtime.input.image;
 
 /**
  * 图像处理车间

@@ -1,6 +1,6 @@
 package com.ncell.wangcai.serviceset.trainservice.weblearn.impl;
 
-import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
+import com.ncell.wangcai.warehouse.product.Warehouse;
 import com.ncell.wangcai.serviceset.trainservice.weblearn.WebLearnService;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojoruntime.input.sound;
+package com.ncell.wangcai.warehouse.runtime.input.sound;
 
 /**
  * 声音处理车间

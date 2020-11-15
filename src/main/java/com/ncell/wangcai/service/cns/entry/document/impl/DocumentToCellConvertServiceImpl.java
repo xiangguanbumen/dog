@@ -1,7 +1,7 @@
 package com.ncell.wangcai.service.cns.entry.document.impl;
 
 
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.service.cns.entry.document.DocumentToCellConvertService;
 import com.ncell.wangcai.utils.cns.inputConverter.TextCellUtil;

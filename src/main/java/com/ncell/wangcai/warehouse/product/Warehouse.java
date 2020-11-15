@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojo.cns.main.warehouse;
+package com.ncell.wangcai.warehouse.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

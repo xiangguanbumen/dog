@@ -2,7 +2,7 @@ package com.ncell.wangcai.utils.cns.main;
 
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.part.Connection;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
 import com.ncell.wangcai.service.cns.main.physiology.connection.impl.ConnectionCreatServiceImpl;
 import com.ncell.wangcai.service.cns.main.physiology.connection.impl.ConnectionRegisterServiceImpl;
 import com.ncell.wangcai.utils.baseUtil.MD5Util;

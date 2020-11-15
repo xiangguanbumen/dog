@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojoruntime.cns.main;
+package com.ncell.wangcai.warehouse.runtime.cns.main;
 
 
 import lombok.AllArgsConstructor;

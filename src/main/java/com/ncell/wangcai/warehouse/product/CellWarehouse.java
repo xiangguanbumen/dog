@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojo.cns.main.warehouse;
+package com.ncell.wangcai.warehouse.product;
 
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import lombok.AllArgsConstructor;
@@ -6,9 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 

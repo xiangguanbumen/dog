@@ -2,8 +2,8 @@ package com.ncell.wangcai.service.cns.main.physiology.message.impl;
 
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.part.Message;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.MessageWarehouse;
 import com.ncell.wangcai.service.cns.main.physiology.message.MessageSendService;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -4,7 +4,7 @@ import com.ncell.wangcai.pojo.assistant.indicator.CnsIndicator;
 import com.ncell.wangcai.pojo.assistant.indicator.InputIndicator;
 import com.ncell.wangcai.pojo.assistant.indicator.OutputIndicator;
 import com.ncell.wangcai.pojo.assistant.indicator.ServiceIndicator;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
 import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
 import com.ncell.wangcai.pojo.input.image.ImageWarehouse;

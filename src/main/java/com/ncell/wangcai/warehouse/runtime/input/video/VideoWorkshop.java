@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojoruntime.input.video;
+package com.ncell.wangcai.warehouse.runtime.input.video;
 
 /**
  * 视频处理车间

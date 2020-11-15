@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojoruntime.cns.main;
+package com.ncell.wangcai.warehouse.runtime.cns.main;
 
 /**
  * 系统运行标志中心，各种仓库，服务状态标记

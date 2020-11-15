@@ -1,8 +1,8 @@
 package com.ncell.wangcai.utils.cns.starter;
 
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.ElementWarehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.ConnectionWarehouse;
+import com.ncell.wangcai.warehouse.product.ElementWarehouse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;

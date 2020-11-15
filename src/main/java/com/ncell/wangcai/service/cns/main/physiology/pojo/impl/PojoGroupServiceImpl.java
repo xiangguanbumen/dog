@@ -1,7 +1,7 @@
 package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
-import com.ncell.wangcai.pojoruntime.cns.main.RunningPojoCenter;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.warehouse.runtime.cns.main.RunningPojoCenter;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.PojoGroupService;
 import lombok.AllArgsConstructor;
 import lombok.Data;

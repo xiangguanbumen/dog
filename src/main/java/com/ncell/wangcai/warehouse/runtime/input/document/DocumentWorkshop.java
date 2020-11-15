@@ -1,4 +1,4 @@
-package com.ncell.wangcai.pojoruntime.input.document;
+package com.ncell.wangcai.warehouse.runtime.input.document;
 
 /**
  * 文档处理车间
