@@ -1,6 +1,5 @@
 package com.ncell.wangcai.service.cns.main.physiology.connection.impl;
 
-import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
 import com.ncell.wangcai.service.cns.main.physiology.connection.ConnectionCreatService;
 import com.ncell.wangcai.utils.cns.main.ConnectionUtil;
 import lombok.AllArgsConstructor;

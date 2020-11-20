@@ -9,8 +9,23 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 文档仓库
+ *
+ *
+ *
+ *
  * @author anliwei
  * @create 2020/6/4 12:39
+ *
+ *
+ * @update
+ * 2020年8月9日15:59:51
+ *
+ * 有几种文档分类方法
+ * 第一种就是所有的文档，全部使用document来存储
+ *
+ * 第二种就是分别存储，
+ * word excel ppt等
+ *
  */
 @Data
 @AllArgsConstructor

@@ -1,6 +1,6 @@
 package com.ncell.wangcai.controller.cnsController;
 
-import com.ncell.wangcai.service.cns.inputConverter.impl.DocumentToCellConvertServiceImpl;
+import com.ncell.wangcai.service.cns.entry.document.impl.DocumentToCellConvertServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author anliwei
- * @Data 2020/6/7 17:24
+ * @Date 2020/6/7 17:24
  */
 @Controller
 @RequestMapping("/convert")

@@ -2,12 +2,11 @@ package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.Warehouse;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.PojoRegisterService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**

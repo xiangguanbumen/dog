@@ -2,12 +2,12 @@ package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
 import com.ncell.wangcai.pojo.cns.main.part.Connection;
 import com.ncell.wangcai.pojo.cns.main.part.Message;
-import com.ncell.wangcai.runtime.RunningMessageCenter;
+import com.ncell.wangcai.warehouse.runtime.cns.main.RunningMessageCenter;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.ConnectionWarehouse;
+import com.ncell.wangcai.warehouse.product.MessageWarehouse;
+import com.ncell.wangcai.warehouse.product.Warehouse;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.PojoImpulseService;
 import com.ncell.wangcai.utils.cns.main.ConnectionUtil;
 import com.ncell.wangcai.utils.cns.main.MessageUtil;

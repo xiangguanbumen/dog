@@ -1,5 +1,6 @@
 package com.ncell.wangcai.pojo.cns.main.relation;
 
+import com.ncell.wangcai.pojo.cns.main.base.Cell;
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,10 @@ import org.springframework.stereotype.Component;
  * @date 2020/7/13 15:27
  */
 
-
-public class IntervalCell extends Stem {
+@Data
+//@AllArgsConstructor
+@NoArgsConstructor
+@Component()
+@Scope("prototype")
+public class IntervalCell extends Cell {
 }

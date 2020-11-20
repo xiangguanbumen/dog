@@ -1,7 +1,7 @@
 package com.ncell.wangcai.utils.cns.inputConverter;
 
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.ncell.wangcai.utils.cns.main;
 
 import com.ncell.wangcai.pojo.cns.main.stem.Stem;
-import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
+import com.ncell.wangcai.warehouse.product.Warehouse;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;

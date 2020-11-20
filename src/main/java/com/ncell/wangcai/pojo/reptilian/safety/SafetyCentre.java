@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
+ * 安全中枢
  * @author anliwei
  * @Date 2020/6/14 19:45
  */

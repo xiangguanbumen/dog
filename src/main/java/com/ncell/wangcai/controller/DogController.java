@@ -4,17 +4,16 @@ import com.ncell.wangcai.pojo.assistant.indicator.CnsIndicator;
 import com.ncell.wangcai.pojo.assistant.indicator.InputIndicator;
 import com.ncell.wangcai.pojo.assistant.indicator.OutputIndicator;
 import com.ncell.wangcai.pojo.assistant.indicator.ServiceIndicator;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.ConnectionWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.ConnectionWarehouse;
+import com.ncell.wangcai.warehouse.product.MessageWarehouse;
 import com.ncell.wangcai.pojo.input.document.DocumentWarehouse;
 import com.ncell.wangcai.pojo.input.document.NormalizedDocumentWarehouse;
-import com.ncell.wangcai.service.dogService.loader.impl.LoadServiceImpl;
-import com.ncell.wangcai.service.dogService.manager.impl.ManagerServiceImpl;
-import com.ncell.wangcai.service.dogService.starter.Impl.StartServiceImpl;
-import com.ncell.wangcai.service.dogService.stopper.impl.StopServiceImpl;
+import com.ncell.wangcai.serviceset.dogService.loader.impl.LoadServiceImpl;
+import com.ncell.wangcai.serviceset.dogService.manager.impl.ManagerServiceImpl;
+import com.ncell.wangcai.serviceset.dogService.starter.Impl.StartServiceImpl;
+import com.ncell.wangcai.serviceset.dogService.stopper.impl.StopServiceImpl;
 //import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import com.ncell.wangcai.service.dogService.trainer.impl.StartTrainServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
@@ -36,7 +35,7 @@ public class DogController {
     LoadServiceImpl loadService;
     StartServiceImpl startService;
     StopServiceImpl stopService;
-    StartTrainServiceImpl startTrainService;
+    //StartTrainServiceImpl startTrainService;
 
     ManagerServiceImpl managerService;
 
@@ -110,7 +109,7 @@ public class DogController {
     @GetMapping(value = {"/mytrain"})
     public String train(){
         System.out.println(" startTrainService.doStartTrainService();"+System.currentTimeMillis());
-        startTrainService.doStartTrainService();
+        //startTrainService.doStartTrainService();
 
         return "redirect:/myinfo";
     }

@@ -1,7 +1,7 @@
 package com.ncell.wangcai.service.cns.main.physiology.message.impl;
 
-import com.ncell.wangcai.runtime.RunningPojoCenter;
-import com.ncell.wangcai.pojo.cns.main.warehouse.MessageWarehouse;
+import com.ncell.wangcai.warehouse.runtime.cns.main.RunningPojoCenter;
+import com.ncell.wangcai.warehouse.product.MessageWarehouse;
 import com.ncell.wangcai.service.cns.main.physiology.message.MessageSelect;
 
 /**

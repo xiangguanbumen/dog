@@ -8,9 +8,18 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
+ * 文档类，存储所有接受的文档
+ *
  * @author anliwei
  * @create 2020/6/4 9:06
  * @update 2020年7月10日16:52:59
+ *
+ *
+ * @update
+ * 2020年8月9日16:01:25
+ *
+ * 可以使用poi处理的微软格式文档，不在转换成document。
+ * 直接存储到document仓库中
  */
 @Data
 @AllArgsConstructor
@@ -20,6 +29,16 @@ import org.springframework.stereotype.Component;
 public class Document {
 
     //需要引入poi相关资料，进行Word，Excel等格式的解析,
+
+    /**
+     * 接受整个word文档
+     * @update
+     * 2020年8月9日12:46:05
+     *
+     */
+
+    Object wordDocument=null;
+
     /**
      * 接收Word格式文档文件，
      * @update
@@ -28,6 +47,18 @@ public class Document {
      * poi是以段落来切分word
      */
     Object wordParagraph=null;
+
+
+    /**
+     *
+     * 接受整个excel文档
+     *
+     * @update
+     * 2020年8月9日12:47:32
+     *
+     */
+
+    Object excelDocument=null;
 
     /**
      * 接收Excel格式文档文件

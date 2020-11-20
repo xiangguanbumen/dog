@@ -1,10 +1,10 @@
 package com.ncell.wangcai.service.cns.main.physiology.pojo.impl;
 
 import com.ncell.wangcai.pojo.cns.main.base.Cell;
-import com.ncell.wangcai.runtime.RunningMessageCenter;
-import com.ncell.wangcai.runtime.RunningPojoCenter;
-import com.ncell.wangcai.pojo.cns.main.warehouse.CellWarehouse;
-import com.ncell.wangcai.pojo.cns.main.warehouse.Warehouse;
+import com.ncell.wangcai.warehouse.runtime.cns.main.RunningMessageCenter;
+import com.ncell.wangcai.warehouse.runtime.cns.main.RunningPojoCenter;
+import com.ncell.wangcai.warehouse.product.CellWarehouse;
+import com.ncell.wangcai.warehouse.product.Warehouse;
 import com.ncell.wangcai.service.cns.main.physiology.pojo.PojoCreatService;
 import com.ncell.wangcai.utils.cns.main.CellUtil;
 import lombok.AllArgsConstructor;
@@ -21,6 +21,7 @@ import java.util.LinkedList;
  *
  * @author anliwei
  * @Date 2020/6/11 20:35
+ *
  * @update 2020-6-15 20:36:29
  */
 @Service("pojoCreatServiceImpl")
@@ -63,7 +64,7 @@ public class PojoCreatServiceImpl implements PojoCreatService {
     public void creatPojoByPojo() {
 
         /**
-         * 细胞的生成方法又很多种，这里暂时只使用时间差导数分割法
+         * 细胞的生成方法有很多种，这里暂时只使用时间差导数分割法
          */
 
         createCellMethodOne();
